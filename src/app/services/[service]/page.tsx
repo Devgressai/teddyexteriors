@@ -48,18 +48,31 @@ export default async function ServicePage({
   const s = services.find((x) => x.slug === service);
   if (!s) notFound();
 
+  const JDI_CDN = "https://www.jdiconstruction.co";
+  const matImages: Record<string, string> = {
+    "fiber-cement": `${JDI_CDN}/ctf/2PD7bqxA0kYRMKoXKs1TP6/01b-exterior-front-after-1600.webp`,
+    "engineered-wood": `${JDI_CDN}/ctf/1ywW6ufcKBIaBTL3CnzrQg/03-exterior-front-side-750.webp`,
+    cedar: `${JDI_CDN}/ctf/33C8Uu510N5y2u5WoFGyj9/01-exterior-front-750.webp`,
+    vinyl: `${JDI_CDN}/ctf/6kM5u8g5lU78Y1vIebWMEz/01-exterior-front-750.webp`,
+  };
   const matched = materials.filter((m) => s.materials.includes(m.slug));
-  const matEntries: MaterialCompareEntry[] = matched
-    .map((m) => ({
-      slug: m.slug,
-      product: m.product,
-      look: "", // populated per-material in registry metadata
-      maintenance: "",
-      fit: "",
-      image: { src: "", alt: m.product, width: 1200, height: 900, rights: "owned" as const },
-      href: `/materials/${m.slug}`,
-    }))
-    .filter((m) => m.image.src);
+  const matEntries: MaterialCompareEntry[] = matched.map((m) => ({
+    slug: m.slug,
+    product: m.product,
+    look:
+      m.installationNotes?.split(". ")[0] ?? `${m.product} overview`,
+    maintenance:
+      m.installationNotes?.split(". ").slice(1, 2).join(". ") ?? "See product guide",
+    fit: `${m.manufacturer}`,
+    image: {
+      src: matImages[m.slug] ?? "",
+      alt: `${m.product} on a Northwest exterior`,
+      width: 1200,
+      height: 900,
+      rights: "owned" as const,
+    },
+    href: `/materials/${m.slug}`,
+  }));
 
   const guides = resourceGuides.filter((g) => s.relatedGuides.includes(g.slug));
   const projectRefs = projects.filter((p) => p.services.includes(s.slug));
