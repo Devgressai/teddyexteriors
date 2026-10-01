@@ -175,6 +175,19 @@ export function EstimateSection({
                       No automated price quote. A person reads every request and follows up.
                     </p>
                   </div>
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 pt-2 text-[0.68rem] text-white/55 tracking-wide">
+                    <span className="flex items-center gap-1.5">
+                      <svg viewBox="0 0 16 16" aria-hidden="true" className="h-3 w-3 text-[color:var(--brand-secondary)]">
+                        <path d="M8 1 2 3v4.4c0 3 2 5.7 6 7 4-1.3 6-4 6-7V3L8 1z" fill="none" stroke="currentColor" strokeWidth="1.1" />
+                        <path d="M5.5 8l2 2 3-4" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="square" />
+                      </svg>
+                      Licensed WA &amp; OR
+                    </span>
+                    <span className="opacity-50">·</span>
+                    <span>Written scope &amp; change orders</span>
+                    <span className="opacity-50">·</span>
+                    <span>5-year workmanship warranty</span>
+                  </div>
                   <p className="text-[0.7rem] text-white/50">
                     By submitting you agree to our{" "}
                     <Link href="/privacy" className="underline">privacy</Link>{" "}
