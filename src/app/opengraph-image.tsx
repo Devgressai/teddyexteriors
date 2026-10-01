@@ -22,20 +22,38 @@ export default async function OG() {
           fontFamily: "sans-serif",
         }}
       >
-        <div style={{ display: "flex", fontSize: 24, letterSpacing: 4, textTransform: "uppercase", color: "#50A747" }}>
+        <div
+          style={{
+            display: "flex",
+            fontSize: 24,
+            letterSpacing: 4,
+            textTransform: "uppercase",
+            color: "#50A747",
+          }}
+        >
           Exterior Remodeling · Vancouver &amp; Portland
         </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-          <div style={{ fontSize: 72, lineHeight: 1.05, fontWeight: 600, maxWidth: 1000 }}>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <div style={{ display: "flex", fontSize: 72, lineHeight: 1.05, fontWeight: 600 }}>
             Beautiful exteriors.
-            <br />
+          </div>
+          <div style={{ display: "flex", fontSize: 72, lineHeight: 1.05, fontWeight: 600 }}>
             Built for Northwest weather.
           </div>
-          <div style={{ fontSize: 24, color: "#D4D4D4", marginTop: 24 }}>{brand}</div>
+          <div style={{ display: "flex", fontSize: 24, color: "#D4D4D4", marginTop: 24 }}>
+            {brand}
+          </div>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 20, color: "#D4D4D4" }}>
-          <span>Siding · Windows · Trim · Full Exterior</span>
-          <span>Southwest WA · NW OR</span>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            fontSize: 20,
+            color: "#D4D4D4",
+          }}
+        >
+          <div style={{ display: "flex" }}>Siding · Windows · Trim · Full Exterior</div>
+          <div style={{ display: "flex" }}>Southwest WA · NW OR</div>
         </div>
       </div>
     ),
