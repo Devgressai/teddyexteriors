@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { PageShell } from "@/components/PageShell";
 import { JsonLd } from "@/components/JsonLd";
 import { serviceSchema } from "@/lib/schema";
@@ -57,6 +58,7 @@ export default async function CityServicePage({
   if (!c.servicesOffered.includes(s.slug)) notFound();
   const matchedProjects = projects.filter((p) => p.city === c.slug && p.services.includes(s.slug));
   const nearbyProjects = projects.filter((p) => p.services.includes(s.slug) && p.city !== c.slug).slice(0, 3);
+  const otherLocalServices = services.filter((x) => c.servicesOffered.includes(x.slug) && x.slug !== s.slug);
   const phone = get<string>("contact.phone") ?? undefined;
 
   return (
@@ -144,6 +146,42 @@ export default async function CityServicePage({
                 </ul>
               </div>
             )}
+          </div>
+        </section>
+      )}
+      {otherLocalServices.length > 0 && (
+        <section className="bg-[color:var(--surface-paper)] border-t border-[color:var(--border-subtle)]">
+          <div className="mx-auto max-w-5xl px-6 py-14">
+            <p className="eyebrow">Other services in {c.name}</p>
+            <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-[0.95rem]">
+              {otherLocalServices.map((other) => (
+                <li key={other.slug}>
+                  <Link
+                    href={`/service-areas/${state}/${city}/${other.slug}`}
+                    className="text-[color:var(--ink-emphasis)] hover:text-[color:var(--brand-cta)]"
+                  >
+                    {other.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-6 text-[0.85rem] text-[color:var(--ink-secondary)]">
+              Also serving nearby:{" "}
+              {cities
+                .filter((o) => o.state === c.state && o.slug !== c.slug)
+                .slice(0, 5)
+                .map((o, i, arr) => (
+                  <span key={o.slug}>
+                    <Link
+                      href={`/service-areas/${state}/${o.slug}`}
+                      className="underline underline-offset-2 hover:text-[color:var(--brand-cta)]"
+                    >
+                      {o.name}
+                    </Link>
+                    {i < arr.length - 1 ? ", " : "."}
+                  </span>
+                ))}
+            </p>
           </div>
         </section>
       )}
