@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Fraunces } from "next/font/google";
 import { JsonLd } from "@/components/JsonLd";
-import { ExteriorHeader, ExteriorFooter } from "@/components/exterior";
+import { ExteriorHeader, ExteriorFooter, MobileActionBar } from "@/components/exterior";
 import { localBusiness, website } from "@/lib/schema";
 import { display, get, hasUnresolvedRequirements } from "@/lib/business";
 import "./globals.css";
@@ -85,9 +85,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           phone={phone}
           nav={primaryNav}
         />
-        <main id="main" className="flex-1">
+        <main id="main" className="flex-1 pb-14 lg:pb-0">
           {children}
         </main>
+        <MobileActionBar phone={phone} />
         <ExteriorFooter
           brandName={brandName}
           statement="Siding, windows, and exterior renovation serving Vancouver, Portland, and the surrounding region."

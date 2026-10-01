@@ -7,8 +7,10 @@ import {
   ProjectFeature,
   MaterialCompare,
   RegionalCoverage,
-  ProcessStory,
-  TeamProof,
+  ProcessTimeline,
+  WhyTeddyNarrative,
+  ClimateAuthority,
+  FeaturedTestimonial,
   ResourceFeature,
   ExteriorFaq,
   ReviewPlatforms,
@@ -17,7 +19,8 @@ import {
   type TrustBandItem,
   type MaterialCompareEntry,
   type RegionalCoverageGroup,
-  type ProcessStoryStep,
+  type ProcessTimelineStep,
+  type WhyTeddyBlock,
   type ResourceFeatureGuide,
   type ReviewPlatform,
 } from "@/components/exterior";
@@ -179,11 +182,53 @@ export default function HomePage() {
     },
   ];
 
-  const processSteps: ProcessStoryStep[] = [
-    { number: "01", title: "Walk the exterior with us", description: "We assess existing conditions, point out where water's getting in, and lay out what it takes to make the envelope watertight." },
-    { number: "02", title: "Review the written scope", description: "Written estimate with inclusions, exclusions, and allowances for conditions revealed during tear-off." },
-    { number: "03", title: "Build with in-house crews", description: "The same hands that estimated your project build it. Clean jobsite, respectful crews, dry walls." },
-    { number: "04", title: "Finish walk + warranty record", description: "A finish walk before final payment; documented record of installed materials for warranty." },
+  const processSteps: ProcessTimelineStep[] = [
+    { number: "01", title: "Walk the exterior with us", body: "We assess existing conditions, point out where water's getting in, and lay out what it takes to make the envelope watertight." },
+    { number: "02", title: "Review the written scope", body: "Written estimate with inclusions, exclusions, and allowances for conditions revealed during tear-off." },
+    { number: "03", title: "Build with in-house crews", body: "The same hands that estimated your project build it. Clean jobsite, respectful crews, dry walls." },
+    { number: "04", title: "Finish walk & warranty record", body: "A finish walk before final payment, with a documented record of installed materials for warranty." },
+  ];
+
+  const whyBlocks: WhyTeddyBlock[] = [
+    {
+      eyebrow: "Written estimate",
+      heading: "No surprise invoices.",
+      body: "Scope, materials, access, demolition allowances, and conditions-revealed allowances all appear in writing before work begins. Change orders are issued in writing. The final invoice should look like the first estimate — plus whatever we found and documented along the way.",
+      image: {
+        src: `${JDI_CDN}/ctf/6kM5u8g5lU78Y1vIebWMEz/01-exterior-front-750.webp`,
+        alt: "Installation detail of fiber cement siding at a window head — Vancouver, WA",
+        width: 1600,
+        height: 1200,
+        rights: "owned",
+      },
+      imagePosition: "right",
+    },
+    {
+      eyebrow: "In-house crews",
+      heading: "Same hands, every project.",
+      body: "No bidding your project out to the lowest sub we can find. The crews building your exterior are the same crews we've worked with for years, under one roof with one project manager. Clean, respectful jobsites — and dry walls at the end of every day.",
+      image: {
+        src: `${JDI_CDN}/ctf/33C8Uu510N5y2u5WoFGyj9/01-exterior-front-750.webp`,
+        alt: "Mid-century ranch exterior refresh — Vancouver, WA",
+        width: 1600,
+        height: 1200,
+        rights: "owned",
+      },
+      imagePosition: "left",
+    },
+    {
+      eyebrow: "Envelope first",
+      heading: "The walls behind the siding get the same care as the siding.",
+      body: "We open representative wall sections, document conditions, correct the flashing and WRB details that let water in originally, and only then install new cladding. If the envelope isn't right, the finish is temporary.",
+      image: {
+        src: `${JDI_CDN}/ctf/1ywW6ufcKBIaBTL3CnzrQg/03-exterior-front-side-750.webp`,
+        alt: "Completed whole-home exterior remodel — Vancouver, WA",
+        width: 1600,
+        height: 1200,
+        rights: "owned",
+      },
+      imagePosition: "right",
+    },
   ];
 
   const resourceFeatured: ResourceFeatureGuide = {
@@ -285,20 +330,55 @@ export default function HomePage() {
         />
       )}
 
+      <WhyTeddyNarrative
+        sectionEyebrow="Why Teddy"
+        sectionHeading="Specifics, not slogans."
+        blocks={whyBlocks}
+      />
+
+      <ClimateAuthority
+        eyebrow="Pacific Northwest"
+        heading="We build for the weather we actually have."
+        body={[
+          "Between fall and spring, the Portland metro and Clark County take on the better part of forty inches of rain — most of it as a slow, sideways drizzle that finds every unsealed seam. Overcast light, saturated ground, and freeze-thaw cycles at elevation shape every exterior decision.",
+          "Our job isn't to keep every drop of water from reaching the back of the siding — rain gets behind cladding on every house. The real job is giving that water a fast, uninterrupted path back out before it reaches the wood and insulation underneath.",
+          "That means specific choices about weather-resistive barriers, flashing, rainscreens, penetration sealing, and sequencing the work around the actual weather window. Vancouver and Portland houses need envelopes designed for forty inches of annual drizzle, not showrooms.",
+        ]}
+        rules={[
+          {
+            title: "No cosmetic covers over failed layers.",
+            body: "If the WRB or flashing underneath has failed, replacing the siding alone just hides the problem for another year or two.",
+          },
+          {
+            title: "Open before we propose.",
+            body: "On exterior remediation scopes, we open a representative section and document what's behind the siding before quoting a repair plan.",
+          },
+          {
+            title: "Work year-round, dry every night.",
+            body: "Walls get protected, dried-in, and never left exposed to the rain between workdays. We don't shut down for the wet season.",
+          },
+        ]}
+      />
+
       <RegionalCoverage
         heading="Your exterior team across Vancouver, Portland & nearby communities."
         supporting="Not sure whether your property is in our service area? Send us your city or ZIP."
         groups={coverage}
       />
 
-      <ProcessStory heading="Know what happens before work begins." steps={processSteps} />
+      <ProcessTimeline
+        eyebrow="Our Process"
+        heading="Know what happens before work begins."
+        intro="Four phases from first conversation to the final walk. We stay in writing throughout — scope, allowances, and change orders — so you always know where the project stands."
+        steps={processSteps}
+      />
 
-      <TeamProof
-        heading="In-house crews. Written estimates. Work you can evaluate."
-        intro="Teddy Exteriors is the exterior arm of JDI Construction — 18 years of in-house crews based in Vancouver, Washington, with a Portland satellite by appointment."
-        people={[]}
-        testimonials={[]}
-        teamHref="/team"
+      <FeaturedTestimonial
+        eyebrow="Homeowner stories"
+        heading="Real people. Clear communication. Work you can evaluate."
+        quote=""
+        attribution=""
+        locality=""
         reviewsHref="/reviews"
       />
 
