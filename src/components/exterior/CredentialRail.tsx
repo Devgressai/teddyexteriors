@@ -13,12 +13,12 @@ export function CredentialRail({ items }: CredentialRailProps) {
         {items.map((item, i) => {
           const content = (
             <>
-              <dt className="text-xs uppercase tracking-wider text-[color:var(--text-secondary)]">
+              <dt className="text-xs uppercase tracking-wider text-[color:var(--ink-secondary)]">
                 {item.label}
               </dt>
-              <dd className="mt-1 text-base font-semibold text-[color:var(--text-primary)]">{item.value}</dd>
+              <dd className="mt-1 text-base font-semibold text-[color:var(--ink-primary)]">{item.value}</dd>
               {item.sourceNote && (
-                <dd className="mt-0.5 text-[11px] text-[color:var(--text-secondary)]">{item.sourceNote}</dd>
+                <dd className="mt-0.5 text-[11px] text-[color:var(--ink-secondary)]">{item.sourceNote}</dd>
               )}
             </>
           );
@@ -26,7 +26,7 @@ export function CredentialRail({ items }: CredentialRailProps) {
             <div key={i}>
               <dl>
                 {item.href ? (
-                  <Link href={item.href} className="block hover:text-[color:var(--cta-fill)]">
+                  <Link href={item.href} className="block hover:text-[color:var(--brand-cta)]">
                     {content}
                   </Link>
                 ) : (

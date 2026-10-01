@@ -28,7 +28,7 @@ export default function ReviewsPage() {
             <ul className="space-y-3">
               {profiles.map((url) => (
                 <li key={url}>
-                  <Link href={url} target="_blank" rel="noopener noreferrer" className="text-base text-[color:var(--text-primary)] underline underline-offset-4">
+                  <Link href={url} target="_blank" rel="noopener noreferrer" className="text-base text-[color:var(--ink-primary)] underline underline-offset-4">
                     {url}
                   </Link>
                 </li>

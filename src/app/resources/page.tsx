@@ -24,10 +24,10 @@ export default function ResourcesIndex() {
           <div className="mx-auto max-w-5xl px-6 py-16 grid gap-10 sm:grid-cols-2">
             {resourcePillars.map((p) => (
               <Link key={p.slug} href={`/resources/${p.slug}`} className="group block">
-                <h2 className="text-xl font-semibold text-[color:var(--text-primary)] group-hover:text-[color:var(--cta-fill)]">
+                <h2 className="text-xl font-semibold text-[color:var(--ink-primary)] group-hover:text-[color:var(--brand-cta)]">
                   {p.topic}
                 </h2>
-                <p className="mt-2 text-sm text-[color:var(--text-secondary)]">{p.scope}</p>
+                <p className="mt-2 text-sm text-[color:var(--ink-secondary)]">{p.scope}</p>
               </Link>
             ))}
           </div>

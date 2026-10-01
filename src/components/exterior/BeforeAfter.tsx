@@ -20,7 +20,7 @@ export function BeforeAfter({ before, after, label = "Before and after", mode = 
         <div className="relative aspect-[4/3] overflow-hidden rounded-md">
           <Image src={after.src} alt={`After — ${after.alt}`} fill sizes="(min-width: 640px) 50vw, 100vw" className="object-cover" />
         </div>
-        <figcaption className="sm:col-span-2 text-xs text-[color:var(--text-secondary)]">{label}</figcaption>
+        <figcaption className="sm:col-span-2 text-xs text-[color:var(--ink-secondary)]">{label}</figcaption>
       </figure>
     );
   }
@@ -51,9 +51,9 @@ export function BeforeAfter({ before, after, label = "Before and after", mode = 
         max={100}
         value={pct}
         onChange={(e) => setPct(Number(e.target.value))}
-        className="mt-3 w-full accent-[color:var(--cta-fill)]"
+        className="mt-3 w-full accent-[color:var(--brand-cta)]"
       />
-      <figcaption className="mt-2 text-xs text-[color:var(--text-secondary)]">{label}</figcaption>
+      <figcaption className="mt-2 text-xs text-[color:var(--ink-secondary)]">{label}</figcaption>
     </figure>
   );
 }

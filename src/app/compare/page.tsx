@@ -24,10 +24,10 @@ export default function CompareIndex() {
           <div className="mx-auto max-w-5xl px-6 py-16 grid gap-6 sm:grid-cols-2">
             {comparisons.map((c) => (
               <Link key={c.slug} href={`/compare/${c.slug}`} className="group block">
-                <h2 className="text-xl font-semibold text-[color:var(--text-primary)] group-hover:text-[color:var(--cta-fill)]">
+                <h2 className="text-xl font-semibold text-[color:var(--ink-primary)] group-hover:text-[color:var(--brand-cta)]">
                   {c.topic}
                 </h2>
-                <p className="mt-2 text-sm text-[color:var(--text-secondary)]">{c.summary}</p>
+                <p className="mt-2 text-sm text-[color:var(--ink-secondary)]">{c.summary}</p>
               </Link>
             ))}
           </div>

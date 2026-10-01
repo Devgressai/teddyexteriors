@@ -9,10 +9,10 @@ export function TeamProof({ heading, intro, people, testimonials, teamHref, revi
     <section className="bg-[color:var(--surface-warm)]">
       <div className="mx-auto max-w-7xl px-6 py-20 lg:py-24 grid gap-12 lg:grid-cols-12 items-start">
         <div className="lg:col-span-5">
-          <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-[color:var(--text-primary)]">
+          <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-[color:var(--ink-primary)]">
             {heading}
           </h2>
-          <p className="mt-4 text-base text-[color:var(--text-secondary)]">{intro}</p>
+          <p className="mt-4 text-base text-[color:var(--ink-secondary)]">{intro}</p>
           {people.length > 0 && (
             <ul className="mt-8 space-y-5">
               {people.map((p) => (
@@ -25,14 +25,14 @@ export function TeamProof({ heading, intro, people, testimonials, teamHref, revi
                     <div className="w-14 h-14 rounded-full bg-[color:var(--border-subtle)]/60" aria-hidden="true" />
                   )}
                   <div>
-                    <p className="text-sm font-semibold text-[color:var(--text-primary)]">{p.name}</p>
-                    <p className="text-xs text-[color:var(--text-secondary)]">{p.role}</p>
+                    <p className="text-sm font-semibold text-[color:var(--ink-primary)]">{p.name}</p>
+                    <p className="text-xs text-[color:var(--ink-secondary)]">{p.role}</p>
                   </div>
                 </li>
               ))}
             </ul>
           )}
-          <Link href={teamHref} className="mt-6 inline-flex items-center text-sm font-semibold text-[color:var(--cta-fill)]">
+          <Link href={teamHref} className="mt-6 inline-flex items-center text-sm font-semibold text-[color:var(--brand-cta)]">
             Meet the team <span aria-hidden="true" className="ml-1">→</span>
           </Link>
         </div>
@@ -40,18 +40,18 @@ export function TeamProof({ heading, intro, people, testimonials, teamHref, revi
           {testimonials.length > 0 && (
             <ul className="space-y-6">
               {testimonials.map((t, i) => (
-                <li key={i} className="border-l-2 border-[color:var(--accent)] pl-5">
-                  <blockquote className="text-base text-[color:var(--text-primary)]">
+                <li key={i} className="border-l-2 border-[color:var(--brand-secondary)] pl-5">
+                  <blockquote className="text-base text-[color:var(--ink-primary)]">
                     &ldquo;{t.quote}&rdquo;
                   </blockquote>
-                  <cite className="mt-2 block text-xs text-[color:var(--text-secondary)] not-italic">
+                  <cite className="mt-2 block text-xs text-[color:var(--ink-secondary)] not-italic">
                     — {t.attribution}
                   </cite>
                 </li>
               ))}
             </ul>
           )}
-          <Link href={reviewsHref} className="mt-6 inline-flex items-center text-sm font-semibold text-[color:var(--cta-fill)]">
+          <Link href={reviewsHref} className="mt-6 inline-flex items-center text-sm font-semibold text-[color:var(--brand-cta)]">
             Read customer accounts <span aria-hidden="true" className="ml-1">→</span>
           </Link>
         </div>

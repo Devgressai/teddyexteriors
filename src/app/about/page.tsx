@@ -26,7 +26,7 @@ export default function AboutPage() {
             and coordinated whole-exterior renovations in Southwest Washington and Northwest Oregon.
           </p>
           {(legal || dba) && (
-            <p className="text-sm text-[color:var(--text-secondary)]">
+            <p className="text-sm text-[color:var(--ink-secondary)]">
               {legal && <>Legal entity: {legal}. </>}
               {dba && <>{dba}.</>}
             </p>

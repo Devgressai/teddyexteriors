@@ -75,9 +75,9 @@ export default async function CityHub({
       <section className="bg-[color:var(--surface-paper)]">
         <div className="mx-auto max-w-5xl px-6 py-16 grid gap-10 lg:grid-cols-2">
           <div>
-            <h2 className="text-xl font-semibold text-[color:var(--text-primary)]">Services available in {c.name}</h2>
+            <h2 className="text-xl font-semibold text-[color:var(--ink-primary)]">Services available in {c.name}</h2>
             {localServices.length === 0 ? (
-              <p className="mt-3 text-sm text-[color:var(--text-secondary)]">
+              <p className="mt-3 text-sm text-[color:var(--ink-secondary)]">
                 Service pages for {c.name} publish once the local coverage matrix is confirmed.
               </p>
             ) : (
@@ -86,7 +86,7 @@ export default async function CityHub({
                   <li key={s.slug}>
                     <Link
                       href={`/service-areas/${state}/${city}/${s.slug}`}
-                      className="text-base text-[color:var(--text-primary)] hover:text-[color:var(--cta-fill)]"
+                      className="text-base text-[color:var(--ink-primary)] hover:text-[color:var(--brand-cta)]"
                     >
                       {s.name} in {c.name}
                     </Link>
@@ -96,8 +96,8 @@ export default async function CityHub({
             )}
           </div>
           <div>
-            <h2 className="text-xl font-semibold text-[color:var(--text-primary)]">Permitting</h2>
-            <p className="mt-3 text-sm text-[color:var(--text-secondary)]">
+            <h2 className="text-xl font-semibold text-[color:var(--ink-primary)]">Permitting</h2>
+            <p className="mt-3 text-sm text-[color:var(--ink-secondary)]">
               <a href={c.jurisdiction.buildingDeptUrl} target="_blank" rel="noopener noreferrer" className="underline">
                 {c.jurisdiction.buildingDeptName}
               </a>
@@ -105,8 +105,8 @@ export default async function CityHub({
             </p>
             {c.localConstraints && c.localConstraints.length > 0 && (
               <>
-                <h3 className="mt-6 text-sm font-semibold text-[color:var(--text-primary)]">Local considerations</h3>
-                <ul className="mt-2 text-sm text-[color:var(--text-secondary)] list-disc pl-5 space-y-1">
+                <h3 className="mt-6 text-sm font-semibold text-[color:var(--ink-primary)]">Local considerations</h3>
+                <ul className="mt-2 text-sm text-[color:var(--ink-secondary)] list-disc pl-5 space-y-1">
                   {c.localConstraints.map((item, i) => (
                     <li key={i}>{item}</li>
                   ))}
@@ -119,13 +119,13 @@ export default async function CityHub({
       {localProjects.length > 0 && (
         <section className="bg-[color:var(--surface-warm)]">
           <div className="mx-auto max-w-5xl px-6 py-16">
-            <h2 className="text-xl font-semibold text-[color:var(--text-primary)]">Projects in or near {c.name}</h2>
+            <h2 className="text-xl font-semibold text-[color:var(--ink-primary)]">Projects in or near {c.name}</h2>
             <ul className="mt-4 space-y-2">
               {localProjects.map((p) => (
                 <li key={p.slug}>
                   <Link
                     href={`/projects/${p.slug}`}
-                    className="text-base text-[color:var(--text-primary)] hover:text-[color:var(--cta-fill)]"
+                    className="text-base text-[color:var(--ink-primary)] hover:text-[color:var(--brand-cta)]"
                   >
                     {p.title}
                   </Link>

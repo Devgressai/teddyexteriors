@@ -29,12 +29,12 @@ export default function TeamPage() {
               <article key={p.slug} className="flex gap-6 items-start">
                 <div className="w-20 h-20 rounded-full bg-[color:var(--border-subtle)]/60" aria-hidden="true" />
                 <div>
-                  <h2 className="text-xl font-semibold text-[color:var(--text-primary)]">{p.name}</h2>
-                  <p className="text-sm text-[color:var(--text-secondary)]">
+                  <h2 className="text-xl font-semibold text-[color:var(--ink-primary)]">{p.name}</h2>
+                  <p className="text-sm text-[color:var(--ink-secondary)]">
                     {p.role}
-                    {p.technicalReviewer && <span className="ml-2 text-[color:var(--cta-fill)]">· Technical reviewer</span>}
+                    {p.technicalReviewer && <span className="ml-2 text-[color:var(--brand-cta)]">· Technical reviewer</span>}
                   </p>
-                  <p className="mt-3 text-sm text-[color:var(--text-primary)]">{p.bio}</p>
+                  <p className="mt-3 text-sm text-[color:var(--ink-primary)]">{p.bio}</p>
                 </div>
               </article>
             ))}

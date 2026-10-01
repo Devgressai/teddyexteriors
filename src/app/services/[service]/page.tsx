@@ -78,8 +78,8 @@ export default async function ServicePage({
       <section className="bg-[color:var(--surface-paper)]">
         <div className="mx-auto max-w-5xl px-6 py-16 grid gap-10 lg:grid-cols-2">
           <div>
-            <h2 className="text-xl font-semibold text-[color:var(--text-primary)]">What's included</h2>
-            <ul className="mt-4 space-y-2 text-sm text-[color:var(--text-primary)] list-disc pl-5">
+            <h2 className="text-xl font-semibold text-[color:var(--ink-primary)]">What's included</h2>
+            <ul className="mt-4 space-y-2 text-sm text-[color:var(--ink-primary)] list-disc pl-5">
               {s.scope.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}
@@ -87,8 +87,8 @@ export default async function ServicePage({
           </div>
           {s.exclusions.length > 0 && (
             <div>
-              <h2 className="text-xl font-semibold text-[color:var(--text-primary)]">Not included</h2>
-              <ul className="mt-4 space-y-2 text-sm text-[color:var(--text-secondary)] list-disc pl-5">
+              <h2 className="text-xl font-semibold text-[color:var(--ink-primary)]">Not included</h2>
+              <ul className="mt-4 space-y-2 text-sm text-[color:var(--ink-secondary)] list-disc pl-5">
                 {s.exclusions.map((item, i) => (
                   <li key={i}>{item}</li>
                 ))}
@@ -105,11 +105,11 @@ export default async function ServicePage({
           <div className="mx-auto max-w-5xl px-6 py-16 grid gap-12 lg:grid-cols-2">
             {guides.length > 0 && (
               <div>
-                <h2 className="text-xl font-semibold text-[color:var(--text-primary)]">Guides</h2>
+                <h2 className="text-xl font-semibold text-[color:var(--ink-primary)]">Guides</h2>
                 <ul className="mt-4 space-y-3 text-sm">
                   {guides.map((g) => (
                     <li key={g.slug}>
-                      <a className="text-[color:var(--text-primary)] hover:text-[color:var(--cta-fill)]" href={`/resources/${g.pillar}/${g.slug}`}>
+                      <a className="text-[color:var(--ink-primary)] hover:text-[color:var(--brand-cta)]" href={`/resources/${g.pillar}/${g.slug}`}>
                         {g.title}
                       </a>
                     </li>
@@ -119,11 +119,11 @@ export default async function ServicePage({
             )}
             {projectRefs.length > 0 && (
               <div>
-                <h2 className="text-xl font-semibold text-[color:var(--text-primary)]">Related projects</h2>
+                <h2 className="text-xl font-semibold text-[color:var(--ink-primary)]">Related projects</h2>
                 <ul className="mt-4 space-y-3 text-sm">
                   {projectRefs.map((p) => (
                     <li key={p.slug}>
-                      <a className="text-[color:var(--text-primary)] hover:text-[color:var(--cta-fill)]" href={`/projects/${p.slug}`}>
+                      <a className="text-[color:var(--ink-primary)] hover:text-[color:var(--brand-cta)]" href={`/projects/${p.slug}`}>
                         {p.title}
                       </a>
                     </li>

@@ -34,12 +34,12 @@ export function ReviewPlatforms({
       <div className="mx-auto max-w-7xl px-6 py-14">
         <div className="flex flex-wrap items-end justify-between gap-6 mb-8">
           <div className="max-w-xl">
-            <h2 className="text-2xl font-semibold tracking-tight text-[color:var(--text-primary)]">{heading}</h2>
-            {intro && <p className="mt-2 text-sm text-[color:var(--text-secondary)]">{intro}</p>}
+            <h2 className="text-2xl font-semibold tracking-tight text-[color:var(--ink-primary)]">{heading}</h2>
+            {intro && <p className="mt-2 text-sm text-[color:var(--ink-secondary)]">{intro}</p>}
           </div>
           <Link
             href={reviewsHref}
-            className="text-sm font-semibold text-[color:var(--cta-fill)]"
+            className="text-sm font-semibold text-[color:var(--brand-cta)]"
           >
             See all reviews <span aria-hidden="true" className="ml-1">→</span>
           </Link>
@@ -51,13 +51,13 @@ export function ReviewPlatforms({
                 href={p.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block border border-[color:var(--border-subtle)] rounded-md px-4 py-3 hover:border-[color:var(--cta-fill)]"
+                className="block border border-[color:var(--border-subtle)] rounded-md px-4 py-3 hover:border-[color:var(--brand-cta)]"
               >
-                <span className="block text-xs uppercase tracking-wider text-[color:var(--text-secondary)]">
+                <span className="block text-xs uppercase tracking-wider text-[color:var(--ink-secondary)]">
                   {p.name}
                 </span>
                 {p.rating && (
-                  <span className="mt-1 block text-base font-semibold text-[color:var(--text-primary)]">
+                  <span className="mt-1 block text-base font-semibold text-[color:var(--ink-primary)]">
                     {p.rating}
                   </span>
                 )}

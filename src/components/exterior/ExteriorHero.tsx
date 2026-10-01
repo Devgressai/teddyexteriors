@@ -16,27 +16,27 @@ export function ExteriorHero({
     <section className="relative bg-[color:var(--surface-warm)]">
       <div className="mx-auto max-w-7xl px-6 py-12 lg:py-20 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         <div className="lg:col-span-5 order-2 lg:order-1">
-          <p className="text-xs tracking-[0.14em] uppercase font-semibold text-[color:var(--cta-fill)]">
+          <p className="text-xs tracking-[0.14em] uppercase font-semibold text-[color:var(--brand-cta)]">
             {eyebrow}
           </p>
-          <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-[color:var(--text-primary)]">
+          <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-[color:var(--ink-primary)]">
             <span className="block">{h1Line1}</span>
             {h1Line2 && <span className="block">{h1Line2}</span>}
           </h1>
-          <p className="mt-6 text-lg leading-relaxed text-[color:var(--text-secondary)] max-w-xl">
+          <p className="mt-6 text-lg leading-relaxed text-[color:var(--ink-secondary)] max-w-xl">
             {supporting}
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link
               href={primaryCta.href}
-              className="inline-flex items-center rounded-md bg-[color:var(--cta-fill)] px-5 py-3 text-base font-semibold text-[color:var(--cta-text)] hover:brightness-95"
+              className="inline-flex items-center rounded-md bg-[color:var(--brand-cta)] px-5 py-3 text-base font-semibold text-[color:var(--brand-cta-ink)] hover:brightness-95"
             >
               {primaryCta.label}
             </Link>
             {secondaryCta && (
               <Link
                 href={secondaryCta.href}
-                className="inline-flex items-center text-base font-semibold text-[color:var(--text-primary)] underline underline-offset-4 hover:text-[color:var(--cta-fill)]"
+                className="inline-flex items-center text-base font-semibold text-[color:var(--ink-primary)] underline underline-offset-4 hover:text-[color:var(--brand-cta)]"
               >
                 {secondaryCta.label} <span aria-hidden="true" className="ml-1">→</span>
               </Link>
@@ -56,8 +56,8 @@ export function ExteriorHero({
               />
             </div>
             {caption && (
-              <figcaption className="mt-3 text-xs text-[color:var(--text-secondary)]">
-                <span className="font-semibold text-[color:var(--text-primary)]">{caption.cityState}</span>
+              <figcaption className="mt-3 text-xs text-[color:var(--ink-secondary)]">
+                <span className="font-semibold text-[color:var(--ink-primary)]">{caption.cityState}</span>
                 <span className="mx-2 opacity-60">·</span>
                 <span>{caption.material}</span>
                 <span className="mx-2 opacity-60">·</span>

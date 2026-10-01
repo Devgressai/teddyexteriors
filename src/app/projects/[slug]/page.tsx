@@ -90,38 +90,38 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             {p.changeHandling && (<><h2>Change orders</h2><p>{p.changeHandling}</p></>)}
           </div>
           <aside>
-            <h3 className="text-xs uppercase tracking-wider font-semibold text-[color:var(--text-secondary)]">Project facts</h3>
+            <h3 className="text-xs uppercase tracking-wider font-semibold text-[color:var(--ink-secondary)]">Project facts</h3>
             <dl className="mt-3 text-sm space-y-3">
               {city && (
                 <div>
-                  <dt className="text-[color:var(--text-secondary)]">Location</dt>
-                  <dd className="text-[color:var(--text-primary)]">{city.name}, {city.state}</dd>
+                  <dt className="text-[color:var(--ink-secondary)]">Location</dt>
+                  <dd className="text-[color:var(--ink-primary)]">{city.name}, {city.state}</dd>
                 </div>
               )}
               {p.completionDate && (
                 <div>
-                  <dt className="text-[color:var(--text-secondary)]">Completed</dt>
-                  <dd className="text-[color:var(--text-primary)]">{p.completionDate.slice(0, 10)}</dd>
+                  <dt className="text-[color:var(--ink-secondary)]">Completed</dt>
+                  <dd className="text-[color:var(--ink-primary)]">{p.completionDate.slice(0, 10)}</dd>
                 </div>
               )}
               {p.dimensions && (
                 <>
                   {p.dimensions.wallSquares && (
                     <div>
-                      <dt className="text-[color:var(--text-secondary)]">Wall area</dt>
-                      <dd className="text-[color:var(--text-primary)]">{p.dimensions.wallSquares} squares</dd>
+                      <dt className="text-[color:var(--ink-secondary)]">Wall area</dt>
+                      <dd className="text-[color:var(--ink-primary)]">{p.dimensions.wallSquares} squares</dd>
                     </div>
                   )}
                   {p.dimensions.sheathingThicknessIn && (
                     <div>
-                      <dt className="text-[color:var(--text-secondary)]">Sheathing</dt>
-                      <dd className="text-[color:var(--text-primary)]">{p.dimensions.sheathingThicknessIn}&quot; CDX</dd>
+                      <dt className="text-[color:var(--ink-secondary)]">Sheathing</dt>
+                      <dd className="text-[color:var(--ink-primary)]">{p.dimensions.sheathingThicknessIn}&quot; CDX</dd>
                     </div>
                   )}
                   {p.dimensions.trimLinearFeet && (
                     <div>
-                      <dt className="text-[color:var(--text-secondary)]">Trim</dt>
-                      <dd className="text-[color:var(--text-primary)]">{p.dimensions.trimLinearFeet} LF</dd>
+                      <dt className="text-[color:var(--ink-secondary)]">Trim</dt>
+                      <dd className="text-[color:var(--ink-primary)]">{p.dimensions.trimLinearFeet} LF</dd>
                     </div>
                   )}
                 </>
@@ -134,9 +134,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         <section className="bg-[color:var(--surface-warm)]">
           <div className="mx-auto max-w-5xl px-6 py-16 space-y-6">
             {p.customerComments.map((c, i) => (
-              <blockquote key={i} className="border-l-2 border-[color:var(--accent)] pl-5">
-                <p className="text-base text-[color:var(--text-primary)]">&ldquo;{c.quote}&rdquo;</p>
-                <cite className="mt-2 block text-xs text-[color:var(--text-secondary)] not-italic">— {c.attribution}</cite>
+              <blockquote key={i} className="border-l-2 border-[color:var(--brand-secondary)] pl-5">
+                <p className="text-base text-[color:var(--ink-primary)]">&ldquo;{c.quote}&rdquo;</p>
+                <cite className="mt-2 block text-xs text-[color:var(--ink-secondary)] not-italic">— {c.attribution}</cite>
               </blockquote>
             ))}
           </div>

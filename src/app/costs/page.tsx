@@ -26,10 +26,10 @@ export default function CostsIndex() {
               const s = services.find((x) => x.slug === cg.service);
               return (
                 <Link key={cg.slug} href={`/costs/${cg.service}`} className="group block">
-                  <h2 className="text-xl font-semibold text-[color:var(--text-primary)] group-hover:text-[color:var(--cta-fill)]">
+                  <h2 className="text-xl font-semibold text-[color:var(--ink-primary)] group-hover:text-[color:var(--brand-cta)]">
                     {s?.name ?? cg.service} cost guide
                   </h2>
-                  <p className="mt-2 text-sm text-[color:var(--text-secondary)]">
+                  <p className="mt-2 text-sm text-[color:var(--ink-secondary)]">
                     Unit basis: {cg.unitBasis.replace(/-/g, " ")}
                   </p>
                 </Link>

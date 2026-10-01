@@ -26,11 +26,11 @@ export default function ProjectsIndex() {
               const city = findCity(p.city);
               return (
                 <Link key={p.slug} href={`/projects/${p.slug}`} className="group block">
-                  <h2 className="text-xl font-semibold text-[color:var(--text-primary)] group-hover:text-[color:var(--cta-fill)]">
+                  <h2 className="text-xl font-semibold text-[color:var(--ink-primary)] group-hover:text-[color:var(--brand-cta)]">
                     {p.title}
                   </h2>
-                  {city && <p className="mt-1 text-xs text-[color:var(--text-secondary)]">{city.name}, {city.state}</p>}
-                  <p className="mt-2 text-sm text-[color:var(--text-secondary)]">{p.outcome}</p>
+                  {city && <p className="mt-1 text-xs text-[color:var(--ink-secondary)]">{city.name}, {city.state}</p>}
+                  <p className="mt-2 text-sm text-[color:var(--ink-secondary)]">{p.outcome}</p>
                 </Link>
               );
             })}

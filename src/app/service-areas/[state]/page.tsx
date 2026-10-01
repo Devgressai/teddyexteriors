@@ -52,7 +52,7 @@ export default async function StateHub({ params }: { params: Promise<{ state: st
       <section className="bg-[color:var(--surface-paper)]">
         <div className="mx-auto max-w-5xl px-6 py-16">
           {list.length === 0 ? (
-            <p className="text-sm text-[color:var(--text-secondary)]">
+            <p className="text-sm text-[color:var(--ink-secondary)]">
               Approved cities publish here once the territory is confirmed.
             </p>
           ) : (
@@ -61,11 +61,11 @@ export default async function StateHub({ params }: { params: Promise<{ state: st
                 <li key={c.slug}>
                   <Link
                     href={`/service-areas/${state}/${c.slug}`}
-                    className="block border border-[color:var(--border-subtle)] rounded-md px-4 py-3 hover:border-[color:var(--cta-fill)]"
+                    className="block border border-[color:var(--border-subtle)] rounded-md px-4 py-3 hover:border-[color:var(--brand-cta)]"
                   >
-                    <span className="block text-base font-semibold text-[color:var(--text-primary)]">{c.name}</span>
+                    <span className="block text-base font-semibold text-[color:var(--ink-primary)]">{c.name}</span>
                     {c.counties.length > 0 && (
-                      <span className="block text-xs text-[color:var(--text-secondary)]">
+                      <span className="block text-xs text-[color:var(--ink-secondary)]">
                         {c.counties.join(" / ")} County
                       </span>
                     )}

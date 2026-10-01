@@ -35,16 +35,16 @@ export default async function TopicHub({ params }: { params: Promise<{ topic: st
       <section className="bg-[color:var(--surface-paper)]">
         <div className="mx-auto max-w-5xl px-6 py-16">
           {guides.length === 0 ? (
-            <p className="text-sm text-[color:var(--text-secondary)]">Guides publish as they are reviewed by {p.reviewer}.</p>
+            <p className="text-sm text-[color:var(--ink-secondary)]">Guides publish as they are reviewed by {p.reviewer}.</p>
           ) : (
             <ul className="grid gap-6 sm:grid-cols-2">
               {guides.map((g) => (
                 <li key={g.slug}>
                   <Link href={`/resources/${p.slug}/${g.slug}`} className="group block">
-                    <h2 className="text-lg font-semibold text-[color:var(--text-primary)] group-hover:text-[color:var(--cta-fill)]">
+                    <h2 className="text-lg font-semibold text-[color:var(--ink-primary)] group-hover:text-[color:var(--brand-cta)]">
                       {g.title}
                     </h2>
-                    <p className="mt-2 text-sm text-[color:var(--text-secondary)]">{g.summary}</p>
+                    <p className="mt-2 text-sm text-[color:var(--ink-secondary)]">{g.summary}</p>
                   </Link>
                 </li>
               ))}

@@ -24,10 +24,10 @@ export default function MaterialsIndex() {
           <div className="mx-auto max-w-5xl px-6 py-16 grid gap-6 sm:grid-cols-2">
             {materials.map((m) => (
               <Link key={m.slug} href={`/materials/${m.slug}`} className="group block">
-                <h2 className="text-xl font-semibold text-[color:var(--text-primary)] group-hover:text-[color:var(--cta-fill)]">
+                <h2 className="text-xl font-semibold text-[color:var(--ink-primary)] group-hover:text-[color:var(--brand-cta)]">
                   {m.product}
                 </h2>
-                <p className="mt-1 text-sm text-[color:var(--text-secondary)]">{m.manufacturer}</p>
+                <p className="mt-1 text-sm text-[color:var(--ink-secondary)]">{m.manufacturer}</p>
               </Link>
             ))}
           </div>

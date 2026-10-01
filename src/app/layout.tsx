@@ -61,7 +61,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 
   return (
     <html lang="en" className={`${inter.variable} ${fraunces.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-[color:var(--surface-warm)] text-[color:var(--text-primary)]">
+      <body className="min-h-full flex flex-col bg-[color:var(--surface-warm)] text-[color:var(--ink-primary)]">
         {jsonLd.length > 0 && <JsonLd data={jsonLd} />}
         {previewMode && (
           <div

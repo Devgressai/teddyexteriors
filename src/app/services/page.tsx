@@ -24,10 +24,10 @@ export default function ServicesIndex() {
           <div className="mx-auto max-w-5xl px-6 py-16 grid gap-10 sm:grid-cols-2">
             {services.map((s) => (
               <Link key={s.slug} href={`/services/${s.slug}`} className="group block">
-                <h2 className="text-xl font-semibold text-[color:var(--text-primary)] group-hover:text-[color:var(--cta-fill)]">
+                <h2 className="text-xl font-semibold text-[color:var(--ink-primary)] group-hover:text-[color:var(--brand-cta)]">
                   {s.name}
                 </h2>
-                <p className="mt-2 text-sm text-[color:var(--text-secondary)]">{s.summary}</p>
+                <p className="mt-2 text-sm text-[color:var(--ink-secondary)]">{s.summary}</p>
               </Link>
             ))}
           </div>

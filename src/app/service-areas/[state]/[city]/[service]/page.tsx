@@ -88,16 +88,16 @@ export default async function CityServicePage({
       <section className="bg-[color:var(--surface-paper)]">
         <div className="mx-auto max-w-5xl px-6 py-16 grid gap-10 lg:grid-cols-2">
           <div>
-            <h2 className="text-xl font-semibold text-[color:var(--text-primary)]">What's included</h2>
-            <ul className="mt-4 space-y-2 text-sm text-[color:var(--text-primary)] list-disc pl-5">
+            <h2 className="text-xl font-semibold text-[color:var(--ink-primary)]">What's included</h2>
+            <ul className="mt-4 space-y-2 text-sm text-[color:var(--ink-primary)] list-disc pl-5">
               {s.scope.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}
             </ul>
           </div>
           <div>
-            <h2 className="text-xl font-semibold text-[color:var(--text-primary)]">Permitting in {c.name}</h2>
-            <p className="mt-3 text-sm text-[color:var(--text-secondary)]">
+            <h2 className="text-xl font-semibold text-[color:var(--ink-primary)]">Permitting in {c.name}</h2>
+            <p className="mt-3 text-sm text-[color:var(--ink-secondary)]">
               <a href={c.jurisdiction.buildingDeptUrl} className="underline" target="_blank" rel="noopener noreferrer">
                 {c.jurisdiction.buildingDeptName}
               </a>
@@ -111,11 +111,11 @@ export default async function CityServicePage({
           <div className="mx-auto max-w-5xl px-6 py-16 grid gap-10 lg:grid-cols-2">
             {matchedProjects.length > 0 && (
               <div>
-                <h2 className="text-xl font-semibold text-[color:var(--text-primary)]">{s.name} projects in {c.name}</h2>
+                <h2 className="text-xl font-semibold text-[color:var(--ink-primary)]">{s.name} projects in {c.name}</h2>
                 <ul className="mt-4 space-y-2">
                   {matchedProjects.map((p) => (
                     <li key={p.slug}>
-                      <a className="text-base text-[color:var(--text-primary)] hover:text-[color:var(--cta-fill)]" href={`/projects/${p.slug}`}>
+                      <a className="text-base text-[color:var(--ink-primary)] hover:text-[color:var(--brand-cta)]" href={`/projects/${p.slug}`}>
                         {p.title}
                       </a>
                     </li>
@@ -125,13 +125,13 @@ export default async function CityServicePage({
             )}
             {nearbyProjects.length > 0 && (
               <div>
-                <h2 className="text-xl font-semibold text-[color:var(--text-primary)]">Nearby projects</h2>
+                <h2 className="text-xl font-semibold text-[color:var(--ink-primary)]">Nearby projects</h2>
                 <ul className="mt-4 space-y-2">
                   {nearbyProjects.map((p) => (
                     <li key={p.slug}>
-                      <a className="text-base text-[color:var(--text-primary)] hover:text-[color:var(--cta-fill)]" href={`/projects/${p.slug}`}>
+                      <a className="text-base text-[color:var(--ink-primary)] hover:text-[color:var(--brand-cta)]" href={`/projects/${p.slug}`}>
                         <span>{p.title}</span>{" "}
-                        <span className="text-xs text-[color:var(--text-secondary)]">
+                        <span className="text-xs text-[color:var(--ink-secondary)]">
                           — labeled by actual city, not {c.name}
                         </span>
                       </a>

@@ -27,61 +27,80 @@ Canonical execution state for the full-rebuild mandate (2026-10-01). Updated at 
 | 01.07 | Scope design-system changes (tokens, type, grid) | IMPLEMENTED | `DESIGN_SYSTEM.md` |
 | 01.08 | Build full task ledger (this file) | IMPLEMENTED | here |
 
-## Batch 02 — Design tokens + global primitives
-
-| ID | Task | Status | Affected |
-|---|---|---|---|
-| 02.01 | Expand `globals.css` with full semantic token layer (primary evergreen, secondary evergreen, deep ink, warm bone, soft stone, pure white, cedar/brass, mist) | READY | `src/app/globals.css` |
-| 02.02 | Fluid responsive type scale via `clamp()`; 12 roles (display → navigation) | READY | `src/app/globals.css` |
-| 02.03 | Container + Section + SectionHeader primitives | READY | `src/components/primitives/*` |
-| 02.04 | Eyebrow + EditorialHeading + Caption primitives | READY | `src/components/primitives/*` |
-| 02.05 | PrimaryCTA + SecondaryCTA + GhostCTA primitives, three sizes | READY | `src/components/primitives/*` |
-| 02.06 | Redesign `ExteriorHeader` with mega-menu Services dropdown + utility bar | READY | `src/components/exterior/ExteriorHeader.tsx` |
-| 02.07 | Add bottom mobile call/estimate bar component | READY | `src/components/exterior/MobileActionBar.tsx` |
-
-## Batch 03 — Hero + immediate proof band
+## Batch 02 — Design tokens + global primitives — ✅ COMPLETE
 
 | ID | Task | Status |
 |---|---|---|
-| 03.01 | Editorial asymmetric hero — large architectural image + supporting detail inset + headline + CTAs + micro-proof | READY |
-| 03.02 | Replace centered-overlay pattern (banned by mandate) | READY |
-| 03.03 | Compact high-density CredentialRail v2 — typographic, not stat cards | READY |
-| 03.04 | Multi-platform review band using real JDI profiles | READY |
-| 03.05 | Mobile hero composed independently (not stacked columns) | READY |
+| 02.01 | Full semantic token layer in `globals.css` | COMPLETE |
+| 02.02 | Fluid type scale (Fraunces display + Inter sans) via `clamp()` | COMPLETE |
+| 02.03 | Container + Section primitives | COMPLETE |
+| 02.04 | Eyebrow + EditorialHeading primitives + editorial-display/h1/h2/h3 classes | COMPLETE |
+| 02.05 | PrimaryCTA + SecondaryCTA + InverseCTA + GhostInverseCTA, three sizes | COMPLETE |
+| 02.06 | Rebuilt `ExteriorHeader` with bespoke SVG mark + utility nav | COMPLETE |
+| 02.07 | `MobileActionBar` bottom bar for mobile | COMPLETE |
 
-## Batch 04 — Services + projects + envelope section
-
-| ID | Task | Status |
-|---|---|---|
-| 04.01 | Editorial service index — large lead service + supporting rail (not icon cards) | READY |
-| 04.02 | Material-detail imagery integrated with service presentation | READY |
-| 04.03 | Editorial project showcase — large imagery, intentional crops, minimal chrome | READY |
-| 04.04 | Elevate envelope-detail section with original SVG diagram | READY |
-| 04.05 | Replace generic icon-row inside EnvelopeDetail with annotated section drawing | READY |
-
-## Batch 05 — Why Teddy + regional authority + process
+## Batch 03 — Hero + immediate proof band — ✅ COMPLETE
 
 | ID | Task | Status |
 |---|---|---|
-| 05.01 | Why-Teddy as proof narrative (not six cards) — pair paragraphs with real project detail imagery | READY |
-| 05.02 | Distinct PNW climate-authority section (new) | READY |
-| 05.03 | Horizontal editorial process timeline with annotated project journey | READY |
+| 03.01 | `EditorialHero` — full-bleed exterior image + gradient scrim + geographic eyebrow row + Fraunces display headline w/ italic "Northwest" + CTAs + 4-icon bullet proof + inset project caption | COMPLETE |
+| 03.02 | Centered-overlay pattern eliminated | COMPLETE |
+| 03.03 | `TrustBand` — typographic 5-item row with bespoke SVG icons | COMPLETE |
+| 03.04 | `ReviewPlatforms` populated with JDI's six real review profiles | COMPLETE |
+| 03.05 | Mobile hero composition independent (not stacked) | COMPLETE |
 
-## Batch 06 — Testimonials + education + service area
-
-| ID | Task | Status |
-|---|---|---|
-| 06.01 | Featured homeowner story (one substantial) + 2–3 supporting excerpts | READY (BLOCKED on real approved testimonials) |
-| 06.02 | Editorial education module — publication layout, not blog grid | READY |
-| 06.03 | Polished service-area section with regional composition | READY |
-
-## Batch 07 — Final conversion + footer
+## Batch 04 — Services + projects + envelope — ✅ COMPLETE
 
 | ID | Task | Status |
 |---|---|---|
-| 07.01 | High-conviction consultation experience (not "Ready to get started?") | READY |
-| 07.02 | Service selector + ZIP + expectation setting in form | READY |
-| 07.03 | Authoritative regional contractor footer | READY |
+| 04.01 | `ServiceComposition` — editorial 3+9 col layout; four image-led service cards | COMPLETE |
+| 04.02 | Service photography via jdiconstruction.co remote patterns | COMPLETE |
+| 04.03 | `ProjectFeature` renders real Vancouver project | COMPLETE |
+| 04.04 | `EnvelopeFeature` + `WallSectionDiagram` original SVG shipped | COMPLETE |
+| 04.05 | Placeholder diagram box replaced with annotated section drawing | COMPLETE |
+
+## Batch 05 — Why Teddy + regional + process — ✅ COMPLETE
+
+| ID | Task | Status |
+|---|---|---|
+| 05.01 | `WhyTeddyNarrative` — three alternating paragraph+photo blocks | COMPLETE |
+| 05.02 | `ClimateAuthority` — PNW editorial authority section | COMPLETE |
+| 05.03 | `ProcessTimeline` — horizontal editorial timeline w/ ruled line | COMPLETE |
+
+## Batch 06 — Testimonials + education + service area — ✅ COMPLETE
+
+| ID | Task | Status |
+|---|---|---|
+| 06.01 | `FeaturedTestimonial` component ready; renders empty state until approved testimonials arrive | COMPLETE (empty state) |
+| 06.02 | `ResourceFeature` already in editorial direction | COMPLETE |
+| 06.03 | `RegionalCoverage` rebuilt with bespoke `RegionalMap` SVG | COMPLETE |
+
+## Batch 07 — Final conversion + footer — ✅ COMPLETE
+
+| ID | Task | Status |
+|---|---|---|
+| 07.01 | `EstimateSection` rebuilt with "What happens next" 3-step list + progressive grouping | COMPLETE |
+| 07.02 | Form has service selector + ZIP + description + Step 01/02 fieldsets | COMPLETE |
+| 07.03 | `ExteriorFooter` rebuilt with inverse band, verified-credentials sub-block, JDI attribution | COMPLETE |
+
+## Batch 11 — Signature visual effects — ✅ COMPLETE
+
+| ID | Task | Status |
+|---|---|---|
+| 11.01 | Editorial image reveal (clip-path) via `Reveal kind="image"` | COMPLETE |
+| 11.02 | Architectural line reveal (`ArchLineDivider` + `Reveal kind="line"`) | COMPLETE |
+| 11.03 | Interactive building envelope — scroll-driven layer separation + hover isolation in `WallSectionDiagram` | COMPLETE |
+| 11.04 | Subtle CTA arrow movement — `.cta-arrow` 4px translate on group hover/focus | COMPLETE |
+| 11.05 | Motion tokens: `--motion-instant/fast/mid/slow/long` + `--ease-standard/enter/exit` | COMPLETE |
+| 11.06 | `prefers-reduced-motion` resets all effects to final state | COMPLETE |
+
+## Still outstanding
+
+| Batch | Why |
+|---|---|
+| 08 Responsive refinement | Requires visual rendering + mobile device review — reasonably covered by Tailwind responsive utility classes but needs an in-browser pass |
+| 09 Accessibility + perf audit | Requires Axe DevTools and Lighthouse run in a real browser |
+| 10 Full-page visual QA | Requires screenshot capture + review |
 
 ## Batch 08 — Responsive refinement
 

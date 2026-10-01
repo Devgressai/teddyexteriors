@@ -28,29 +28,29 @@ export default function CredentialsPage() {
       <section className="bg-[color:var(--surface-paper)]">
         <div className="mx-auto max-w-3xl px-6 py-16 grid gap-10 sm:grid-cols-2">
           <div>
-            <h2 className="text-xl font-semibold text-[color:var(--text-primary)]">Washington</h2>
+            <h2 className="text-xl font-semibold text-[color:var(--ink-primary)]">Washington</h2>
             <dl className="mt-4 text-sm space-y-3">
               {waLni && (
                 <div>
-                  <dt className="text-[color:var(--text-secondary)]">L&amp;I registration</dt>
+                  <dt className="text-[color:var(--ink-secondary)]">L&amp;I registration</dt>
                   <dd className="font-semibold">{waLni}</dd>
                 </div>
               )}
               {waEntity && (
                 <div>
-                  <dt className="text-[color:var(--text-secondary)]">Entity on registration</dt>
+                  <dt className="text-[color:var(--ink-secondary)]">Entity on registration</dt>
                   <dd>{waEntity}</dd>
                 </div>
               )}
               {waClass && waClass.length > 0 && (
                 <div>
-                  <dt className="text-[color:var(--text-secondary)]">Classifications</dt>
+                  <dt className="text-[color:var(--ink-secondary)]">Classifications</dt>
                   <dd>{waClass.join(", ")}</dd>
                 </div>
               )}
               {waChecked && (
                 <div>
-                  <dt className="text-[color:var(--text-secondary)]">Status last verified</dt>
+                  <dt className="text-[color:var(--ink-secondary)]">Status last verified</dt>
                   <dd>{waChecked}</dd>
                 </div>
               )}
@@ -59,35 +59,35 @@ export default function CredentialsPage() {
               href="https://secure.lni.wa.gov/verify/"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-5 inline-flex items-center text-sm font-semibold text-[color:var(--cta-fill)]"
+              className="mt-5 inline-flex items-center text-sm font-semibold text-[color:var(--brand-cta)]"
             >
               Verify at Washington L&amp;I <span aria-hidden="true" className="ml-1">→</span>
             </a>
           </div>
           <div>
-            <h2 className="text-xl font-semibold text-[color:var(--text-primary)]">Oregon</h2>
+            <h2 className="text-xl font-semibold text-[color:var(--ink-primary)]">Oregon</h2>
             <dl className="mt-4 text-sm space-y-3">
               {orCcb && (
                 <div>
-                  <dt className="text-[color:var(--text-secondary)]">CCB license</dt>
+                  <dt className="text-[color:var(--ink-secondary)]">CCB license</dt>
                   <dd className="font-semibold">{orCcb}</dd>
                 </div>
               )}
               {orEntity && (
                 <div>
-                  <dt className="text-[color:var(--text-secondary)]">Entity on license</dt>
+                  <dt className="text-[color:var(--ink-secondary)]">Entity on license</dt>
                   <dd>{orEntity}</dd>
                 </div>
               )}
               {orEnd && orEnd.length > 0 && (
                 <div>
-                  <dt className="text-[color:var(--text-secondary)]">Endorsements</dt>
+                  <dt className="text-[color:var(--ink-secondary)]">Endorsements</dt>
                   <dd>{orEnd.join(", ")}</dd>
                 </div>
               )}
               {orChecked && (
                 <div>
-                  <dt className="text-[color:var(--text-secondary)]">Status last verified</dt>
+                  <dt className="text-[color:var(--ink-secondary)]">Status last verified</dt>
                   <dd>{orChecked}</dd>
                 </div>
               )}
@@ -96,7 +96,7 @@ export default function CredentialsPage() {
               href="https://search.ccb.state.or.us/search/"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-5 inline-flex items-center text-sm font-semibold text-[color:var(--cta-fill)]"
+              className="mt-5 inline-flex items-center text-sm font-semibold text-[color:var(--brand-cta)]"
             >
               Verify at Oregon CCB <span aria-hidden="true" className="ml-1">→</span>
             </a>

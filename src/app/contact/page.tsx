@@ -26,30 +26,30 @@ export default function ContactPage() {
           <dl className="space-y-5 text-sm">
             {phone && (
               <div>
-                <dt className="text-xs uppercase tracking-wider font-semibold text-[color:var(--text-secondary)]">Phone</dt>
-                <dd className="mt-1 text-base font-semibold text-[color:var(--text-primary)]">
+                <dt className="text-xs uppercase tracking-wider font-semibold text-[color:var(--ink-secondary)]">Phone</dt>
+                <dd className="mt-1 text-base font-semibold text-[color:var(--ink-primary)]">
                   <a href={`tel:${phone.replace(/[^0-9+]/g, "")}`}>{phone}</a>
                 </dd>
               </div>
             )}
             {email && (
               <div>
-                <dt className="text-xs uppercase tracking-wider font-semibold text-[color:var(--text-secondary)]">Email</dt>
-                <dd className="mt-1 text-base text-[color:var(--text-primary)]">
+                <dt className="text-xs uppercase tracking-wider font-semibold text-[color:var(--ink-secondary)]">Email</dt>
+                <dd className="mt-1 text-base text-[color:var(--ink-primary)]">
                   <a href={`mailto:${email}`}>{email}</a>
                 </dd>
               </div>
             )}
             {hours && (
               <div>
-                <dt className="text-xs uppercase tracking-wider font-semibold text-[color:var(--text-secondary)]">Hours</dt>
-                <dd className="mt-1 text-base text-[color:var(--text-primary)]">{hours}</dd>
+                <dt className="text-xs uppercase tracking-wider font-semibold text-[color:var(--ink-secondary)]">Hours</dt>
+                <dd className="mt-1 text-base text-[color:var(--ink-primary)]">{hours}</dd>
               </div>
             )}
             {base && (
               <div>
-                <dt className="text-xs uppercase tracking-wider font-semibold text-[color:var(--text-secondary)]">Service area</dt>
-                <dd className="mt-1 text-base text-[color:var(--text-primary)]">
+                <dt className="text-xs uppercase tracking-wider font-semibold text-[color:var(--ink-secondary)]">Service area</dt>
+                <dd className="mt-1 text-base text-[color:var(--ink-primary)]">
                   {base.isPublic && base.streetAddress ? (
                     <>
                       {base.streetAddress}, {base.locality}, {base.region} {base.postalCode}

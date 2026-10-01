@@ -63,7 +63,7 @@ export default async function GuidePage({ params }: { params: Promise<{ topic: s
         <article className="mx-auto max-w-3xl px-6 py-16 prose">
           <Body />
           <hr />
-          <p className="text-xs text-[color:var(--text-secondary)]">
+          <p className="text-xs text-[color:var(--ink-secondary)]">
             Reviewed by {g.reviewer}. Last updated {(g.dateModified ?? g.datePublished).slice(0, 10)}.
           </p>
         </article>

@@ -29,7 +29,7 @@ export default function ServiceAreasIndex() {
               { label: "Oregon", slug: "oregon", list: or },
             ].map((group) => (
               <div key={group.slug}>
-                <h2 className="text-xs uppercase tracking-wider font-semibold text-[color:var(--text-secondary)]">
+                <h2 className="text-xs uppercase tracking-wider font-semibold text-[color:var(--ink-secondary)]">
                   {group.label}
                 </h2>
                 <ul className="mt-4 space-y-2">
@@ -37,7 +37,7 @@ export default function ServiceAreasIndex() {
                     <li key={c.slug}>
                       <Link
                         href={`/service-areas/${group.slug}/${c.slug}`}
-                        className="text-base text-[color:var(--text-primary)] hover:text-[color:var(--cta-fill)]"
+                        className="text-base text-[color:var(--ink-primary)] hover:text-[color:var(--brand-cta)]"
                       >
                         {c.name}
                       </Link>
@@ -46,7 +46,7 @@ export default function ServiceAreasIndex() {
                 </ul>
                 <Link
                   href={`/service-areas/${group.slug}`}
-                  className="mt-5 inline-flex items-center text-sm font-semibold text-[color:var(--cta-fill)]"
+                  className="mt-5 inline-flex items-center text-sm font-semibold text-[color:var(--brand-cta)]"
                 >
                   Explore {group.label} <span aria-hidden="true" className="ml-1">→</span>
                 </Link>
