@@ -37,7 +37,11 @@ export function EstimateSection({
   const [state, action, pending] = useActionState(submitLead, initial);
   const [contactMethod, setContactMethod] = useState<"email" | "phone">("email");
   return (
-    <section className="bg-[color:var(--surface-inverse)] text-[color:var(--ink-inverse)]" aria-label="Request an evaluation">
+    <section
+      className="bg-[color:var(--surface-inverse)] text-[color:var(--ink-inverse)]"
+      style={{ ["--editorial-color" as string]: "var(--text-inverse)" }}
+      aria-label="Request an evaluation"
+    >
       <Container width="wide">
         <div className="py-[var(--section-pad-xl)] grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-12 items-start">
           {/* Editorial left — expectation-setting */}

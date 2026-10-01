@@ -118,7 +118,10 @@ export default function ContactPage() {
             </ul>
           </div>
           <aside className="lg:col-span-5">
-            <div className="rounded-sm bg-[color:var(--surface-inverse)] text-[color:var(--ink-inverse)] p-7 lg:p-8">
+            <div
+              className="rounded-sm bg-[color:var(--surface-inverse)] text-[color:var(--ink-inverse)] p-7 lg:p-8"
+              style={{ ["--editorial-color" as string]: "var(--text-inverse)" }}
+            >
               <p className="eyebrow eyebrow-inverse">Project enquiry</p>
               <h2 className="mt-3 editorial-h2 text-[color:var(--ink-inverse)] max-w-[18ch]">
                 Fastest route in.

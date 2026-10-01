@@ -114,7 +114,10 @@ export function EditorialHero({
         {/* Solid evergreen panel — card over the left portion of the full-bleed photo */}
         <div
           className="relative w-full lg:w-[44%] bg-[color:var(--surface-inverse)] py-14 lg:py-20 px-6 sm:px-8 lg:px-12 flex flex-col justify-center"
-          style={{ boxShadow: "40px 0 60px -40px rgba(18,61,42,0.35)" }}
+          style={{
+            boxShadow: "40px 0 60px -40px rgba(18,61,42,0.35)",
+            ["--editorial-color" as string]: "var(--text-inverse)",
+          }}
         >
           <ol className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[0.7rem] font-semibold tracking-[0.24em] uppercase text-white/85">
             {eyebrowLabels.map((label, i) => (

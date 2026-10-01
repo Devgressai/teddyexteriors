@@ -1,4 +1,4 @@
-import type { ReactNode, ElementType } from "react";
+import type { ReactNode, ElementType, CSSProperties } from "react";
 
 type Surface = "warm" | "stone" | "paper" | "mist" | "inverse";
 type Pad = "sm" | "md" | "lg" | "xl" | "none";
@@ -36,8 +36,22 @@ export function Section({
   id?: string;
   ariaLabel?: string;
 }) {
+  /* Inverse sections flip the .editorial-* heading color to white via the
+     --editorial-color custom property. The global .editorial-* rules read
+     this with fallback to --text-heading, so light-section headings stay
+     evergreen untouched. */
+  const inlineStyle: CSSProperties | undefined =
+    surface === "inverse"
+      ? ({ ["--editorial-color" as string]: "var(--text-inverse)" } as CSSProperties)
+      : undefined;
+
   return (
-    <Tag id={id} aria-label={ariaLabel} className={`${surfaceClass[surface]} ${padClass[pad]} ${className}`}>
+    <Tag
+      id={id}
+      aria-label={ariaLabel}
+      style={inlineStyle}
+      className={`${surfaceClass[surface]} ${padClass[pad]} ${className}`}
+    >
       {children}
     </Tag>
   );
