@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Container, Section } from "@/components/primitives";
 import type { ImageAsset } from "@/content-model/types";
+import { Reveal } from "@/components/motion";
 
 export type WhyTeddyBlock = {
   eyebrow: string;
@@ -48,7 +49,7 @@ export function WhyTeddyNarrative({ sectionEyebrow, sectionHeading, blocks }: Wh
                 <div
                   className={`lg:col-span-7 ${imageOnRight ? "lg:col-start-6" : "lg:col-start-1 lg:row-start-1"}`}
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-sm">
+                  <Reveal kind="image" className="relative aspect-[4/3] overflow-hidden rounded-sm block">
                     <Image
                       src={block.image.src}
                       alt={block.image.alt}
@@ -56,7 +57,7 @@ export function WhyTeddyNarrative({ sectionEyebrow, sectionHeading, blocks }: Wh
                       sizes="(min-width: 1024px) 55vw, 100vw"
                       className="object-cover"
                     />
-                  </div>
+                  </Reveal>
                 </div>
               </article>
             );

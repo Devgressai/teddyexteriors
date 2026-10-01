@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ProjectFeatureProps } from "./types";
+import { Reveal } from "@/components/motion";
 
 /**
  * One strong project with substantial visual space (spec §05).
@@ -20,7 +21,7 @@ export function ProjectFeature({ title, cityState, challenge, work, finish, imag
         </header>
         <div className="mt-12 grid gap-10 lg:grid-cols-12 items-start">
           <div className="lg:col-span-8">
-            <div className="relative aspect-[16/10] overflow-hidden rounded-md bg-[color:var(--border-subtle)]/40">
+            <Reveal kind="image" className="relative aspect-[16/10] overflow-hidden rounded-md bg-[color:var(--border-subtle)]/40 block">
               <Image
                 src={images.after.src}
                 alt={images.after.alt}
@@ -28,7 +29,7 @@ export function ProjectFeature({ title, cityState, challenge, work, finish, imag
                 sizes="(min-width: 1024px) 66vw, 100vw"
                 className="object-cover"
               />
-            </div>
+            </Reveal>
             {images.before && (
               <p className="mt-2 text-xs text-[color:var(--ink-secondary)]">
                 Before/after available on the full case study.

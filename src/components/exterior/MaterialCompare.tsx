@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { MaterialCompareProps } from "./types";
+import { Reveal } from "@/components/motion";
 
 export function MaterialCompare({ heading, intro, entries, compareHref }: MaterialCompareProps) {
   if (entries.length === 0) return null;
@@ -16,7 +17,7 @@ export function MaterialCompare({ heading, intro, entries, compareHref }: Materi
         <ul className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {entries.map((entry) => (
             <li key={entry.slug}>
-              <div className="relative aspect-[4/3] overflow-hidden rounded-md bg-[color:var(--border-subtle)]/40">
+              <Reveal kind="image" className="relative aspect-[4/3] overflow-hidden rounded-md bg-[color:var(--border-subtle)]/40 block">
                 <Image
                   src={entry.image.src}
                   alt={entry.image.alt}
@@ -24,7 +25,7 @@ export function MaterialCompare({ heading, intro, entries, compareHref }: Materi
                   sizes="(min-width: 1024px) 30vw, (min-width: 640px) 48vw, 100vw"
                   className="object-cover"
                 />
-              </div>
+              </Reveal>
               <h3 className="mt-4 text-lg font-semibold text-[color:var(--ink-primary)]">{entry.product}</h3>
               <dl className="mt-3 text-sm space-y-2 text-[color:var(--ink-secondary)]">
                 <div>
