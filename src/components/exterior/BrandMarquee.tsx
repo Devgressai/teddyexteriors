@@ -181,8 +181,8 @@ function BrandSlot({
         />
       ) : (
         <span
-          className="editorial-h3 text-[color:var(--ink-tertiary)] font-normal italic"
-          style={{ fontFamily: "var(--font-display)" }}
+          className="text-[color:var(--ink-emphasis)] font-bold tracking-tight"
+          style={{ fontSize: `${slotHeight * 0.42}px` }}
         >
           {brand.name}
         </span>
