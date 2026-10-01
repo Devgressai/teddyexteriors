@@ -91,7 +91,7 @@ export default async function CityServicePage({
           areaServed: [c.name],
         })}
       />
-      <section className="bg-[color:var(--surface-paper)]">
+      <section className="bg-[color:var(--surface-paper)]" aria-label={`${s.name} scope and permitting in ${c.name}`}>
         <div className="mx-auto max-w-5xl px-6 py-16 grid gap-10 lg:grid-cols-2">
           <div>
             <h2 className="text-xl font-semibold text-[color:var(--ink-primary)]">What's included</h2>
@@ -113,7 +113,7 @@ export default async function CityServicePage({
         </div>
       </section>
       {(matchedProjects.length > 0 || nearbyProjects.length > 0) && (
-        <section className="bg-[color:var(--surface-warm)]">
+        <section className="bg-[color:var(--surface-warm)]" aria-label={`${s.name} project evidence`}>
           <div className="mx-auto max-w-5xl px-6 py-16 grid gap-10 lg:grid-cols-2">
             {matchedProjects.length > 0 && (
               <div>
@@ -150,7 +150,7 @@ export default async function CityServicePage({
         </section>
       )}
       {otherLocalServices.length > 0 && (
-        <section className="bg-[color:var(--surface-paper)] border-t border-[color:var(--border-subtle)]">
+        <section className="bg-[color:var(--surface-paper)] border-t border-[color:var(--border-subtle)]" aria-label={`Other services and nearby cities for ${c.name}`}>
           <div className="mx-auto max-w-5xl px-6 py-14">
             <p className="eyebrow">Other services in {c.name}</p>
             <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-[0.95rem]">

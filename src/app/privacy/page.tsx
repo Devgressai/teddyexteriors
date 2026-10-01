@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { PageShell } from "@/components/PageShell";
 
 export const metadata: Metadata = {
-  title: "Privacy",
-  description: "What we collect, why, and how it's used.",
+  title: "Privacy Policy — What Teddy Exteriors Collects and Why",
+  description:
+    "What Teddy Exteriors collects when you request an estimate, why it's collected, who sees it, and how we keep personal information out of analytics, public logs, and URLs.",
   alternates: { canonical: "/privacy" },
 };
 
@@ -15,7 +16,7 @@ export default function PrivacyPage() {
       heading="Privacy."
       intro="Operational draft. Final policy publishes once legal review is complete and consent requirements for the lead-destination CRM are confirmed."
     >
-      <section className="bg-[color:var(--surface-paper)]">
+      <section className="bg-[color:var(--surface-paper)]" aria-label="Privacy policy">
         <div className="mx-auto max-w-3xl px-6 py-16 prose">
           <h2>What we collect</h2>
           <p>When you request an estimate, we collect the name and contact details you share, the city or ZIP you provide, the service of interest, and the description you write.</p>

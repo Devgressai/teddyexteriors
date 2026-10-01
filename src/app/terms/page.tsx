@@ -15,7 +15,7 @@ export default function TermsPage() {
       heading="Terms of use."
       intro="Operational draft. Final terms publish once legal review is complete."
     >
-      <section className="bg-[color:var(--surface-paper)]">
+      <section className="bg-[color:var(--surface-paper)]" aria-label="Terms of use">
         <div className="mx-auto max-w-3xl px-6 py-16 prose">
           <p>
             The content on this site is informational. It does not constitute a contract, a bid, or

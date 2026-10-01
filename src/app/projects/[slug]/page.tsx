@@ -89,21 +89,21 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           </div>
         </section>
       )}
-      <section className="bg-[color:var(--surface-paper)]">
+      <section className="bg-[color:var(--surface-paper)]" aria-label="Project narrative and facts">
         <div className="mx-auto max-w-5xl px-6 py-16 grid gap-12 lg:grid-cols-3">
           <div className="lg:col-span-2 prose max-w-none">
             <h2>What we found</h2>
             <p>{p.originalCondition}</p>
             {p.substrateFindings && (<><h3>Substrate</h3><p>{p.substrateFindings}</p></>)}
-            {p.moistureDetails && (<><h3>Moisture / flashing</h3><p>{p.moistureDetails}</p></>)}
+            {p.moistureDetails && (<><h3>Moisture and flashing</h3><p>{p.moistureDetails}</p></>)}
             <h2>Scope</h2>
             <ul>{p.scope.map((item, i) => <li key={i}>{item}</li>)}</ul>
             <h2>Products installed</h2>
             <ul>{p.productsInstalled.map((item, i) => <li key={i}>{item}</li>)}</ul>
             {p.changeHandling && (<><h2>Change orders</h2><p>{p.changeHandling}</p></>)}
           </div>
-          <aside>
-            <h3 className="text-xs uppercase tracking-wider font-semibold text-[color:var(--ink-secondary)]">Project facts</h3>
+          <aside aria-label="Project facts">
+            <h2 className="text-xs uppercase tracking-wider font-semibold text-[color:var(--ink-secondary)]">Project facts</h2>
             <dl className="mt-3 text-sm space-y-3">
               {city && (
                 <div>
@@ -144,7 +144,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </div>
       </section>
       {p.customerComments && p.customerComments.length > 0 && (
-        <section className="bg-[color:var(--surface-warm)]">
+        <section className="bg-[color:var(--surface-warm)]" aria-label="Customer comments">
           <div className="mx-auto max-w-5xl px-6 py-16 space-y-6">
             {p.customerComments.map((c, i) => (
               <blockquote key={i} className="border-l-2 border-[color:var(--brand-secondary)] pl-5">

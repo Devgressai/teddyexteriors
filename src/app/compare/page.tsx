@@ -4,8 +4,9 @@ import { PageShell, PreviewState } from "@/components/PageShell";
 import { comparisons } from "@/content-model/registry";
 
 export const metadata: Metadata = {
-  title: "Compare",
-  description: "Direct comparisons for exterior buying decisions.",
+  title: "Compare — Fiber Cement vs LP SmartSide, Siding Options, Materials",
+  description:
+    "Direct side-by-side comparisons for Pacific Northwest exterior buying decisions: fiber cement vs LP SmartSide, siding material options, and other genuine either/or questions homeowners face.",
   alternates: { canonical: "/compare" },
 };
 

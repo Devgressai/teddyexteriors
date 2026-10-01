@@ -41,7 +41,7 @@ export default async function MaterialPage({ params }: { params: Promise<{ mater
       intro={`${m.manufacturer} · ${m.category.replace("-", " ")}`}
     >
       {m.isSample && <SampleBanner note={m.sampleNote} />}
-      <section className="bg-[color:var(--surface-paper)]">
+      <section className="bg-[color:var(--surface-paper)]" aria-label={`${m.product} overview`}>
         <div className="mx-auto max-w-3xl px-6 py-16 prose">
           {m.installationNotes && <p>{m.installationNotes}</p>}
           {m.manufacturerDocsUrl && (

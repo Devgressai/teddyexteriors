@@ -4,8 +4,9 @@ import { PageShell, PreviewState } from "@/components/PageShell";
 import { get } from "@/lib/business";
 
 export const metadata: Metadata = {
-  title: "Team",
-  description: "Named leadership and project responsibility.",
+  title: "Team — Named Leadership on Every Exterior Project",
+  description:
+    "The named Teddy Exteriors / JDI Construction team leads on your project — owner, project managers, and the technical reviewer who approves our building-envelope guidance.",
   alternates: { canonical: "/team" },
 };
 

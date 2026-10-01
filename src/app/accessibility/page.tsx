@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { PageShell } from "@/components/PageShell";
 
 export const metadata: Metadata = {
-  title: "Accessibility",
-  description: "How we approach accessibility and how to report an issue.",
+  title: "Accessibility — WCAG 2.2 AA Standards + How to Report Issues",
+  description:
+    "Teddy Exteriors builds this site to WCAG 2.2 AA. Where the bar isn't met — including third-party embeds — we provide text alternatives and a reporting path.",
   alternates: { canonical: "/accessibility" },
 };
 

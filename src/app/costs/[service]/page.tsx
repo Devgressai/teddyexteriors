@@ -39,7 +39,7 @@ export default async function CostGuidePage({ params }: { params: Promise<{ serv
       intro={`Unit basis: ${cg.unitBasis.replace(/-/g, " ")}. Last reviewed: ${cg.rangeDate ?? "pending data"}.`}
     >
       {cg.isSample && <SampleBanner />}
-      <section className="bg-[color:var(--surface-paper)]">
+      <section className="bg-[color:var(--surface-paper)]" aria-label={`${s.name} cost guide`}>
         <div className="mx-auto max-w-3xl px-6 py-16 prose">
           <h2>Scope assumed in these ranges</h2>
           <ul>{cg.scopeAssumptions.map((a, i) => <li key={i}>{a}</li>)}</ul>
