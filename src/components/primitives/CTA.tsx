@@ -3,9 +3,9 @@ import type { ReactNode } from "react";
 
 type Size = "sm" | "md" | "lg";
 const sizeFill: Record<Size, string> = {
-  sm: "px-4 py-2 text-sm",
-  md: "px-5 py-3 text-[0.9375rem]",
-  lg: "px-6 py-3.5 text-base",
+  sm: "px-5 py-2.5 text-[0.82rem] uppercase tracking-wider",
+  md: "px-6 py-3 text-[0.9rem] uppercase tracking-wider",
+  lg: "px-7 py-3.5 text-[0.95rem] uppercase tracking-wider",
 };
 
 type Props = {
@@ -28,7 +28,7 @@ export function PrimaryCTA({ href, children, size = "md", className = "", ariaLa
     <Link
       href={href}
       aria-label={ariaLabel}
-      className={`group inline-flex items-center justify-center rounded-sm bg-[color:var(--brand-cta)] font-semibold text-[color:var(--brand-cta-ink)] hover:bg-[color:var(--brand-cta-hover)] transition-colors ${sizeFill[size]} ${className}`}
+      className={`group inline-flex items-center justify-center clip-angle-br bg-[color:var(--brand-cta)] font-extrabold text-[color:var(--brand-cta-ink)] hover:bg-[color:var(--brand-cta-hover)] transition-colors ${sizeFill[size]} ${className}`}
     >
       {children}
       {trailing && <Arrow />}
@@ -54,7 +54,7 @@ export function InverseCTA({ href, children, size = "md", className = "", ariaLa
     <Link
       href={href}
       aria-label={ariaLabel}
-      className={`group inline-flex items-center justify-center rounded-sm bg-[color:var(--surface-paper)] font-semibold text-[color:var(--ink-emphasis)] hover:bg-[color:var(--surface-warm)] transition-colors ${sizeFill[size]} ${className}`}
+      className={`group inline-flex items-center justify-center clip-angle-br bg-[color:var(--surface-paper)] font-extrabold text-[color:var(--ink-emphasis)] hover:bg-[color:var(--surface-warm)] transition-colors ${sizeFill[size]} ${className}`}
     >
       {children}
       {trailing && <Arrow />}

@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Barlow } from "next/font/google";
 import { JsonLd } from "@/components/JsonLd";
-import { ExteriorHeader, ExteriorFooter, MobileActionBar } from "@/components/exterior";
+import { ExteriorHeader, ExteriorFooter, MobileActionBar, SideQuoteTab } from "@/components/exterior";
 import { localBusiness, website } from "@/lib/schema";
 import { display, get, hasUnresolvedRequirements } from "@/lib/business";
 import "./globals.css";
 
-const inter = Inter({
+const barlow = Barlow({
   variable: "--font-sans",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -55,7 +55,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   const orCcb = get<string>("credentials.orCcbNumber") ?? undefined;
 
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`}>
+    <html lang="en" className={`${barlow.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-[color:var(--surface-warm)] text-[color:var(--ink-primary)]">
         {jsonLd.length > 0 && <JsonLd data={jsonLd} />}
         {previewMode && (
@@ -83,6 +83,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <main id="main" className="flex-1 pb-14 lg:pb-0">
           {children}
         </main>
+        <SideQuoteTab />
         <MobileActionBar phone={phone} />
         <ExteriorFooter
           brandName={brandName}
