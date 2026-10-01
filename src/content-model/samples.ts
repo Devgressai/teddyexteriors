@@ -503,7 +503,7 @@ export const sampleResourcePillars: ResourcePillar[] = [
       "Maintenance expectations",
       "Service-life assumptions",
     ],
-    guides: [slug("repair-or-replace")],
+    guides: [slug("repair-or-replace"), slug("comparing-materials")],
     reviewer: "The JDI Construction team",
   },
 ];
@@ -517,6 +517,18 @@ export const sampleResourceGuides: ResourceGuide[] = [
     summary:
       "The decision usually comes down to whether damage is cosmetic, localized, or systemic — plus the condition of the layers behind the siding.",
     mdxPath: "resources/pacific-northwest-siding/repair-or-replace",
+    datePublished: "2026-10-01",
+    reviewer: "The JDI Construction team",
+    claims: [],
+  },
+  {
+    slug: slug("comparing-materials"),
+    pillar: slug("pacific-northwest-siding"),
+    title: "Comparing siding materials for Northwest homes",
+    question: "Fiber cement, LP SmartSide, cedar, or vinyl — which actually fits your house, climate, and ownership horizon?",
+    summary:
+      "An honest comparison of the four siding systems we install, how each handles Pacific Northwest conditions, and the decision framework we use with homeowners.",
+    mdxPath: "resources/pacific-northwest-siding/comparing-materials",
     datePublished: "2026-10-01",
     reviewer: "The JDI Construction team",
     claims: [],
