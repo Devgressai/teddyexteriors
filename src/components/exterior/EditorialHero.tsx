@@ -59,12 +59,15 @@ const PlayCircle = () => (
 );
 
 /**
- * Split-layout hero. Left column is a solid evergreen panel carrying all of the
- * typography and the two calls-to-action. Right column is a full-bleed photograph
- * with ZERO overlay, scrim, gradient, or tint — the exterior reads at its true
- * color. The two columns butt together as a clean vertical seam.
+ * Full-bleed hero. The exterior photograph fills the entire hero behind every
+ * layer — ZERO global scrim, ZERO gradient wash, ZERO tint on the image itself.
+ * The typography sits inside a SOLID evergreen panel positioned over the left
+ * ~44% on desktop (narrower than the house crop so the house is always visible
+ * at its true color). Mobile stacks a clean image above a solid panel.
  *
- * Mobile: image stacks ABOVE the evergreen text panel. Still no scrim on the image.
+ * Text colors are set via inline style so the global .editorial-display rule
+ * (which otherwise paints headings in evergreen for use on light sections)
+ * doesn't win on specificity and render the h1 invisibly on the dark panel.
  */
 export function EditorialHero({
   eyebrowLabels,
@@ -79,81 +82,107 @@ export function EditorialHero({
   return (
     <section
       aria-label="Teddy Exteriors — Pacific Northwest exterior remodeling"
-      className="relative isolate overflow-hidden bg-[color:var(--surface-inverse)] text-[color:var(--ink-inverse)]"
+      className="relative isolate overflow-hidden bg-[color:var(--surface-inverse)]"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-12">
-        {/* LEFT — solid evergreen text panel */}
-        <div className="lg:col-span-5 relative order-2 lg:order-1 min-h-[520px] lg:min-h-[720px] flex items-center bg-[color:var(--surface-inverse)]">
-          <div className="w-full px-6 lg:pl-10 lg:pr-14 py-14 lg:py-20 max-w-[640px] mx-auto lg:mx-0">
-            <ol className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[0.7rem] font-semibold tracking-[0.24em] uppercase text-white/85">
-              {eyebrowLabels.map((label, i) => (
-                <li key={label} className="flex items-center gap-5">
-                  {label}
-                  {i < eyebrowLabels.length - 1 && (
-                    <span aria-hidden="true" className="h-1 w-1 rounded-full bg-[color:var(--accent-highlight)]" />
-                  )}
-                </li>
-              ))}
-            </ol>
-            <h1 className="mt-7 editorial-display text-[color:var(--ink-inverse)]">
-              {headlineLines.map((line, i) => (
-                <span key={i} className="block">
-                  {line.italic ? (
-                    <span className="italic text-[color:var(--accent-highlight)]">{line.text}</span>
-                  ) : (
-                    line.text
-                  )}
-                </span>
-              ))}
-            </h1>
-            <p className="mt-6 max-w-xl text-base/relaxed text-white/85">{supporting}</p>
-            <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
-              <LimeCTA href={primaryCta.href} size="lg">
-                {primaryCta.label}
-              </LimeCTA>
-              {secondaryCta && (
-                <Link
-                  href={secondaryCta.href}
-                  className="group inline-flex items-center gap-3 text-[0.95rem] font-semibold text-white hover:text-[color:var(--accent-highlight)]"
-                >
-                  <PlayCircle />
-                  {secondaryCta.label}
-                </Link>
-              )}
-            </div>
-            <ul className="mt-8 grid grid-cols-2 gap-x-5 gap-y-3 text-[0.8125rem] text-white/85 max-w-md">
-              {bulletProof.map((b) => (
-                <li key={b.label} className="flex items-center gap-2">
-                  <span className="text-[color:var(--accent-highlight)]">
-                    <Icon kind={b.icon ?? "check"} />
-                  </span>
-                  {b.label}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+      {/* Full-bleed photograph — no overlay, no gradient, no scrim */}
+      <div className="absolute inset-0 -z-10 hidden lg:block">
+        <Image
+          src={heroImage.src}
+          alt={heroImage.alt}
+          fill
+          priority
+          fetchPriority="high"
+          sizes="100vw"
+          className="object-cover object-right"
+        />
+      </div>
 
-        {/* RIGHT — clean untinted photograph */}
-        <div className="lg:col-span-7 relative order-1 lg:order-2 min-h-[320px] sm:min-h-[420px] lg:min-h-[720px]">
-          <Image
-            src={heroImage.src}
-            alt={heroImage.alt}
-            fill
-            priority
-            fetchPriority="high"
-            sizes="(min-width: 1024px) 58vw, 100vw"
-            className="object-cover"
-          />
-          {projectCaption && (
-            <div className="absolute right-4 lg:right-6 bottom-4 lg:bottom-6 max-w-[280px] rounded-sm bg-white/92 backdrop-blur-sm border border-[color:var(--border-subtle)] px-4 py-3 text-[0.75rem] text-[color:var(--text-body)] leading-snug shadow-md">
-              <p className="font-semibold text-[color:var(--text-heading)]">{projectCaption.title}</p>
-              <p className="text-[color:var(--text-muted)]">{projectCaption.locality}</p>
-              <p className="text-[color:var(--text-muted)] mt-0.5">{projectCaption.materials}</p>
-            </div>
-          )}
+      {/* Mobile: image stacked above the panel, no scrim on it */}
+      <div className="relative lg:hidden w-full aspect-[4/3]">
+        <Image
+          src={heroImage.src}
+          alt={heroImage.alt}
+          fill
+          priority
+          fetchPriority="high"
+          sizes="100vw"
+          className="object-cover"
+        />
+      </div>
+
+      <div className="relative mx-auto max-w-[1360px] px-6 lg:px-0 min-h-[560px] lg:min-h-[720px] flex items-stretch">
+        {/* Solid evergreen panel — card over the left portion of the full-bleed photo */}
+        <div
+          className="relative w-full lg:w-[44%] bg-[color:var(--surface-inverse)] py-14 lg:py-20 px-6 sm:px-8 lg:px-12 flex flex-col justify-center"
+          style={{ boxShadow: "40px 0 60px -40px rgba(18,61,42,0.35)" }}
+        >
+          <ol className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[0.7rem] font-semibold tracking-[0.24em] uppercase text-white/85">
+            {eyebrowLabels.map((label, i) => (
+              <li key={label} className="flex items-center gap-5">
+                {label}
+                {i < eyebrowLabels.length - 1 && (
+                  <span
+                    aria-hidden="true"
+                    className="h-1 w-1 rounded-full bg-[color:var(--accent-highlight)]"
+                  />
+                )}
+              </li>
+            ))}
+          </ol>
+          <h1
+            className="mt-7 editorial-display"
+            style={{ color: "#ffffff" }}
+          >
+            {headlineLines.map((line, i) => (
+              <span key={i} className="block">
+                {line.italic ? (
+                  <span
+                    className="italic"
+                    style={{ color: "var(--accent-highlight)" }}
+                  >
+                    {line.text}
+                  </span>
+                ) : (
+                  line.text
+                )}
+              </span>
+            ))}
+          </h1>
+          <p className="mt-6 max-w-xl text-base/relaxed text-white/85">{supporting}</p>
+          <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
+            <LimeCTA href={primaryCta.href} size="lg">
+              {primaryCta.label}
+            </LimeCTA>
+            {secondaryCta && (
+              <Link
+                href={secondaryCta.href}
+                className="group inline-flex items-center gap-3 text-[0.95rem] font-semibold text-white hover:text-[color:var(--accent-highlight)]"
+              >
+                <PlayCircle />
+                {secondaryCta.label}
+              </Link>
+            )}
+          </div>
+          <ul className="mt-8 grid grid-cols-2 gap-x-5 gap-y-3 text-[0.8125rem] text-white/90 max-w-md">
+            {bulletProof.map((b) => (
+              <li key={b.label} className="flex items-center gap-2">
+                <span className="text-[color:var(--accent-highlight)]">
+                  <Icon kind={b.icon ?? "check"} />
+                </span>
+                {b.label}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
+
+      {projectCaption && (
+        <div className="hidden lg:block absolute right-6 bottom-6 max-w-[280px] rounded-sm bg-white/92 backdrop-blur-sm border border-[color:var(--border-subtle)] px-4 py-3 text-[0.75rem] text-[color:var(--text-body)] leading-snug shadow-md">
+          <p className="font-semibold text-[color:var(--text-heading)]">{projectCaption.title}</p>
+          <p className="text-[color:var(--text-muted)]">{projectCaption.locality}</p>
+          <p className="text-[color:var(--text-muted)] mt-0.5">{projectCaption.materials}</p>
+        </div>
+      )}
     </section>
   );
 }
