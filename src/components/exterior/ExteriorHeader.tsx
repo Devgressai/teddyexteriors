@@ -1,4 +1,6 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { Container } from "@/components/primitives";
 import { PrimaryCTA } from "@/components/primitives/CTA";
@@ -59,7 +61,10 @@ export function ExteriorHeader({
   phone,
   nav,
 }: ExteriorHeaderProps) {
+  const pathname = usePathname();
   const hasUtility = regionSummary || waCredentialNumber || orCredentialNumber;
+  const isActive = (href: string) =>
+    pathname ? (href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`)) : false;
   return (
     <header className="sticky top-0 z-30 bg-[color:var(--surface-paper)]/95 backdrop-blur-sm border-b border-[color:var(--border-subtle)]">
       {hasUtility && (
@@ -91,19 +96,31 @@ export function ExteriorHeader({
       )}
       <Container width="wide">
         <div className="flex items-center justify-between gap-8 py-3.5">
-          <Link href="/" aria-label={`${brandName} home`}>
+          <Link
+            href="/"
+            aria-label={`${brandName} home`}
+            aria-current={pathname === "/" ? "page" : undefined}
+          >
             <LogoMark brandName={brandName} />
           </Link>
           <nav aria-label="Primary" className="hidden lg:flex items-center gap-7 text-[0.9375rem] font-medium">
-            {nav.map((n) => (
-              <Link
-                key={n.href}
-                href={n.href}
-                className="text-[color:var(--ink-emphasis)] hover:text-[color:var(--brand-cta)] transition-colors"
-              >
-                {n.label}
-              </Link>
-            ))}
+            {nav.map((n) => {
+              const active = isActive(n.href);
+              return (
+                <Link
+                  key={n.href}
+                  href={n.href}
+                  aria-current={active ? "page" : undefined}
+                  className={`relative transition-colors ${
+                    active
+                      ? "text-[color:var(--brand-cta)] after:content-[''] after:absolute after:-bottom-1.5 after:left-0 after:right-0 after:h-[1.5px] after:bg-[color:var(--brand-cta)]"
+                      : "text-[color:var(--ink-emphasis)] hover:text-[color:var(--brand-cta)]"
+                  }`}
+                >
+                  {n.label}
+                </Link>
+              );
+            })}
           </nav>
           <div className="flex items-center gap-5">
             {phone && (

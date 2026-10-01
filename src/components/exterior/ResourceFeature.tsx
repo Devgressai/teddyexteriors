@@ -11,7 +11,7 @@ export function ResourceFeature({ heading, featured, supporting }: ResourceFeatu
         </h2>
         <div className="mt-12 grid gap-10 lg:grid-cols-12 items-start">
           <article className="lg:col-span-7">
-            <Link href={featured.href} className="group block">
+            <Link href={featured.href} className="group block rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[color:var(--brand-cta)]">
               {featured.image && (
                 <div className="relative aspect-[16/9] overflow-hidden rounded-md">
                   <Image
@@ -36,7 +36,7 @@ export function ResourceFeature({ heading, featured, supporting }: ResourceFeatu
             <ul className="lg:col-span-5 space-y-5">
               {supporting.map((g) => (
                 <li key={g.slug}>
-                  <Link href={g.href} className="group block">
+                  <Link href={g.href} className="group block rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[color:var(--brand-cta)]">
                     <h3 className="text-base font-semibold text-[color:var(--ink-primary)] group-hover:text-[color:var(--brand-cta)]">
                       {g.title}
                     </h3>

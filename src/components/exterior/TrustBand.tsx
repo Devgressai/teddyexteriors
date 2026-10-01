@@ -76,7 +76,7 @@ export function TrustBand({
               {lead}
             </p>
           )}
-          <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-5">
+          <ul className="grid grid-cols-1 min-[380px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-5">
             {items.map((item) => (
               <li key={item.label} className="flex items-start gap-3">
                 {item.icon && <span className="mt-0.5 shrink-0">{item.icon}</span>}

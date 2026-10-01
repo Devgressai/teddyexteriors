@@ -46,7 +46,10 @@ export function ServiceComposition({ eyebrow, heading, intro, viewAllHref, cards
           <ul className="lg:col-span-9 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {cards.map((card) => (
               <li key={card.slug}>
-                <Link href={card.href} className="group block">
+                <Link
+                  href={card.href}
+                  className="group block rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[color:var(--brand-cta)]"
+                >
                   <Reveal kind="image" className="relative aspect-[4/5] overflow-hidden rounded-sm bg-[color:var(--surface-mist)] block">
                     <Image
                       src={card.image.src}

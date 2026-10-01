@@ -41,7 +41,7 @@ export function ServiceExplorer({ heading, entries }: ServiceExplorerProps) {
           </article>
           <div className="lg:col-span-5 grid gap-6 sm:grid-cols-2 lg:grid-cols-1">
             {supporting.map((entry) => (
-              <Link key={entry.slug} href={entry.href} className="group flex gap-4">
+              <Link key={entry.slug} href={entry.href} className="group flex gap-4 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[color:var(--brand-cta)]">
                 <div className="relative shrink-0 w-24 h-24 lg:w-28 lg:h-28 overflow-hidden rounded-md bg-[color:var(--border-subtle)]/40">
                   <Image
                     src={entry.image.src}
