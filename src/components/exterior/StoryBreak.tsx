@@ -19,6 +19,7 @@ export function StoryBreak({ image, eyebrow, headline, meta, locality }: StoryBr
     <section
       aria-label={`${eyebrow} — ${headline}`}
       className="relative isolate overflow-hidden bg-black"
+      style={{ ["--editorial-color" as string]: "#ffffff" }}
     >
       <div className="relative h-[380px] sm:h-[460px] lg:h-[520px]">
         <Image
