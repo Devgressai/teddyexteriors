@@ -9,13 +9,14 @@ import { Reveal } from "@/components/motion";
  */
 export function ProjectFeature({ title, cityState, challenge, work, finish, images, href }: ProjectFeatureProps) {
   return (
-    <section className="bg-[color:var(--surface-paper)]">
+    <section className="bg-[color:var(--surface-soft)]">
       <div className="mx-auto max-w-7xl px-6 py-20 lg:py-24">
+        <div className="rounded-md bg-[color:var(--surface-card)] border border-[color:var(--border-subtle)] p-8 sm:p-12 lg:p-16">
         <header className="max-w-2xl">
-          <p className="text-xs uppercase tracking-[0.14em] font-semibold text-[color:var(--brand-cta)]">
+          <p className="text-xs uppercase tracking-[0.14em] font-semibold text-[color:var(--action-primary)]">
             Featured project
           </p>
-          <h2 className="mt-3 text-3xl sm:text-4xl font-semibold tracking-tight text-[color:var(--ink-primary)]">
+          <h2 className="mt-3 text-3xl sm:text-4xl font-semibold tracking-tight text-[color:var(--text-heading)]">
             See what a thoughtful exterior renovation can change.
           </h2>
         </header>
@@ -61,11 +62,12 @@ export function ProjectFeature({ title, cityState, challenge, work, finish, imag
             </dl>
             <Link
               href={href}
-              className="mt-8 inline-flex items-center text-sm font-semibold text-[color:var(--brand-cta)]"
+              className="mt-8 inline-flex items-center text-sm font-semibold text-[color:var(--action-primary)] hover:text-[color:var(--action-primary-hover)]"
             >
               Explore this transformation <span aria-hidden="true" className="ml-1">→</span>
             </Link>
           </div>
+        </div>
         </div>
       </div>
     </section>

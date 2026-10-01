@@ -62,6 +62,25 @@ export function InverseCTA({ href, children, size = "md", className = "", ariaLa
   );
 }
 
+/**
+ * LimeCTA — primary call-to-action used on evergreen surfaces. Fresh lime (#D9F279)
+ * fill with evergreen ink delivers an AAA contrast pop against the dark band without
+ * reading as a web-green emoji button. Use INSTEAD of PrimaryCTA whenever the parent
+ * surface is --surface-inverse (hero, envelope detail, estimate section, footer CTA).
+ */
+export function LimeCTA({ href, children, size = "md", className = "", ariaLabel, trailing = true }: Props) {
+  return (
+    <Link
+      href={href}
+      aria-label={ariaLabel}
+      className={`group inline-flex items-center justify-center clip-angle-br bg-[color:var(--action-inverse)] font-extrabold text-[color:var(--action-inverse-text)] hover:bg-[color:var(--action-inverse-hover)] transition-colors ${sizeFill[size]} ${className}`}
+    >
+      {children}
+      {trailing && <Arrow />}
+    </Link>
+  );
+}
+
 export function GhostInverseCTA({ href, children, size = "md", className = "", ariaLabel, trailing = true }: Props) {
   return (
     <Link

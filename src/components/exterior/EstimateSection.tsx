@@ -164,7 +164,7 @@ export function EstimateSection({
                     <button
                       type="submit"
                       disabled={pending}
-                      className="group inline-flex items-center gap-3 rounded-sm bg-[color:var(--brand-secondary)] px-6 py-3.5 text-[0.95rem] font-semibold text-[color:var(--brand-primary)] hover:brightness-95 disabled:opacity-60"
+                      className="group inline-flex items-center gap-3 rounded-sm bg-[color:var(--action-inverse)] px-6 py-3.5 text-[0.95rem] font-semibold text-[color:var(--action-inverse-text)] hover:bg-[color:var(--action-inverse-hover)] disabled:opacity-60 transition-colors"
                     >
                       {pending ? "Sending…" : "Request an Exterior Evaluation"}
                       <svg viewBox="0 0 20 20" className="h-4 w-4 transition-transform group-hover:translate-x-0.5">

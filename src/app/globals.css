@@ -2,76 +2,120 @@
 @plugin "@tailwindcss/typography";
 
 /*
- * Teddy Exteriors — Design System v3 (2026-10-01, no-tint)
+ * Teddy Exteriors — Design System v5 (2026-09-30, "warm ivory + sage + evergreen")
  *
- * Direction: no warm-bone tint anywhere. Pure white is the primary surface across the entire
- * site; the only breaks in white are the deep-evergreen inverse band (used sparingly for the
- * envelope detail, the final CTA, and the footer) and the eyebrow + accent typography.
- * Mirrors the actual jdiconstruction.co flow and leans into the "modern white space" direction.
+ * Final visual direction (owner-approved):
+ *   Dominant canvas is a warm ivory (#FCFAF4) — NOT pure white. Pale sage (#EDF4E9) acts
+ *   as the section-transition surface. Evergreen (#123D2A) carries authority moments
+ *   (envelope detail, final CTA, footer, hero text column). On evergreen, the primary
+ *   CTA swaps to fresh lime (#D9F279) for AAA pop; on light, action green (#237A36) is
+ *   the primary button. Leaf green (#55B947) is the accent brand mark. Sunshine (#F4C95D)
+ *   is reserved for star ratings and warm accents.
  *
- * Alternation now relies on spacing, type scale, and image scale — not background tint.
+ *   Section rhythm: ivory → sage → ivory → evergreen → ivory → sage → evergreen (footer).
+ *   65-75% light, 20-25% evergreen, 5-10% bright accents.
  */
 
 @theme {
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 
-  /* Raw hues — happy, bright, bold.
-     The previous muted forest/sage greens (#347a2e + #50a747) read as "calm and soft."
-     Shifted to vibrant emerald/lime for an energetic, modern, inviting feel. The deep
-     evergreen anchor (#1e3d2a) stays — it carries the inverse-surface moments. */
-  --color-brand-500: #22c55e;        /* bright lime-emerald — graphic marks, highlights, promo bands */
-  --color-brand-900: #1e3d2a;        /* deep evergreen anchor — inverse band surface, footer */
-  --color-brand-cta: #16a34a;        /* vibrant emerald — buttons, links. ~4.6:1 on white (AA) */
-  --color-brand-cta-hover: #15803d;  /* slightly deepened on hover, still bright */
-  --color-cedar: #b5793b;            /* cedar accent for eyebrows */
+  /* ─── PRIMITIVE HUES (approved palette) ─────────────────────────────────── */
+  --color-evergreen: #123D2A;        /* deep evergreen — authority surfaces, headings */
+  --color-leaf: #55B947;              /* leaf green — accent mark, highlights */
+  --color-action: #237A36;            /* action green — primary CTA on light, ~5.1:1 on ivory */
+  --color-action-hover: #1B622B;      /* deeper action green on hover */
+  --color-action-pressed: #164F23;    /* pressed state */
+  --color-lime: #D9F279;              /* fresh lime — primary CTA ink on evergreen */
+  --color-lime-hover: #C4E55F;        /* lime hover */
+  --color-sunshine: #F4C95D;          /* sunshine — stars, warm accents */
+  --color-ivory: #FCFAF4;             /* warm ivory — dominant canvas */
+  --color-sage: #EDF4E9;              /* pale sage — section transitions */
+  --color-sage-deep: #D5DFD2;         /* sage used as subtle border/separator */
+  --color-charcoal: #202D25;          /* forest charcoal — body text */
+  --color-charcoal-muted: #536257;    /* muted body/meta text */
+  --color-paper: #FFFFFF;             /* true white — cards floating on ivory/sage */
+
+  --color-cedar: #b5793b;             /* cedar accent for eyebrows (retained) */
   --color-cedar-soft: #d1a777;
-  --color-ink-800: #2d3d2f;
-  --color-ink-600: #485550;
+
+  /* ─── SEMANTIC SURFACE TOKENS ───────────────────────────────────────────── */
+  --surface-page: var(--color-ivory);          /* body/global canvas */
+  --surface-card: var(--color-paper);          /* floating cards on page/sage */
+  --surface-soft: var(--color-sage);           /* section transitions */
+  --surface-inverse: var(--color-evergreen);   /* authority bands, footer */
+
+  /* ─── SEMANTIC TEXT TOKENS ──────────────────────────────────────────────── */
+  --text-heading: var(--color-evergreen);
+  --text-body: var(--color-charcoal);
+  --text-muted: var(--color-charcoal-muted);
+  --text-inverse: var(--color-paper);
+  --text-inverse-muted: rgba(255, 255, 255, 0.78);
+
+  /* ─── SEMANTIC ACTION TOKENS ────────────────────────────────────────────── */
+  --action-primary: var(--color-action);
+  --action-primary-hover: var(--color-action-hover);
+  --action-primary-pressed: var(--color-action-pressed);
+  --action-primary-text: var(--color-paper);
+  --action-inverse: var(--color-lime);                 /* primary CTA on evergreen */
+  --action-inverse-hover: var(--color-lime-hover);
+  --action-inverse-text: var(--color-evergreen);       /* ink on lime button */
+
+  /* ─── ACCENT TOKENS ─────────────────────────────────────────────────────── */
+  --accent-brand: var(--color-leaf);                   /* leaf green mark */
+  --accent-highlight: var(--color-lime);               /* lime attention bursts */
+  --accent-warm: var(--color-sunshine);                /* sunshine for stars */
+
+  /* ─── BORDERS / RINGS ───────────────────────────────────────────────────── */
+  --border-subtle: var(--color-sage-deep);             /* on light surfaces */
+  --border-control: #7B897E;                            /* input/control border */
+  --border-inverse: rgba(255, 255, 255, 0.18);         /* on evergreen */
+  --focus-ring: var(--color-action);
+
+  /* ─── BACKWARDS-COMPAT SEMANTIC ALIASES ─────────────────────────────────────
+     Existing components reference these token names; map them to the new system
+     so no component code breaks. New components should use the semantic tokens
+     above instead of these legacy names. */
+  --color-brand-500: var(--color-leaf);
+  --color-brand-900: var(--color-evergreen);
+  --color-brand-cta: var(--color-action);
+  --color-brand-cta-hover: var(--color-action-hover);
+  --color-ink-800: var(--color-charcoal);
+  --color-ink-600: var(--color-charcoal-muted);
   --color-ink-400: #7a857f;
-  --color-ink-900: #232323;
-  --color-surface-paper: #ffffff;
-  --color-surface-mist: #f6f7f6;     /* nearly imperceptible neutral — used only where a
-                                        visual separator between two adjacent light sections
-                                        is architecturally required (e.g. a map container). */
-  --color-border-subtle: #e5e5e5;
+  --color-ink-900: var(--color-charcoal);
+  --color-surface-paper: var(--color-paper);
+  --color-surface-mist: var(--color-sage);
+  --color-border-subtle: var(--color-sage-deep);
   --color-border-medium: #c7c9c6;
 
-  /* Semantic aliases — use these in components */
-  --brand-primary: var(--color-brand-900);
-  --brand-primary-ink: var(--color-surface-paper);
-  --brand-secondary: var(--color-brand-500);
-  --brand-cta: var(--color-brand-cta);
-  --brand-cta-ink: var(--color-surface-paper);
-  --brand-cta-hover: var(--color-brand-cta-hover);
+  --brand-primary: var(--color-evergreen);
+  --brand-primary-ink: var(--color-paper);
+  --brand-secondary: var(--color-leaf);
+  --brand-cta: var(--color-action);
+  --brand-cta-ink: var(--color-paper);
+  --brand-cta-hover: var(--color-action-hover);
 
   --accent-cedar: var(--color-cedar);
   --accent-cedar-soft: var(--color-cedar-soft);
 
-  /* Bright accent surfaces — the "happy" moments: promo bars, badges, highlight bands.
-     Direct raw-hue tokens because they're used as backgrounds (saturated), not text. */
-  --surface-accent-bright: var(--color-brand-500);  /* #22c55e — bright accent band */
-  --surface-accent-bright-ink: #0a2a14;             /* darker-green ink on bright surface */
+  --surface-accent-bright: var(--color-leaf);
+  --surface-accent-bright-ink: #0a2a14;
 
-  /* All light surfaces resolve to pure white. Semantic names remain so existing call-sites
-     compile; visually they're a single surface. */
-  --surface-warm: var(--color-surface-paper);
-  --surface-stone: var(--color-surface-paper);
-  --surface-paper: var(--color-surface-paper);
-  --surface-mist: var(--color-surface-mist);
-  --surface-inverse: var(--color-brand-900);
+  /* All light surfaces resolve to ivory/paper. */
+  --surface-warm: var(--color-ivory);
+  --surface-stone: var(--color-sage);
+  --surface-paper: var(--color-paper);
+  --surface-mist: var(--color-sage);
 
-  --ink-primary: var(--color-ink-800);
-  --ink-secondary: var(--color-ink-600);
-  --ink-tertiary: var(--color-ink-400);
-  --ink-inverse: var(--color-surface-paper);
-  --ink-emphasis: var(--color-brand-900);
+  --ink-primary: var(--color-charcoal);
+  --ink-secondary: var(--color-charcoal-muted);
+  --ink-tertiary: #7a857f;
+  --ink-inverse: var(--color-paper);
+  --ink-emphasis: var(--color-evergreen);
 
-  --border-subtle: var(--color-border-subtle);
-  --border-medium: var(--color-border-medium);
+  --border-medium: #c7c9c6;
 
-  --focus-ring: var(--color-brand-cta);
-
-  /* Fluid type scale (anchors: 390 → 1440) — same scale as v2 */
+  /* ─── TYPE SCALE (unchanged) ────────────────────────────────────────────── */
   --font-display-size: clamp(2.75rem, 1rem + 7vw, 5.25rem);
   --font-h1-size: clamp(2.25rem, 1.25rem + 3.5vw, 3.5rem);
   --font-h2-size: clamp(1.75rem, 1.1rem + 2.25vw, 2.75rem);
@@ -79,19 +123,18 @@
   --font-body-lg-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
   --font-stat-size: clamp(1.75rem, 1.25rem + 1.75vw, 2.25rem);
 
-  /* Section padding — pushed up ~20-30% per 2026-10-01 "white space and visual impact"
-     direction. Lets each section breathe without a background tint to carry the eye. */
+  /* ─── SECTION PADDING (unchanged, 2026-10-01 whitespace direction) ──────── */
   --section-pad-sm: clamp(3.5rem, 2.5rem + 2.5vw, 5rem);
   --section-pad-md: clamp(5rem, 4rem + 3vw, 7rem);
   --section-pad-lg: clamp(6.5rem, 5rem + 4vw, 9.5rem);
   --section-pad-xl: clamp(8rem, 6rem + 5vw, 12rem);
 
-  /* Containers */
+  /* ─── CONTAINERS ────────────────────────────────────────────────────────── */
   --container-tight: 960px;
   --container-std: 1200px;
   --container-wide: 1360px;
 
-  /* Motion */
+  /* ─── MOTION ────────────────────────────────────────────────────────────── */
   --motion-instant: 100ms;
   --motion-fast: 150ms;
   --motion-mid: 220ms;
@@ -171,8 +214,8 @@
 }
 
 html, body {
-  background: var(--surface-paper);
-  color: var(--ink-primary);
+  background: var(--surface-page);
+  color: var(--text-body);
 }
 
 body {
@@ -188,8 +231,8 @@ body {
 }
 
 ::selection {
-  background: var(--brand-secondary);
-  color: var(--brand-primary);
+  background: var(--accent-highlight);
+  color: var(--color-evergreen);
 }
 
 /* Editorial headline helpers */
@@ -199,7 +242,7 @@ body {
   line-height: 1.02;
   letter-spacing: -0.02em;
   font-weight: 400;
-  color: var(--ink-emphasis);
+  color: var(--text-heading);
 }
 .editorial-h1 {
   font-family: var(--font-display);
@@ -207,7 +250,7 @@ body {
   line-height: 1.08;
   letter-spacing: -0.015em;
   font-weight: 400;
-  color: var(--ink-emphasis);
+  color: var(--text-heading);
 }
 .editorial-h2 {
   font-family: var(--font-display);
@@ -215,14 +258,14 @@ body {
   line-height: 1.1;
   letter-spacing: -0.01em;
   font-weight: 400;
-  color: var(--ink-emphasis);
+  color: var(--text-heading);
 }
 .editorial-h3 {
   font-family: var(--font-sans);
   font-size: var(--font-h3-size);
   line-height: 1.3;
   font-weight: 600;
-  color: var(--ink-emphasis);
+  color: var(--text-heading);
 }
 .editorial-italic {
   font-style: italic;
@@ -230,7 +273,7 @@ body {
 }
 .editorial-italic-dark {
   font-style: italic;
-  color: var(--brand-secondary);
+  color: var(--accent-brand);
 }
 .eyebrow {
   font-family: var(--font-sans);
@@ -247,13 +290,13 @@ body {
   font-family: var(--font-sans);
   font-size: 0.8125rem;
   line-height: 1.4;
-  color: var(--ink-tertiary);
+  color: var(--text-muted);
 }
 .lead {
   font-family: var(--font-sans);
   font-size: var(--font-body-lg-size);
   line-height: 1.55;
-  color: var(--ink-secondary);
+  color: var(--text-muted);
 }
 .stat {
   font-family: var(--font-sans);
@@ -261,7 +304,7 @@ body {
   font-weight: 600;
   font-size: var(--font-stat-size);
   letter-spacing: -0.01em;
-  color: var(--ink-emphasis);
+  color: var(--text-heading);
 }
 
 @media (prefers-reduced-motion: reduce) {

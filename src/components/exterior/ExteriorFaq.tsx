@@ -16,7 +16,7 @@ export type ExteriorFaqProps = {
 export function ExteriorFaq({ heading = "Questions before you get started?", intro, items, emitSchema = true }: ExteriorFaqProps) {
   if (items.length === 0) return null;
   return (
-    <section className="bg-[color:var(--surface-warm)]">
+    <section className="bg-[color:var(--surface-soft)]">
       {emitSchema && <JsonLd data={faqSchema(items)} />}
       <div className="mx-auto max-w-5xl px-6 py-20 lg:py-24">
         <header className="max-w-2xl">

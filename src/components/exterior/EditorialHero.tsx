@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ImageAsset } from "@/content-model/types";
-import { PrimaryCTA } from "@/components/primitives/CTA";
+import { LimeCTA } from "@/components/primitives/CTA";
 
 export type EditorialHeroProps = {
   eyebrowLabels: string[];
@@ -122,9 +122,9 @@ export function EditorialHero({
           </h1>
           <p className="mt-6 max-w-xl text-base/relaxed text-white/85">{supporting}</p>
           <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
-            <PrimaryCTA href={primaryCta.href} size="lg">
+            <LimeCTA href={primaryCta.href} size="lg">
               {primaryCta.label}
-            </PrimaryCTA>
+            </LimeCTA>
             {secondaryCta && (
               <Link
                 href={secondaryCta.href}

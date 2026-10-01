@@ -4,7 +4,7 @@ import type { ResourceFeatureProps } from "./types";
 
 export function ResourceFeature({ heading, featured, supporting }: ResourceFeatureProps) {
   return (
-    <section className="bg-[color:var(--surface-paper)]">
+    <section className="bg-[color:var(--surface-page)]">
       <div className="mx-auto max-w-7xl px-6 py-20 lg:py-24">
         <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-[color:var(--ink-primary)] max-w-2xl">
           {heading}

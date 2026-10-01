@@ -21,7 +21,7 @@ export type ProcessTimelineProps = {
  */
 export function ProcessTimeline({ eyebrow, heading, intro, steps, closing }: ProcessTimelineProps) {
   return (
-    <Section surface="paper" pad="lg" ariaLabel="Our process">
+    <Section surface="warm" pad="lg" ariaLabel="Our process">
       <Container width="wide">
         <header className="max-w-3xl">
           <p className="eyebrow">{eyebrow}</p>

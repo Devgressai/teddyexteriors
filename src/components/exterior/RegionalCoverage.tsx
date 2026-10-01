@@ -6,7 +6,7 @@ import type { RegionalCoverageGroup, RegionalCoverageProps } from "./types";
 export function RegionalCoverage({ heading, groups, supporting }: RegionalCoverageProps) {
   if (groups.length === 0) return null;
   return (
-    <Section surface="mist" pad="lg" ariaLabel="Service areas">
+    <Section surface="warm" pad="lg" ariaLabel="Service areas">
       <Container width="wide">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-10 gap-y-12 items-start">
           <header className="lg:col-span-5">
@@ -24,7 +24,7 @@ export function RegionalCoverage({ heading, groups, supporting }: RegionalCovera
             </div>
           </header>
           <div className="lg:col-span-7">
-            <div className="rounded-sm border border-[color:var(--border-subtle)] bg-[color:var(--surface-paper)] p-6 lg:p-8">
+            <div className="rounded-sm border border-[color:var(--border-subtle)] bg-[color:var(--surface-soft)] p-6 lg:p-8">
               <RegionalMap />
             </div>
           </div>

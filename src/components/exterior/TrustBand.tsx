@@ -67,7 +67,7 @@ export function TrustBand({
   return (
     <section
       aria-label="Credentials and trust indicators"
-      className="bg-[color:var(--surface-stone)] border-y border-[color:var(--border-subtle)]"
+      className="bg-[color:var(--surface-page)] border-b border-[color:var(--border-subtle)]"
     >
       <Container width="wide">
         <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] items-center gap-x-10 gap-y-6 py-6">

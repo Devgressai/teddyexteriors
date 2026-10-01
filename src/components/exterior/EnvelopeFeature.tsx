@@ -49,7 +49,7 @@ export function EnvelopeFeature({
             <p className="mt-6 text-[0.95rem] text-white/80 leading-relaxed max-w-[42ch]">{intro}</p>
             <Link
               href={learnMoreHref}
-              className="group mt-7 inline-flex items-center gap-3 rounded-sm bg-[color:var(--surface-paper)] px-5 py-3 text-[0.9rem] font-semibold text-[color:var(--ink-emphasis)] hover:bg-[color:var(--surface-warm)] transition-colors"
+              className="group mt-7 inline-flex items-center gap-3 rounded-sm bg-[color:var(--action-inverse)] px-5 py-3 text-[0.9rem] font-semibold text-[color:var(--action-inverse-text)] hover:bg-[color:var(--action-inverse-hover)] transition-colors"
             >
               Learn About Our Approach
               <svg viewBox="0 0 20 20" className="h-4 w-4 transition-transform group-hover:translate-x-0.5">
