@@ -3,6 +3,7 @@ import {
   ClimateMicrobar,
   TrustBand,
   trustIcons,
+  BrandMarquee,
   ServiceComposition,
   EnvelopeFeature,
   ProjectFeature,
@@ -329,6 +330,11 @@ export default function HomePage() {
 
       <ClimateMicrobar />
       <TrustBand lead="A trusted exterior contractor in the PNW" items={trustItems} />
+
+      <BrandMarquee
+        eyebrow="Brands we install"
+        heading="The manufacturers behind the exteriors we build."
+      />
 
       <ServiceComposition
         eyebrow="Our Services"

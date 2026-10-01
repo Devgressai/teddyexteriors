@@ -27,4 +27,5 @@ export { MobileActionBar } from "./MobileActionBar";
 export { RegionalMap } from "./RegionalMap";
 export { StoryBreak, type StoryBreakProps } from "./StoryBreak";
 export { ClimateMicrobar } from "./ClimateMicrobar";
+export { BrandMarquee, type BrandMarqueeProps } from "./BrandMarquee";
 export type * from "./types";
