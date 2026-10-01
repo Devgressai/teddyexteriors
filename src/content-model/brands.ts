@@ -28,8 +28,10 @@ export const installedBrands: InstalledBrand[] = [
     slug: "anlin",
     name: "Anlin",
     category: "windows",
-    aspectRatio: 2.6,
-    logo: "/images/brands/anlin.svg",
+    // Measured 77×48 — significantly squarer than the others; the star-above-wordmark
+    // composition means the slot needs more height, less width.
+    aspectRatio: 1.6,
+    logo: "/images/brands/anlin.webp",
     manufacturerUrl: "https://www.anlin.com",
     confirmed: true,
   },
@@ -37,8 +39,8 @@ export const installedBrands: InstalledBrand[] = [
     slug: "ply-gem",
     name: "Ply Gem",
     category: "siding",
-    aspectRatio: 3.0,
-    logo: "/images/brands/ply-gem.svg",
+    aspectRatio: 4.85, // measured 194×40
+    logo: "/images/brands/ply-gem.webp",
     manufacturerUrl: "https://www.plygem.com",
     confirmed: true,
   },
@@ -46,8 +48,8 @@ export const installedBrands: InstalledBrand[] = [
     slug: "milgard",
     name: "Milgard",
     category: "windows",
-    aspectRatio: 3.4,
-    logo: "/images/brands/milgard.svg",
+    aspectRatio: 4.13, // measured 165×40
+    logo: "/images/brands/milgard.webp",
     manufacturerUrl: "https://www.milgard.com",
     confirmed: true,
   },
@@ -55,8 +57,8 @@ export const installedBrands: InstalledBrand[] = [
     slug: "james-hardie",
     name: "James Hardie",
     category: "siding",
-    aspectRatio: 3.3,
-    logo: "/images/brands/james-hardie.svg",
+    aspectRatio: 5.18, // measured 207×40
+    logo: "/images/brands/james-hardie.webp",
     manufacturerUrl: "https://www.jameshardie.com",
     confirmed: true,
   },
@@ -64,8 +66,8 @@ export const installedBrands: InstalledBrand[] = [
     slug: "andersen",
     name: "Andersen",
     category: "windows",
-    aspectRatio: 3.8,
-    logo: "/images/brands/andersen.svg",
+    aspectRatio: 3.95, // measured 158×40
+    logo: "/images/brands/andersen.webp",
     manufacturerUrl: "https://www.andersenwindows.com",
     confirmed: true,
   },
