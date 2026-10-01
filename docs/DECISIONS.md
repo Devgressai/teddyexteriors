@@ -75,6 +75,16 @@ Material technical and editorial decisions with reasons. Append-only; supersede 
 
 ---
 
+## D-010 — Preview-build escape hatch (2026-10-01)
+
+**Decision:** Introduce `TEDDY_ALLOW_PREVIEW_BUILD=1` env var. When set, the prebuild validator warns instead of failing, and `business.get()` returns null instead of throwing. All runtime noindex guards remain active: `robots.ts` disallows everything when `hasUnresolvedRequirements()` is true, every page carries `robots: { index: false, follow: false }`, `sitemap.ts` returns `[]` when `identity.domain` is unresolved, and the preview banner stays visible.
+
+**Reason:** Vercel treats every deployment as `NODE_ENV=production`. Before business facts are in, a successful preview build is useful (design review, visual QA, link checking, lead-form sandbox testing). The master brief §03 explicitly permits "private-preview placeholders"; this flag draws the line between **private preview** (allowed) and **public production** (blocked).
+
+**Rule:** The flag must **never** be set on the real domain's Vercel environment variables. It belongs only on the throwaway `*.vercel.app` preview target. Remove it before cutting over DNS.
+
+---
+
 ## D-009 — Custom design system is a release gate (2026-09-30)
 
 **Decision:** Build the 14 named bespoke components (`ExteriorHeader`, `ExteriorHero`, `CredentialRail`, `ServiceExplorer`, `ProjectFeature`, `BeforeAfter`, `EnvelopeDetail`, `MaterialCompare`, `RegionalCoverage`, `ProcessStory`, `TeamProof`, `ResourceFeature`, `EstimateSection`, `ExteriorFooter`) in `src/components/exterior/` with typed variants and documented content rules. Build one resolved homepage + representative service / city-service / project / resource pages, run the Design QA pass (`docs/DESIGN_QA.md`), then propagate templates. A noindexed `/_showcase/` route exercises states.

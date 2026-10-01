@@ -1,12 +1,13 @@
 /**
  * Production validation gate (master brief §03).
  * Runs in `prebuild`. Fails `next build` when any REQUIRED_FOR_PRODUCTION field is unresolved
- * AND NODE_ENV === 'production'.
+ * AND NODE_ENV === 'production' AND TEDDY_ALLOW_PREVIEW_BUILD !== '1'.
  *
  * Usage:
  *   NODE_ENV=production tsx scripts/validate-business-config.ts
+ *   NODE_ENV=production TEDDY_ALLOW_PREVIEW_BUILD=1 tsx scripts/validate-business-config.ts   # warns, passes
  *
- * In non-production, prints a warning and exits 0 so dev/preview builds still work.
+ * The preview-build flag belongs ONLY on throwaway *.vercel.app targets. See docs/DECISIONS.md D-010.
  */
 
 import { business, REQUIRED_FOR_PRODUCTION, type Field } from "../src/lib/business.config";
@@ -27,7 +28,6 @@ function getByPath(path: string): Field<unknown> {
 }
 
 const issues: Issue[] = [];
-
 for (const path of REQUIRED_FOR_PRODUCTION) {
   const field = getByPath(path);
   if (field.value === null) {
@@ -45,9 +45,14 @@ if (issues.length === 0) {
 }
 
 const isProd = process.env.NODE_ENV === "production";
-const header = isProd
-  ? "[31m[validate-business-config] FAILED — production build blocked.[0m"
-  : "[33m[validate-business-config] WARN — unresolved required fields (non-prod, continuing).[0m";
+const allowPreview = process.env.TEDDY_ALLOW_PREVIEW_BUILD === "1";
+const willBlock = isProd && !allowPreview;
+
+const header = willBlock
+  ? "[validate-business-config] FAILED — production build blocked."
+  : allowPreview
+    ? "[validate-business-config] WARN — TEDDY_ALLOW_PREVIEW_BUILD=1 set; building private preview with unresolved fields. Noindex guards remain active at runtime."
+    : "[validate-business-config] WARN — unresolved required fields (non-prod, continuing).";
 
 console.error(header);
 for (const i of issues) {
@@ -57,4 +62,4 @@ console.error(
   "\nTo resolve: edit src/lib/business.config.ts with { value: ..., status: 'confirmed', confirmedBy, confirmedOn }, and mirror in docs/BUSINESS_FACTS.md.",
 );
 
-process.exit(isProd ? 1 : 0);
+process.exit(willBlock ? 1 : 0);

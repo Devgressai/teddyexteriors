@@ -1,6 +1,7 @@
 import { business, type BusinessConfig, type Field } from "./business.config";
 
 const isProd = process.env.NODE_ENV === "production";
+const allowPreview = process.env.TEDDY_ALLOW_PREVIEW_BUILD === "1";
 
 function getField(path: string): Field<unknown> {
   const parts = path.split(".");
@@ -24,7 +25,7 @@ function getField(path: string): Field<unknown> {
 export function get<T = unknown>(path: string): T | null {
   const field = getField(path);
   if (field.value !== null && field.status === "confirmed") return field.value as T;
-  if (isProd) {
+  if (isProd && !allowPreview) {
     throw new Error(
       `[business] production read of unresolved field "${path}" (status=${field.status})`,
     );
