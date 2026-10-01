@@ -12,4 +12,6 @@ export { TeamProof } from "./TeamProof";
 export { ResourceFeature } from "./ResourceFeature";
 export { EstimateSection } from "./EstimateSection";
 export { ExteriorFooter } from "./ExteriorFooter";
+export { ExteriorFaq, type ExteriorFaqProps } from "./ExteriorFaq";
+export { ReviewPlatforms, type ReviewPlatformsProps, type ReviewPlatform } from "./ReviewPlatforms";
 export type * from "./types";

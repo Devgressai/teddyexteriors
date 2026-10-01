@@ -1,4 +1,4 @@
-import { business, type BusinessConfig, type Field } from "./business.config";
+import { business, REQUIRED_FOR_PRODUCTION, type BusinessConfig, type Field } from "./business.config";
 
 const isProd = process.env.NODE_ENV === "production";
 const explicitAllowPreview = process.env.TEDDY_ALLOW_PREVIEW_BUILD === "1";
@@ -57,9 +57,9 @@ export function isConfirmed(path: string): boolean {
   return field.value !== null && field.status === "confirmed";
 }
 
-/** True iff any required-for-production field is unresolved. Used by dev banner. */
+/** True iff any required-for-production field is unresolved. Drives noindex / banner / robots. */
 export function hasUnresolvedRequirements(): boolean {
-  for (const path of ["identity.brandName", "identity.domain", "credentials.waLniNumber", "credentials.orCcbNumber"]) {
+  for (const path of REQUIRED_FOR_PRODUCTION) {
     if (!isConfirmed(path)) return true;
   }
   return false;

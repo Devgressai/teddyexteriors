@@ -13,6 +13,18 @@ const nextConfig: NextConfig = {
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   images: {
     formats: ["image/avif", "image/webp"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "www.jdiconstruction.co",
+        pathname: "/ctf/**",
+      },
+      {
+        protocol: "https",
+        hostname: "jdiconstruction.co",
+        pathname: "/ctf/**",
+      },
+    ],
   },
   async headers() {
     return [
