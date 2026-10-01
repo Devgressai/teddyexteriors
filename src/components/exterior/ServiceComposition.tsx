@@ -43,7 +43,7 @@ export function ServiceComposition({ eyebrow, heading, intro, viewAllHref, cards
               View All Services
             </SecondaryCTA>
           </header>
-          <ul className="lg:col-span-9 grid grid-cols-2 lg:grid-cols-4 gap-5">
+          <ul className="lg:col-span-9 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {cards.map((card) => (
               <li key={card.slug}>
                 <Link href={card.href} className="group block">

@@ -160,8 +160,17 @@ export default function HomePage() {
             ? "Period homes and owners who commit to upkeep."
             : "Budget-focused projects with correct envelope.",
     image: {
-      src: `${JDI_CDN}/ctf/2PD7bqxA0kYRMKoXKs1TP6/01b-exterior-front-after-1600.webp`,
-      alt: `${m.product} close-up`,
+      // Each material gets a visibly different exterior crop; still placeholder JDI photography.
+      // Replace with per-material close-ups when real photography lands.
+      src:
+        m.slug === "fiber-cement"
+          ? `${JDI_CDN}/ctf/2PD7bqxA0kYRMKoXKs1TP6/01b-exterior-front-after-1600.webp`
+          : m.slug === "engineered-wood"
+            ? `${JDI_CDN}/ctf/1ywW6ufcKBIaBTL3CnzrQg/03-exterior-front-side-750.webp`
+            : m.slug === "cedar"
+              ? `${JDI_CDN}/ctf/33C8Uu510N5y2u5WoFGyj9/01-exterior-front-750.webp`
+              : `${JDI_CDN}/ctf/6kM5u8g5lU78Y1vIebWMEz/01-exterior-front-750.webp`,
+      alt: `${m.product} on a Northwest exterior`,
       width: 800,
       height: 600,
       rights: "owned" as const,
