@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Container, Section } from "@/components/primitives";
 import { SecondaryCTA } from "@/components/primitives/CTA";
 import type { ImageAsset } from "@/content-model/types";
+import { Reveal } from "@/components/motion";
 
 export type ServiceCard = {
   slug: string;
@@ -46,7 +47,7 @@ export function ServiceComposition({ eyebrow, heading, intro, viewAllHref, cards
             {cards.map((card) => (
               <li key={card.slug}>
                 <Link href={card.href} className="group block">
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-[color:var(--surface-mist)]">
+                  <Reveal kind="image" className="relative aspect-[4/5] overflow-hidden rounded-sm bg-[color:var(--surface-mist)] block">
                     <Image
                       src={card.image.src}
                       alt={card.image.alt}
@@ -54,7 +55,7 @@ export function ServiceComposition({ eyebrow, heading, intro, viewAllHref, cards
                       sizes="(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 90vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                     />
-                  </div>
+                  </Reveal>
                   <div className="mt-4">
                     <p className="eyebrow text-[0.65rem]">{card.label}</p>
                     <h3 className="mt-2 text-[1.0625rem] font-semibold leading-snug text-[color:var(--ink-emphasis)]">

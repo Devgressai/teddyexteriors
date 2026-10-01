@@ -78,10 +78,90 @@
   --container-wide: 1360px;
 
   /* Motion */
+  --motion-instant: 100ms;
   --motion-fast: 150ms;
   --motion-mid: 220ms;
   --motion-slow: 320ms;
+  --motion-long: 650ms;
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+}
+
+/* Signature effect 01 — Editorial image reveal
+   A clip-path animation that reveals images as rectangular architectural planes.
+   Applied via [data-reveal="image"]; triggered by IntersectionObserver (reveal.ts). */
+[data-reveal="image"] {
+  clip-path: inset(0 100% 0 0);
+  opacity: 0;
+  transition:
+    clip-path var(--motion-long) var(--ease-enter) 50ms,
+    opacity var(--motion-mid) var(--ease-standard);
+}
+[data-reveal="image"][data-reveal-visible="true"] {
+  clip-path: inset(0 0 0 0);
+  opacity: 1;
+}
+
+/* Signature effect 02 — Architectural line reveal
+   A horizontal rule that draws from left to right when in view. Use for section dividers
+   and editorial underlines. Applied via [data-reveal="line"]. */
+[data-reveal="line"] {
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform var(--motion-long) var(--ease-enter);
+}
+[data-reveal="line"][data-reveal-visible="true"] {
+  transform: scaleX(1);
+}
+
+/* Signature effect 03 — Editorial text rise
+   Headlines and lead copy translate 12px with mask-driven opacity when they enter view. */
+[data-reveal="text"] {
+  transform: translateY(12px);
+  opacity: 0;
+  transition:
+    transform var(--motion-slow) var(--ease-enter) 50ms,
+    opacity var(--motion-slow) var(--ease-standard);
+}
+[data-reveal="text"][data-reveal-visible="true"] {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Signature effect 04 — Envelope-layer separation (progressive).
+   WallSectionDiagram layers translate on the x-axis as the section comes into focus.
+   The further the section is scrolled through, the more each layer separates (handled by
+   JS via CSS custom property --envelope-progress 0..1). */
+.envelope-layer {
+  transition: transform var(--motion-slow) var(--ease-standard);
+  will-change: transform;
+}
+
+/* CTA arrow — group-hover arrow translate is tokenized; now 3-5px per the mandate */
+.cta-arrow {
+  transition: transform var(--motion-mid) var(--ease-standard);
+}
+.group:hover .cta-arrow,
+.group:focus-visible .cta-arrow {
+  transform: translateX(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    transition: none !important;
+    transform: none !important;
+    clip-path: none !important;
+    opacity: 1 !important;
+  }
+  .envelope-layer {
+    transition: none !important;
+    transform: none !important;
+  }
+  .cta-arrow {
+    transition: none !important;
+    transform: none !important;
+  }
 }
 
 html, body {
