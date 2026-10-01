@@ -1,61 +1,66 @@
-import Image from "next/image";
 import Link from "next/link";
-import type { RegionalCoverageProps } from "./types";
+import { Container, Section } from "@/components/primitives";
+import { RegionalMap } from "./RegionalMap";
+import type { RegionalCoverageGroup, RegionalCoverageProps } from "./types";
 
-/**
- * Two state groups with cities as real links. Map image optional and only when verified.
- * No implication of local offices in every city (spec §08).
- */
-export function RegionalCoverage({ heading, groups, supporting, mapImage }: RegionalCoverageProps) {
+export function RegionalCoverage({ heading, groups, supporting }: RegionalCoverageProps) {
   if (groups.length === 0) return null;
   return (
-    <section className="bg-[color:var(--surface-warm)]">
-      <div className="mx-auto max-w-7xl px-6 py-20 lg:py-24">
-        <header className="max-w-2xl">
-          <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-[color:var(--text-primary)]">
-            {heading}
-          </h2>
-          {supporting && <p className="mt-4 text-base text-[color:var(--text-secondary)]">{supporting}</p>}
-        </header>
-        <div className="mt-12 grid gap-10 lg:grid-cols-12 items-start">
-          {mapImage && (
-            <div className="lg:col-span-6">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-md bg-[color:var(--border-subtle)]/40">
-                <Image
-                  src={mapImage.src}
-                  alt={mapImage.alt}
-                  fill
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          )}
-          <div className={mapImage ? "lg:col-span-6" : "lg:col-span-12"}>
-            <div className="grid gap-10 sm:grid-cols-2">
+    <Section surface="mist" pad="lg" ariaLabel="Service areas">
+      <Container width="wide">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-10 gap-y-12 items-start">
+          <header className="lg:col-span-5">
+            <p className="eyebrow">Service area</p>
+            <h2 className="mt-5 editorial-h2 max-w-[18ch]">{heading}</h2>
+            {supporting && (
+              <p className="mt-5 text-[0.95rem] text-[color:var(--ink-secondary)] leading-relaxed max-w-[46ch]">
+                {supporting}
+              </p>
+            )}
+            <div className="mt-10 grid grid-cols-2 gap-x-8 gap-y-6">
               {groups.map((group) => (
-                <div key={group.stateLabel}>
-                  <h3 className="text-sm uppercase tracking-wider font-semibold text-[color:var(--text-secondary)]">
-                    {group.stateLabel}
-                  </h3>
-                  <ul className="mt-4 space-y-2">
-                    {group.cities.map((city) => (
-                      <li key={city.href}>
-                        <Link href={city.href} className="text-base text-[color:var(--text-primary)] hover:text-[color:var(--cta-fill)]">
-                          {city.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                  <Link href={group.stateHref} className="mt-5 inline-flex items-center text-sm font-semibold text-[color:var(--cta-fill)]">
-                    Explore {group.stateLabel} service areas <span aria-hidden="true" className="ml-1">→</span>
-                  </Link>
-                </div>
+                <StateColumn key={group.stateLabel} group={group} />
               ))}
+            </div>
+          </header>
+          <div className="lg:col-span-7">
+            <div className="rounded-sm border border-[color:var(--border-subtle)] bg-[color:var(--surface-paper)] p-6 lg:p-8">
+              <RegionalMap />
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
+  );
+}
+
+function StateColumn({ group }: { group: RegionalCoverageGroup }) {
+  return (
+    <div>
+      <h3 className="text-[0.75rem] uppercase tracking-[0.14em] font-semibold text-[color:var(--ink-secondary)]">
+        {group.stateLabel}
+      </h3>
+      <ul className="mt-4 space-y-2 text-[0.9rem]">
+        {group.cities.map((city) => (
+          <li key={city.href}>
+            <Link
+              href={city.href}
+              className="text-[color:var(--ink-emphasis)] hover:text-[color:var(--brand-cta)] transition-colors"
+            >
+              {city.name}
+            </Link>
+          </li>
+        ))}
+      </ul>
+      <Link
+        href={group.stateHref}
+        className="group mt-5 inline-flex items-center gap-2 text-[0.85rem] font-semibold text-[color:var(--brand-cta)]"
+      >
+        All {group.stateLabel}
+        <svg viewBox="0 0 20 20" className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5">
+          <path d="M4 10h11M11 5l5 5-5 5" stroke="currentColor" strokeWidth="1.6" fill="none" />
+        </svg>
+      </Link>
+    </div>
   );
 }

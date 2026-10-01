@@ -24,4 +24,6 @@ export { WhyTeddyNarrative, type WhyTeddyNarrativeProps, type WhyTeddyBlock } fr
 export { ClimateAuthority, type ClimateAuthorityProps } from "./ClimateAuthority";
 export { FeaturedTestimonial, type FeaturedTestimonialProps } from "./FeaturedTestimonial";
 export { MobileActionBar } from "./MobileActionBar";
+export { RegionalMap } from "./RegionalMap";
+export { StoryBreak, type StoryBreakProps } from "./StoryBreak";
 export type * from "./types";

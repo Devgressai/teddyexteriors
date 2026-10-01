@@ -5,6 +5,7 @@ import {
   ServiceComposition,
   EnvelopeFeature,
   ProjectFeature,
+  StoryBreak,
   MaterialCompare,
   RegionalCoverage,
   ProcessTimeline,
@@ -329,6 +330,20 @@ export default function HomePage() {
           compareHref="/compare/fiber-cement-vs-lp-smartside"
         />
       )}
+
+      <StoryBreak
+        eyebrow="Built for the Northwest"
+        headline="Forty inches of rain. One continuous envelope."
+        meta="Siding · Windows · Trim"
+        locality="Vancouver, WA"
+        image={{
+          src: `${JDI_CDN}/ctf/1ywW6ufcKBIaBTL3CnzrQg/03-exterior-front-side-750.webp`,
+          alt: "Modern Northwest home exterior under overcast light — Vancouver, WA",
+          width: 2400,
+          height: 1300,
+          rights: "owned",
+        }}
+      />
 
       <WhyTeddyNarrative
         sectionEyebrow="Why Teddy"
