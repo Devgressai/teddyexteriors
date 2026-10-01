@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { Container } from "@/components/primitives";
 import { PrimaryCTA } from "@/components/primitives/CTA";
+import { MegaMenu, type MegaNavItem } from "./MegaMenu";
 
 export type ExteriorHeaderProps = {
   logo?: ReactNode;
@@ -12,7 +13,7 @@ export type ExteriorHeaderProps = {
   waCredentialNumber?: string;
   orCredentialNumber?: string;
   phone?: string;
-  nav: { label: string; href: string }[];
+  nav: MegaNavItem[];
   variant?: "default" | "transparent";
 };
 
@@ -103,25 +104,7 @@ export function ExteriorHeader({
           >
             <LogoMark brandName={brandName} />
           </Link>
-          <nav aria-label="Primary" className="hidden lg:flex items-center gap-7 text-[0.9375rem] font-medium">
-            {nav.map((n) => {
-              const active = isActive(n.href);
-              return (
-                <Link
-                  key={n.href}
-                  href={n.href}
-                  aria-current={active ? "page" : undefined}
-                  className={`relative transition-colors ${
-                    active
-                      ? "text-[color:var(--brand-cta)] after:content-[''] after:absolute after:-bottom-1.5 after:left-0 after:right-0 after:h-[1.5px] after:bg-[color:var(--brand-cta)]"
-                      : "text-[color:var(--ink-emphasis)] hover:text-[color:var(--brand-cta)]"
-                  }`}
-                >
-                  {n.label}
-                </Link>
-              );
-            })}
-          </nav>
+          <MegaMenu items={nav} isActive={isActive} />
           <div className="flex items-center gap-5">
             {phone && (
               <a

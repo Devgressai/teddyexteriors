@@ -36,12 +36,132 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const primaryNav = [
-  { label: "Services", href: "/services" },
+import type { MegaNavItem } from "@/components/exterior/MegaMenu";
+
+const primaryNav: MegaNavItem[] = [
+  {
+    label: "Services",
+    href: "/services",
+    menu: {
+      description:
+        "Siding, windows, trim, gutters, and complete exterior remodeling — installed envelope-first for Pacific Northwest weather.",
+      image: {
+        src: "/images/teddy/teddy-service-siding.webp",
+        alt: "Warm neutral fiber cement siding on a Pacific Northwest home",
+      },
+      featureCta: { label: "Request an evaluation", href: "/request-estimate" },
+      columns: [
+        {
+          links: [
+            { label: "Siding replacement", href: "/services/siding-replacement" },
+            { label: "Window replacement", href: "/services/window-replacement" },
+            { label: "Gutters & trim", href: "/services/trim-and-gutters" },
+          ],
+        },
+        {
+          links: [
+            { label: "Exterior painting", href: "/services/exterior-painting" },
+            { label: "Complete exterior renovation", href: "/services/complete-exterior-renovation" },
+            { label: "Dry rot repair", href: "/services/dry-rot-repair" },
+          ],
+        },
+      ],
+      viewAll: { label: "View all services", href: "/services" },
+    },
+  },
   { label: "Our Work", href: "/projects" },
-  { label: "Materials", href: "/materials" },
-  { label: "Service Areas", href: "/service-areas" },
-  { label: "About", href: "/about" },
+  {
+    label: "Materials",
+    href: "/materials",
+    menu: {
+      description:
+        "Four siding systems we install across Vancouver and Portland. Any of them performs — if the envelope behind it is right.",
+      image: {
+        src: "/images/teddy/teddy-material-fiber-cement-detail.webp",
+        alt: "Close detail of installed fiber cement lap siding with trim",
+      },
+      featureCta: { label: "Compare systems", href: "/compare/fiber-cement-vs-lp-smartside" },
+      columns: [
+        {
+          links: [
+            { label: "Fiber cement (James Hardie)", href: "/materials/fiber-cement" },
+            { label: "Engineered wood (LP SmartSide)", href: "/materials/engineered-wood" },
+          ],
+        },
+        {
+          links: [
+            { label: "Cedar siding", href: "/materials/cedar" },
+            { label: "Vinyl siding", href: "/materials/vinyl" },
+          ],
+        },
+      ],
+      viewAll: { label: "View all materials", href: "/materials" },
+    },
+  },
+  {
+    label: "Service Areas",
+    href: "/service-areas",
+    menu: {
+      description:
+        "One local team covering southwest Washington and the Portland metro — not a national brand with a Vancouver phone number.",
+      image: {
+        src: "/images/teddy/teddy-why-written-estimate.webp",
+        alt: "Pacific Northwest residential street under overcast light",
+      },
+      featureCta: { label: "Check your city", href: "/service-areas" },
+      columns: [
+        {
+          heading: "Washington",
+          links: [
+            { label: "Vancouver", href: "/service-areas/washington/vancouver" },
+            { label: "Camas", href: "/service-areas/washington/camas" },
+            { label: "Battle Ground", href: "/service-areas/washington/battle-ground" },
+            { label: "Ridgefield", href: "/service-areas/washington/ridgefield" },
+          ],
+        },
+        {
+          heading: "Oregon",
+          links: [
+            { label: "Portland", href: "/service-areas/oregon/portland" },
+            { label: "Beaverton", href: "/service-areas/oregon/beaverton" },
+            { label: "Hillsboro", href: "/service-areas/oregon/hillsboro" },
+            { label: "Lake Oswego", href: "/service-areas/oregon/lake-oswego" },
+          ],
+        },
+      ],
+      viewAll: { label: "View all service areas", href: "/service-areas" },
+    },
+  },
+  {
+    label: "About",
+    href: "/about",
+    menu: {
+      description:
+        "Owner-run exterior contractor. Written estimates, in-house crews, envelope-first methodology — documented project by project.",
+      image: {
+        src: "/images/teddy/teddy-why-in-house-crews.webp",
+        alt: "Mid-century ranch exterior refresh in the Pacific Northwest",
+      },
+      featureCta: { label: "Meet the team", href: "/team" },
+      columns: [
+        {
+          links: [
+            { label: "About us", href: "/about" },
+            { label: "Credentials", href: "/credentials" },
+            { label: "Team", href: "/team" },
+          ],
+        },
+        {
+          links: [
+            { label: "Warranty", href: "/warranty" },
+            { label: "Reviews", href: "/reviews" },
+            { label: "Contact", href: "/contact" },
+          ],
+        },
+      ],
+      viewAll: { label: "Everything about Teddy", href: "/about" },
+    },
+  },
 ];
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
