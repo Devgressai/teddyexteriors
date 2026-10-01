@@ -26,11 +26,45 @@ import {
   type ResourceFeatureGuide,
   type ReviewPlatform,
 } from "@/components/exterior";
+import type { Metadata } from "next";
 import { get } from "@/lib/business";
 import { cities, materials, projects, findCity } from "@/content-model/registry";
 import { homepageFaq } from "@/content-model/samples";
 
 const JDI_CDN = "https://www.jdiconstruction.co";
+
+export const metadata: Metadata = {
+  title: {
+    absolute:
+      "Teddy Exteriors — Siding, Windows & Exterior Remodeling in Vancouver, WA and Portland, OR",
+  },
+  description:
+    "Exterior remodeling for Pacific Northwest homes — siding, windows, trim, gutters, and whole-exterior renovation serving Vancouver, Washington and Portland, Oregon. Built envelope-first for forty inches of annual rain.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    title: "Teddy Exteriors — Exteriors built for the Northwest",
+    description:
+      "Siding, windows, gutters and exterior remodeling designed for Vancouver, WA and Portland, OR — built the right way from the structure out.",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Teddy Exteriors — Exteriors built for the Northwest",
+    description:
+      "Siding, windows, gutters and exterior remodeling for Vancouver, WA and Portland, OR.",
+  },
+  keywords: [
+    "exterior remodeling Vancouver WA",
+    "siding contractor Vancouver WA",
+    "siding replacement Portland OR",
+    "window replacement Vancouver WA",
+    "fiber cement siding Pacific Northwest",
+    "exterior contractor Clark County",
+    "gutter installation Portland",
+    "whole exterior renovation Vancouver",
+  ],
+};
 
 export default function HomePage() {
   const phone = get<string>("contact.phone") ?? undefined;

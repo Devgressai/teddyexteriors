@@ -23,10 +23,19 @@ export async function generateMetadata({
   const { state, city } = await params;
   const c = cities.find((x) => x.slug === city && (x.state === "WA" ? "washington" : "oregon") === state);
   if (!c) return {};
+  const title = `Siding, Windows & Exterior Services in ${c.name}, ${c.state}`;
+  const description = `Serving ${c.name} and surrounding ${c.counties.join(" / ")} County communities with siding replacement, window replacement, exterior painting, trim, gutters, and envelope remediation.`;
   return {
-    title: `${c.name}, ${c.state} siding and exterior services`,
-    description: `Siding, windows, and exterior renovation serving ${c.name}, ${c.state}. Confirmed service coverage and local project evidence where available.`,
+    title,
+    description,
     alternates: { canonical: `/service-areas/${state}/${city}` },
+    openGraph: {
+      type: "article",
+      title,
+      description,
+      url: `/service-areas/${state}/${city}`,
+    },
+    twitter: { card: "summary_large_image", title, description },
     robots: c.isSample ? { index: false, follow: false } : undefined,
   };
 }

@@ -33,10 +33,14 @@ export async function generateMetadata({
   const c = cities.find((x) => x.slug === city);
   const s = services.find((x) => x.slug === service);
   if (!c || !s) return {};
+  const title = `${s.name} in ${c.name}, ${c.state}`;
+  const description = `${s.summary} Serving ${c.name} and the ${c.counties.join(" / ")} County area with written scope, in-house crews, and envelope-first construction.`;
   return {
-    title: `${s.name} in ${c.name}, ${c.state}`,
-    description: `${s.summary} Serving ${c.name}, ${c.state}.`,
+    title,
+    description,
     alternates: { canonical: `/service-areas/${state}/${city}/${service}` },
+    openGraph: { type: "article", title, description, url: `/service-areas/${state}/${city}/${service}` },
+    twitter: { card: "summary_large_image", title, description },
     robots: (c.isSample || s.isSample) ? { index: false, follow: false } : undefined,
   };
 }

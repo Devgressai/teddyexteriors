@@ -22,10 +22,19 @@ export async function generateMetadata({
   const { service } = await params;
   const s = services.find((x) => x.slug === service);
   if (!s) return {};
+  const title = `${s.name} in Vancouver, WA and Portland, OR`;
+  const description = `${s.summary} Serving Vancouver, Washington; Portland, Oregon; and the surrounding Pacific Northwest region.`;
   return {
-    title: s.name,
-    description: s.summary,
+    title,
+    description,
     alternates: { canonical: `/services/${s.slug}` },
+    openGraph: {
+      type: "article",
+      title,
+      description,
+      url: `/services/${s.slug}`,
+    },
+    twitter: { card: "summary_large_image", title, description },
     robots: s.isSample ? { index: false, follow: false } : undefined,
   };
 }

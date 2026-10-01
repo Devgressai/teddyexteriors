@@ -20,6 +20,16 @@ export async function generateMetadata({ params }: { params: Promise<{ topic: st
     title: g.title,
     description: g.summary,
     alternates: { canonical: `/resources/${topic}/${guide}` },
+    openGraph: {
+      type: "article",
+      title: g.title,
+      description: g.summary,
+      url: `/resources/${topic}/${guide}`,
+      publishedTime: g.datePublished,
+      ...(g.dateModified && { modifiedTime: g.dateModified }),
+      authors: g.reviewer ? [g.reviewer] : undefined,
+    },
+    twitter: { card: "summary_large_image", title: g.title, description: g.summary },
     robots: g.isSample ? { index: false, follow: false } : undefined,
   };
 }

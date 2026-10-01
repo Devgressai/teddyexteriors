@@ -13,9 +13,14 @@ export async function generateMetadata({ params }: { params: Promise<{ material:
   const { material } = await params;
   const m = materials.find((x) => x.slug === material);
   if (!m) return {};
+  const title = `${m.product} in the Pacific Northwest`;
+  const description = `${m.product} installation and maintenance for homes in Vancouver, Washington and Portland, Oregon. ${m.installationNotes?.slice(0, 160) ?? ""}`.trim();
   return {
-    title: m.product,
+    title,
+    description,
     alternates: { canonical: `/materials/${m.slug}` },
+    openGraph: { type: "article", title, description, url: `/materials/${m.slug}` },
+    twitter: { card: "summary_large_image", title, description },
     robots: m.isSample ? { index: false, follow: false } : undefined,
   };
 }

@@ -16,10 +16,23 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const p = projects.find((x) => x.slug === slug);
   if (!p) return {};
+  const c = findCity(p.city);
+  const location = c ? ` — ${c.name}, ${c.state}` : "";
+  const title = `${p.title}${location}`;
+  const description = p.outcome;
+  const images = p.photos.length > 0 ? [p.photos[0].src] : undefined;
   return {
-    title: p.title,
-    description: p.outcome,
+    title,
+    description,
     alternates: { canonical: `/projects/${p.slug}` },
+    openGraph: {
+      type: "article",
+      title,
+      description,
+      url: `/projects/${p.slug}`,
+      ...(images && { images }),
+    },
+    twitter: { card: "summary_large_image", title, description, ...(images && { images }) },
     robots: p.isSample ? { index: false, follow: false } : undefined,
   };
 }
