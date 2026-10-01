@@ -51,9 +51,44 @@ const LogoMark = ({ brandName }: { brandName: string }) => (
   </span>
 );
 
-export function ExteriorHeader({ brandName, phone, nav }: ExteriorHeaderProps) {
+export function ExteriorHeader({
+  brandName,
+  regionSummary,
+  waCredentialNumber,
+  orCredentialNumber,
+  phone,
+  nav,
+}: ExteriorHeaderProps) {
+  const hasUtility = regionSummary || waCredentialNumber || orCredentialNumber;
   return (
     <header className="sticky top-0 z-30 bg-[color:var(--surface-paper)]/95 backdrop-blur-sm border-b border-[color:var(--border-subtle)]">
+      {hasUtility && (
+        <div className="hidden md:block border-b border-[color:var(--border-subtle)]/60 text-[0.72rem] text-[color:var(--ink-secondary)]">
+          <Container width="wide">
+            <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-1 py-1.5">
+              {regionSummary && <span>{regionSummary}</span>}
+              <span className="flex gap-5">
+                {waCredentialNumber && (
+                  <span>
+                    WA L&amp;I{" "}
+                    <strong className="text-[color:var(--ink-emphasis)] font-semibold">
+                      {waCredentialNumber}
+                    </strong>
+                  </span>
+                )}
+                {orCredentialNumber && (
+                  <span>
+                    OR CCB{" "}
+                    <strong className="text-[color:var(--ink-emphasis)] font-semibold">
+                      {orCredentialNumber}
+                    </strong>
+                  </span>
+                )}
+              </span>
+            </div>
+          </Container>
+        </div>
+      )}
       <Container width="wide">
         <div className="flex items-center justify-between gap-8 py-3.5">
           <Link href="/" aria-label={`${brandName} home`}>

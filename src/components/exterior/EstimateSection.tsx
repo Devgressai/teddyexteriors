@@ -1,5 +1,5 @@
 "use client";
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import Link from "next/link";
 import { submitLead, type LeadState } from "@/app/actions/submit-lead";
 import { Container } from "@/components/primitives";
@@ -35,6 +35,7 @@ export function EstimateSection({
   phone,
 }: EstimateSectionProps) {
   const [state, action, pending] = useActionState(submitLead, initial);
+  const [contactMethod, setContactMethod] = useState<"email" | "phone">("email");
   return (
     <section className="bg-[color:var(--surface-inverse)] text-[color:var(--ink-inverse)]" aria-label="Request an evaluation">
       <Container width="wide">
@@ -125,18 +126,32 @@ export function EstimateSection({
                     <legend className="eyebrow eyebrow-inverse mb-3">Step 02 · Contact</legend>
                     <Field label="Your name" name="name" required autoComplete="name" error={state.errors?.name} />
                     <div className="grid grid-cols-1 sm:grid-cols-[auto_1fr] gap-5">
+                      <div>
+                        <label htmlFor="field-contactMethod" className="block text-[0.8rem] font-semibold text-white/85">
+                          Preferred
+                        </label>
+                        <div className="mt-1.5">
+                          <select
+                            id="field-contactMethod"
+                            name="contactMethod"
+                            value={contactMethod}
+                            onChange={(e) => setContactMethod(e.target.value as "email" | "phone")}
+                            className="w-full rounded-sm bg-white/[0.08] border border-white/20 px-3 py-2.5 text-[0.95rem] text-white placeholder-white/50 focus:bg-white/[0.14] focus:border-[color:var(--brand-secondary)] focus:outline-none"
+                          >
+                            <option value="email">Email</option>
+                            <option value="phone">Phone</option>
+                          </select>
+                        </div>
+                      </div>
                       <Field
-                        label="Preferred"
-                        name="contactMethod"
-                        as="select"
-                        defaultValue="email"
-                        options={[
-                          { value: "email", label: "Email" },
-                          { value: "phone", label: "Phone" },
-                        ]}
-                        error={state.errors?.contactMethod}
+                        label={contactMethod === "email" ? "Email address" : "Phone number"}
+                        name="contactValue"
+                        type={contactMethod === "email" ? "email" : "tel"}
+                        inputMode={contactMethod === "email" ? "email" : "tel"}
+                        autoComplete={contactMethod === "email" ? "email" : "tel"}
+                        required
+                        error={state.errors?.contactValue}
                       />
-                      <Field label="Email or phone" name="contactValue" required error={state.errors?.contactValue} />
                     </div>
                   </fieldset>
 
@@ -180,6 +195,8 @@ function Field({
   label,
   hint,
   name,
+  type = "text",
+  inputMode,
   required,
   defaultValue,
   autoComplete,
@@ -190,6 +207,8 @@ function Field({
   label: string;
   hint?: string;
   name: string;
+  type?: "text" | "email" | "tel" | "url";
+  inputMode?: "text" | "email" | "tel" | "numeric";
   required?: boolean;
   defaultValue?: string;
   autoComplete?: string;
@@ -225,7 +244,17 @@ function Field({
             ))}
           </select>
         ) : (
-          <input id={id} name={name} required={required} defaultValue={defaultValue} autoComplete={autoComplete} aria-describedby={describedBy} className={base} />
+          <input
+            id={id}
+            name={name}
+            type={type}
+            inputMode={inputMode}
+            required={required}
+            defaultValue={defaultValue}
+            autoComplete={autoComplete}
+            aria-describedby={describedBy}
+            className={base}
+          />
         )}
       </div>
       {error && (
