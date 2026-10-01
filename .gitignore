@@ -37,6 +37,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# Visual-generation candidates — approved assets live in public/images/teddy/
+/generated/candidates/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

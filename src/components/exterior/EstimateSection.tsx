@@ -1,103 +1,184 @@
 "use client";
 import { useActionState } from "react";
-import Image from "next/image";
+import Link from "next/link";
 import { submitLead, type LeadState } from "@/app/actions/submit-lead";
-import type { EstimateSectionProps } from "./types";
+import { Container } from "@/components/primitives";
+
+export type EstimateSectionProps = {
+  eyebrow?: string;
+  heading: string;
+  supporting: string;
+  servicePrefill?: string;
+  cityPrefill?: string;
+  phone?: string;
+  responseCommitment?: string;
+};
 
 const initial: LeadState = { ok: false };
 
+const SERVICE_OPTIONS = [
+  "Siding replacement",
+  "Window replacement",
+  "Exterior painting",
+  "Trim, soffits, fascia & gutters",
+  "Dry-rot / envelope remediation",
+  "Whole-exterior renovation",
+  "Not sure — help me decide",
+];
+
 export function EstimateSection({
+  eyebrow = "Request an evaluation",
   heading,
   supporting,
   servicePrefill,
   cityPrefill,
-  teamImage,
   phone,
-  responseCommitment,
 }: EstimateSectionProps) {
   const [state, action, pending] = useActionState(submitLead, initial);
   return (
-    <section className="bg-[color:var(--surface-inverse)] text-[color:var(--text-inverse)]">
-      <div className="mx-auto max-w-7xl px-6 py-20 lg:py-24 grid gap-12 lg:grid-cols-12 items-start">
-        <div className="lg:col-span-5">
-          {teamImage ? (
-            <div className="relative aspect-[4/5] overflow-hidden rounded-md">
-              <Image src={teamImage.src} alt={teamImage.alt} fill sizes="(min-width: 1024px) 40vw, 100vw" className="object-cover" />
-            </div>
-          ) : (
-            <div className="aspect-[4/5] rounded-md border border-white/15 bg-black/20 grid place-items-center text-xs opacity-60">
-              Project / team photograph
-            </div>
-          )}
-        </div>
-        <div className="lg:col-span-7">
-          <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">{heading}</h2>
-          <p className="mt-4 text-base/relaxed opacity-90 max-w-xl">{supporting}</p>
-          <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm opacity-80">
-            {responseCommitment && <span>{responseCommitment}</span>}
+    <section className="bg-[color:var(--surface-inverse)] text-[color:var(--ink-inverse)]" aria-label="Request an evaluation">
+      <Container width="wide">
+        <div className="py-[var(--section-pad-xl)] grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-12 items-start">
+          {/* Editorial left — expectation-setting */}
+          <div className="lg:col-span-5">
+            <p className="eyebrow eyebrow-inverse">{eyebrow}</p>
+            <h2 className="mt-5 editorial-h1 text-[color:var(--ink-inverse)] max-w-[16ch]">{heading}</h2>
+            <p className="mt-6 text-[1rem] text-white/80 leading-relaxed max-w-[42ch]">{supporting}</p>
+
+            <ol className="mt-10 space-y-5">
+              {[
+                { title: "We review your request", body: "A person reads every submission — no auto-reply loops." },
+                { title: "We follow up to confirm", body: "By your preferred contact method, with the right next step for your scope." },
+                { title: "We walk your home together", body: "If an on-site visit makes sense, we schedule it around your calendar." },
+              ].map((step, i) => (
+                <li key={step.title} className="flex gap-5">
+                  <span className="text-[0.72rem] font-semibold tracking-widest text-[color:var(--brand-secondary)] mt-1 shrink-0">
+                    0{i + 1}
+                  </span>
+                  <div>
+                    <p className="text-[0.95rem] font-semibold text-[color:var(--ink-inverse)]">{step.title}</p>
+                    <p className="mt-1 text-[0.85rem] text-white/70 leading-relaxed">{step.body}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+
             {phone && (
-              <a href={`tel:${phone.replace(/[^0-9+]/g, "")}`} className="underline underline-offset-4">
-                Or call {phone}
-              </a>
+              <p className="mt-10 text-[0.9rem] text-white/80">
+                Prefer to talk?{" "}
+                <a
+                  href={`tel:${phone.replace(/[^0-9+]/g, "")}`}
+                  className="font-semibold text-white underline underline-offset-4 hover:text-[color:var(--brand-secondary)]"
+                >
+                  {phone}
+                </a>
+              </p>
             )}
           </div>
-          {state.ok ? (
-            <div
-              role="status"
-              className="mt-8 rounded-md bg-white/10 p-6 text-base"
-            >
-              {state.message}
-            </div>
-          ) : (
-            <form action={action} className="mt-8 grid gap-5 sm:grid-cols-2">
-              {/* honeypot */}
-              <input type="text" name="company" aria-hidden="true" tabIndex={-1} className="hidden" autoComplete="off" />
-              <Field label="Your name" name="name" required autoComplete="name" error={state.errors?.name} />
-              <Field label="Contact method" name="contactMethod" as="select" defaultValue="email"
-                options={[
-                  { value: "email", label: "Email" },
-                  { value: "phone", label: "Phone" },
-                ]}
-                error={state.errors?.contactMethod}
-              />
-              <Field label="Email or phone" name="contactValue" required error={state.errors?.contactValue} className="sm:col-span-2" />
-              <Field label="City or ZIP" name="cityOrZip" required defaultValue={cityPrefill} error={state.errors?.cityOrZip} />
-              <Field label="Service of interest" name="service" required defaultValue={servicePrefill} error={state.errors?.service} />
-              <Field
-                label="Short project description"
-                name="description"
-                as="textarea"
-                required
-                error={state.errors?.description}
-                className="sm:col-span-2"
-              />
-              {state.errors?.form && (
-                <p className="sm:col-span-2 text-sm text-red-200" role="alert">
-                  {state.errors.form}
-                </p>
+
+          {/* Form */}
+          <div className="lg:col-span-7">
+            <div className="rounded-sm bg-white/[0.06] border border-white/15 p-7 lg:p-10 backdrop-blur-sm">
+              {state.ok ? (
+                <div role="status" className="py-14 text-center">
+                  <p className="editorial-h3 text-[color:var(--brand-secondary)]">Thank you.</p>
+                  <p className="mt-3 text-[0.95rem] text-white/85">{state.message}</p>
+                  <p className="mt-6 text-[0.75rem] text-white/60">
+                    You'll hear from us by your preferred contact method.
+                  </p>
+                </div>
+              ) : (
+                <form action={action} className="space-y-7" noValidate>
+                  <input type="text" name="company" aria-hidden="true" tabIndex={-1} className="hidden" autoComplete="off" />
+
+                  <fieldset className="space-y-5">
+                    <legend className="eyebrow eyebrow-inverse mb-3">Step 01 · Project</legend>
+                    <Field
+                      label="Service of interest"
+                      name="service"
+                      as="select"
+                      required
+                      defaultValue={servicePrefill}
+                      options={SERVICE_OPTIONS.map((label) => ({ value: label, label }))}
+                      error={state.errors?.service}
+                    />
+                    <Field
+                      label="Where is the property?"
+                      hint="City or ZIP is enough. Full address isn't required."
+                      name="cityOrZip"
+                      required
+                      defaultValue={cityPrefill}
+                      autoComplete="postal-code"
+                      error={state.errors?.cityOrZip}
+                    />
+                    <Field
+                      label="A short description of what you're planning"
+                      hint="A sentence or two is fine. Specifics help us prepare."
+                      name="description"
+                      as="textarea"
+                      required
+                      error={state.errors?.description}
+                    />
+                  </fieldset>
+
+                  <fieldset className="space-y-5">
+                    <legend className="eyebrow eyebrow-inverse mb-3">Step 02 · Contact</legend>
+                    <Field label="Your name" name="name" required autoComplete="name" error={state.errors?.name} />
+                    <div className="grid grid-cols-1 sm:grid-cols-[auto_1fr] gap-5">
+                      <Field
+                        label="Preferred"
+                        name="contactMethod"
+                        as="select"
+                        defaultValue="email"
+                        options={[
+                          { value: "email", label: "Email" },
+                          { value: "phone", label: "Phone" },
+                        ]}
+                        error={state.errors?.contactMethod}
+                      />
+                      <Field label="Email or phone" name="contactValue" required error={state.errors?.contactValue} />
+                    </div>
+                  </fieldset>
+
+                  {state.errors?.form && (
+                    <p className="text-[0.85rem] text-red-200" role="alert">
+                      {state.errors.form}
+                    </p>
+                  )}
+                  <div className="flex flex-wrap items-center gap-5 pt-2 border-t border-white/10">
+                    <button
+                      type="submit"
+                      disabled={pending}
+                      className="group inline-flex items-center gap-3 rounded-sm bg-[color:var(--brand-secondary)] px-6 py-3.5 text-[0.95rem] font-semibold text-[color:var(--brand-primary)] hover:brightness-95 disabled:opacity-60"
+                    >
+                      {pending ? "Sending…" : "Request an Exterior Evaluation"}
+                      <svg viewBox="0 0 20 20" className="h-4 w-4 transition-transform group-hover:translate-x-0.5">
+                        <path d="M4 10h11M11 5l5 5-5 5" stroke="currentColor" strokeWidth="1.6" fill="none" />
+                      </svg>
+                    </button>
+                    <p className="text-[0.75rem] text-white/60 max-w-[30ch]">
+                      No automated price quote. A person reads every request and follows up.
+                    </p>
+                  </div>
+                  <p className="text-[0.7rem] text-white/50">
+                    By submitting you agree to our{" "}
+                    <Link href="/privacy" className="underline">privacy</Link>{" "}
+                    and{" "}
+                    <Link href="/terms" className="underline">terms</Link>.
+                  </p>
+                </form>
               )}
-              <div className="sm:col-span-2 flex items-center gap-4">
-                <button
-                  type="submit"
-                  disabled={pending}
-                  className="inline-flex items-center rounded-md bg-[color:var(--accent)] px-5 py-3 text-base font-semibold text-[color:var(--surface-inverse)] hover:brightness-95 disabled:opacity-60"
-                >
-                  {pending ? "Sending…" : "Request My Exterior Estimate"}
-                </button>
-                <p className="text-xs opacity-70 max-w-sm">
-                  No automated price quote; a person reads every request and follows up.
-                </p>
-              </div>
-            </form>
-          )}
+            </div>
+          </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }
 
 function Field({
   label,
+  hint,
   name,
   required,
   defaultValue,
@@ -105,9 +186,9 @@ function Field({
   as = "input",
   options,
   error,
-  className = "",
 }: {
   label: string;
+  hint?: string;
   name: string;
   required?: boolean;
   defaultValue?: string;
@@ -115,22 +196,28 @@ function Field({
   as?: "input" | "textarea" | "select";
   options?: { value: string; label: string }[];
   error?: string;
-  className?: string;
 }) {
   const id = `field-${name}`;
-  const describedBy = error ? `${id}-err` : undefined;
-  const base = "w-full rounded-md bg-white/10 border border-white/20 px-3 py-2.5 text-sm text-white placeholder-white/50 focus:bg-white/15";
+  const describedBy = [hint && `${id}-hint`, error && `${id}-err`].filter(Boolean).join(" ") || undefined;
+  const base =
+    "w-full rounded-sm bg-white/[0.08] border border-white/20 px-3 py-2.5 text-[0.95rem] text-white placeholder-white/50 focus:bg-white/[0.14] focus:border-[color:var(--brand-secondary)] focus:outline-none";
   return (
-    <div className={className}>
-      <label htmlFor={id} className="block text-sm font-medium">
+    <div>
+      <label htmlFor={id} className="block text-[0.8rem] font-semibold text-white/85">
         {label}
-        {required && <span aria-hidden="true" className="ml-0.5 text-[color:var(--accent)]">*</span>}
+        {required && <span aria-hidden="true" className="ml-0.5 text-[color:var(--brand-secondary)]">*</span>}
       </label>
+      {hint && (
+        <p id={`${id}-hint`} className="mt-1 text-[0.72rem] text-white/55">
+          {hint}
+        </p>
+      )}
       <div className="mt-1.5">
         {as === "textarea" ? (
-          <textarea id={id} name={name} rows={4} required={required} defaultValue={defaultValue} aria-describedby={describedBy} className={base} />
+          <textarea id={id} name={name} rows={3} required={required} defaultValue={defaultValue} aria-describedby={describedBy} className={base} />
         ) : as === "select" ? (
           <select id={id} name={name} required={required} defaultValue={defaultValue} aria-describedby={describedBy} className={base}>
+            {!defaultValue && <option value="">Select…</option>}
             {options?.map((o) => (
               <option key={o.value} value={o.value}>
                 {o.label}
@@ -142,7 +229,7 @@ function Field({
         )}
       </div>
       {error && (
-        <p id={describedBy} className="mt-1 text-xs text-red-200">
+        <p id={`${id}-err`} className="mt-1.5 text-[0.75rem] text-red-200">
           {error}
         </p>
       )}
