@@ -2,48 +2,180 @@
 @plugin "@tailwindcss/typography";
 
 /*
- * JDI palette — extracted from owner-supplied PDF ("Top Home Remodeling Contractor in Portland, OR _ JDI Construction.pdf"),
- * first 3 pages, 2026-09-30. These are PDF RGB values, not inspected CSS vars.
- * See docs/BRAND_REFERENCE.md for provenance, contrast calculations, and usage rules.
+ * Teddy Exteriors — Design System v2 (2026-10-01)
+ * Full semantic token layer. Components must use the semantic alias, never a raw hex.
+ * Palette provenance: JDI PDF extraction (see docs/BRAND_REFERENCE.md).
+ * Role mapping: see docs/teddy-homepage-transformation/DESIGN_SYSTEM.md.
  */
 
 @theme {
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), Georgia, "Times New Roman", serif;
 
-  /* Brand — extracted */
-  --color-brand-500: #50a747;      /* primary accent (large / graphic only; fails AA on small white text) */
-  --color-brand-900: #1e3d2a;      /* deep brand green (strong backgrounds, headings) */
-  --color-brand-cta: #347a2e;      /* DERIVED, not extracted — accessible white-on-green for small text, ~5.3:1 */
-  --color-ink-800: #2d3d2f;        /* main text (green-charcoal) */
-  --color-ink-600: #485550;        /* secondary text */
-  --color-ink-900: #232323;        /* charcoal */
-  --color-surface-warm: #fcfaf8;   /* warm off-white */
-  --color-surface-cool: #f8f9fa;   /* cool neutral */
-  --color-surface-paper: #ffffff;  /* base */
-  --color-border-subtle: #d4d4d4;  /* subtle border */
+  /* Raw hues (reference only — do not use directly in components) */
+  --color-brand-500: #50a747;
+  --color-brand-900: #1e3d2a;
+  --color-brand-cta: #347a2e;
+  --color-brand-cta-hover: #2a6324;
+  --color-cedar: #b5793b;
+  --color-cedar-soft: #d1a777;
+  --color-ink-800: #2d3d2f;
+  --color-ink-600: #485550;
+  --color-ink-400: #7a857f;
+  --color-ink-900: #232323;
+  --color-surface-warm: #fcfaf8;
+  --color-surface-cool: #f8f9fa;
+  --color-surface-paper: #ffffff;
+  --color-surface-mist: #ebeeea;
+  --color-border-subtle: #d4d4d4;
+  --color-border-medium: #a8ada6;
 
-  /* Semantic aliases — never render raw brand hexes in components; always use these. */
+  /* Semantic aliases — use these in components */
+  --brand-primary: var(--color-brand-900);        /* deep evergreen — strong bands, section heads */
+  --brand-primary-ink: var(--color-surface-warm); /* text on brand-primary */
+  --brand-secondary: var(--color-brand-500);      /* accent green — large text, graphic marks */
+  --brand-cta: var(--color-brand-cta);            /* button fill, AA on white */
+  --brand-cta-ink: var(--color-surface-paper);
+  --brand-cta-hover: var(--color-brand-cta-hover);
+
+  --accent-cedar: var(--color-cedar);
+  --accent-cedar-soft: var(--color-cedar-soft);
+
   --surface-warm: var(--color-surface-warm);
-  --surface-cool: var(--color-surface-cool);
+  --surface-stone: var(--color-surface-cool);
   --surface-paper: var(--color-surface-paper);
+  --surface-mist: var(--color-surface-mist);
   --surface-inverse: var(--color-brand-900);
-  --text-primary: var(--color-ink-800);
-  --text-secondary: var(--color-ink-600);
-  --text-inverse: var(--color-surface-paper);
-  --accent: var(--color-brand-500);
-  --cta-fill: var(--color-brand-cta);
-  --cta-text: var(--color-surface-paper);
+
+  --ink-primary: var(--color-ink-800);
+  --ink-secondary: var(--color-ink-600);
+  --ink-tertiary: var(--color-ink-400);
+  --ink-inverse: var(--color-surface-warm);
+  --ink-emphasis: var(--color-brand-900);
+
   --border-subtle: var(--color-border-subtle);
+  --border-medium: var(--color-border-medium);
+
+  --focus-ring: var(--color-brand-cta);
+
+  /* Fluid type scale (anchors: 390 → 1440) */
+  --font-display-size: clamp(2.75rem, 1rem + 7vw, 5.25rem);
+  --font-h1-size: clamp(2.25rem, 1.25rem + 3.5vw, 3.5rem);
+  --font-h2-size: clamp(1.75rem, 1.1rem + 2.25vw, 2.75rem);
+  --font-h3-size: clamp(1.25rem, 1rem + 0.75vw, 1.5rem);
+  --font-body-lg-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+  --font-stat-size: clamp(1.75rem, 1.25rem + 1.75vw, 2.25rem);
+
+  /* Section padding */
+  --section-pad-sm: clamp(3rem, 2rem + 2.5vw, 4rem);
+  --section-pad-md: clamp(4rem, 3rem + 3vw, 5.5rem);
+  --section-pad-lg: clamp(5rem, 4rem + 3vw, 7rem);
+  --section-pad-xl: clamp(6rem, 5rem + 3vw, 9rem);
+
+  /* Containers */
+  --container-tight: 960px;
+  --container-std: 1200px;
+  --container-wide: 1360px;
+
+  /* Motion */
+  --motion-fast: 150ms;
+  --motion-mid: 220ms;
+  --motion-slow: 320ms;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 html, body {
   background: var(--surface-warm);
-  color: var(--text-primary);
+  color: var(--ink-primary);
+}
+
+body {
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-brand-cta);
+  outline: 2px solid var(--focus-ring);
   outline-offset: 2px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--brand-secondary);
+  color: var(--brand-primary);
+}
+
+/* Editorial headline helpers */
+.editorial-display {
+  font-family: var(--font-display);
+  font-size: var(--font-display-size);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  color: var(--ink-emphasis);
+}
+.editorial-h1 {
+  font-family: var(--font-display);
+  font-size: var(--font-h1-size);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  font-weight: 400;
+  color: var(--ink-emphasis);
+}
+.editorial-h2 {
+  font-family: var(--font-display);
+  font-size: var(--font-h2-size);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  font-weight: 400;
+  color: var(--ink-emphasis);
+}
+.editorial-h3 {
+  font-family: var(--font-sans);
+  font-size: var(--font-h3-size);
+  line-height: 1.3;
+  font-weight: 600;
+  color: var(--ink-emphasis);
+}
+.editorial-italic {
+  font-style: italic;
+  color: var(--accent-cedar-soft);
+}
+.editorial-italic-dark {
+  font-style: italic;
+  color: var(--brand-secondary);
+}
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--accent-cedar);
+}
+.eyebrow-inverse {
+  color: var(--accent-cedar-soft);
+}
+.caption {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--ink-tertiary);
+}
+.lead {
+  font-family: var(--font-sans);
+  font-size: var(--font-body-lg-size);
+  line-height: 1.55;
+  color: var(--ink-secondary);
+}
+.stat {
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: var(--font-stat-size);
+  letter-spacing: -0.01em;
+  color: var(--ink-emphasis);
 }
 
 @media (prefers-reduced-motion: reduce) {

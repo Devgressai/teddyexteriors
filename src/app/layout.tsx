@@ -1,12 +1,22 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Fraunces } from "next/font/google";
 import { JsonLd } from "@/components/JsonLd";
 import { ExteriorHeader, ExteriorFooter } from "@/components/exterior";
 import { localBusiness, website } from "@/lib/schema";
 import { display, get, hasUnresolvedRequirements } from "@/lib/business";
 import "./globals.css";
 
-const inter = Inter({ variable: "--font-sans", subsets: ["latin"], display: "swap" });
+const inter = Inter({
+  variable: "--font-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
+const fraunces = Fraunces({
+  variable: "--font-display",
+  subsets: ["latin"],
+  display: "swap",
+  axes: ["opsz", "SOFT"],
+});
 
 export async function generateMetadata(): Promise<Metadata> {
   const brand = display<string>("identity.brandName", "Teddy Exteriors (preview)");
@@ -50,7 +60,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   const orCcb = get<string>("credentials.orCcbNumber") ?? undefined;
 
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`}>
+    <html lang="en" className={`${inter.variable} ${fraunces.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-[color:var(--surface-warm)] text-[color:var(--text-primary)]">
         {jsonLd.length > 0 && <JsonLd data={jsonLd} />}
         {previewMode && (
