@@ -32,7 +32,7 @@ import { get } from "@/lib/business";
 import { cities, materials, projects, findCity } from "@/content-model/registry";
 import { homepageFaq } from "@/content-model/samples";
 
-const JDI_CDN = "https://www.jdiconstruction.co";
+const TEDDY_IMG = "/images/teddy";
 
 export const metadata: Metadata = {
   title: {
@@ -116,8 +116,8 @@ export default function HomePage() {
       description: "Durable, beautiful siding installed the right way for long-term protection in the Northwest.",
       href: "/services/siding-replacement",
       image: {
-        src: `${JDI_CDN}/ctf/2PD7bqxA0kYRMKoXKs1TP6/01b-exterior-front-after-1600.webp`,
-        alt: "Fiber cement lap siding on a Northwest exterior",
+        src: `${TEDDY_IMG}/teddy-service-siding.webp`,
+        alt: "Warm neutral fiber cement lap siding with dark trim on a Pacific Northwest home",
         width: 1200,
         height: 1500,
         rights: "owned",
@@ -130,8 +130,8 @@ export default function HomePage() {
       description: "High-performance windows for energy efficiency, comfort and curb appeal.",
       href: "/services/window-replacement",
       image: {
-        src: `${JDI_CDN}/ctf/2867howEJWyt6wVMWkIkN4/02-exterior-front-1920.webp`,
-        alt: "New dark-framed residential windows integrated into exterior siding",
+        src: `${TEDDY_IMG}/teddy-service-windows.webp`,
+        alt: "Row of black-framed casement and picture windows on a Northwest exterior",
         width: 1200,
         height: 1500,
         rights: "owned",
@@ -144,8 +144,8 @@ export default function HomePage() {
       description: "Professionally installed gutter systems to protect your home's foundation and exterior.",
       href: "/services/trim-and-gutters",
       image: {
-        src: `${JDI_CDN}/ctf/1ywW6ufcKBIaBTL3CnzrQg/03-exterior-front-side-750.webp`,
-        alt: "Clean roof-edge detail — fascia, gutter, and downspout",
+        src: `${TEDDY_IMG}/teddy-service-gutters.webp`,
+        alt: "Dark bronze seamless gutter meeting a downspout at a Northwest roof corner",
         width: 1200,
         height: 1500,
         rights: "owned",
@@ -158,8 +158,8 @@ export default function HomePage() {
       description: "Complete exterior systems for a clean, durable, and lasting finish.",
       href: "/services/trim-and-gutters",
       image: {
-        src: `${JDI_CDN}/ctf/33C8Uu510N5y2u5WoFGyj9/01-exterior-front-750.webp`,
-        alt: "Soffit and fascia detail under an architectural roofline",
+        src: `${TEDDY_IMG}/teddy-service-soffit-fascia.webp`,
+        alt: "Cedar tongue-and-groove soffit under a generous Pacific Northwest eave",
         width: 1200,
         height: 1500,
         rights: "owned",
@@ -199,12 +199,12 @@ export default function HomePage() {
       // Replace with per-material close-ups when real photography lands.
       src:
         m.slug === "fiber-cement"
-          ? `${JDI_CDN}/ctf/2PD7bqxA0kYRMKoXKs1TP6/01b-exterior-front-after-1600.webp`
+          ? `${TEDDY_IMG}/teddy-material-fiber-cement-detail.webp`
           : m.slug === "engineered-wood"
-            ? `${JDI_CDN}/ctf/1ywW6ufcKBIaBTL3CnzrQg/03-exterior-front-side-750.webp`
+            ? `${TEDDY_IMG}/teddy-material-engineered-wood-detail.webp`
             : m.slug === "cedar"
-              ? `${JDI_CDN}/ctf/33C8Uu510N5y2u5WoFGyj9/01-exterior-front-750.webp`
-              : `${JDI_CDN}/ctf/6kM5u8g5lU78Y1vIebWMEz/01-exterior-front-750.webp`,
+              ? `${TEDDY_IMG}/teddy-material-cedar-detail.webp`
+              : `${TEDDY_IMG}/teddy-material-vinyl-detail.webp`,
       alt: `${m.product} on a Northwest exterior`,
       width: 800,
       height: 600,
@@ -241,8 +241,8 @@ export default function HomePage() {
       heading: "No surprise invoices.",
       body: "Scope, materials, access, demolition allowances, and conditions-revealed allowances all appear in writing before work begins. Change orders are issued in writing. The final invoice should look like the first estimate — plus whatever we found and documented along the way.",
       image: {
-        src: `${JDI_CDN}/ctf/6kM5u8g5lU78Y1vIebWMEz/01-exterior-front-750.webp`,
-        alt: "Installation detail of fiber cement siding at a window head — Vancouver, WA",
+        src: `${TEDDY_IMG}/teddy-why-written-estimate.webp`,
+        alt: "Calm editorial exterior of a Pacific Northwest home under overcast light",
         width: 1600,
         height: 1200,
         rights: "owned",
@@ -254,8 +254,8 @@ export default function HomePage() {
       heading: "Same hands, every project.",
       body: "No bidding your project out to the lowest sub we can find. The crews building your exterior are the same crews we've worked with for years, under one roof with one project manager. Clean, respectful jobsites — and dry walls at the end of every day.",
       image: {
-        src: `${JDI_CDN}/ctf/33C8Uu510N5y2u5WoFGyj9/01-exterior-front-750.webp`,
-        alt: "Mid-century ranch exterior refresh — Vancouver, WA",
+        src: `${TEDDY_IMG}/teddy-why-in-house-crews.webp`,
+        alt: "Mid-century ranch exterior refresh in the Pacific Northwest",
         width: 1600,
         height: 1200,
         rights: "owned",
@@ -267,8 +267,8 @@ export default function HomePage() {
       heading: "The walls behind the siding get the same care as the siding.",
       body: "We open representative wall sections, document conditions, correct the flashing and WRB details that let water in originally, and only then install new cladding. If the envelope isn't right, the finish is temporary.",
       image: {
-        src: `${JDI_CDN}/ctf/1ywW6ufcKBIaBTL3CnzrQg/03-exterior-front-side-750.webp`,
-        alt: "Completed whole-home exterior remodel — Vancouver, WA",
+        src: `${TEDDY_IMG}/teddy-why-envelope-first.webp`,
+        alt: "Working wall section with taped housewrap, head flashing, and first siding courses",
         width: 1600,
         height: 1200,
         rights: "owned",
@@ -315,10 +315,10 @@ export default function HomePage() {
           { label: "Experienced & insured", icon: "shield" },
         ]}
         heroImage={{
-          src: `${JDI_CDN}/ctf/2PD7bqxA0kYRMKoXKs1TP6/01b-exterior-front-after-1600.webp`,
-          alt: "Modern Northwest residential exterior under soft overcast light — Vancouver, WA",
+          src: `${TEDDY_IMG}/teddy-hero-main.webp`,
+          alt: "Modern-craftsman Pacific Northwest home with warm neutral fiber-cement siding and cedar entry under overcast light",
           width: 2400,
-          height: 1600,
+          height: 1350,
           rights: "owned",
         }}
         projectCaption={{
@@ -363,8 +363,8 @@ export default function HomePage() {
         closingHeading="The details make the difference"
         closingBody="Proper flashing, sequencing and installation keep water out and your home protected — especially in the Pacific Northwest."
         detailImage={{
-          src: `${JDI_CDN}/ctf/6kM5u8g5lU78Y1vIebWMEz/01-exterior-front-750.webp`,
-          alt: "Close-up of a window head flashing detail with integrated weather-resistive barrier",
+          src: `${TEDDY_IMG}/teddy-envelope-detail.webp`,
+          alt: "Window head flashing with housewrap, flashing tape, and the first courses of fiber-cement siding started below",
           width: 800,
           height: 1000,
           rights: "owned",
@@ -388,10 +388,10 @@ export default function HomePage() {
         meta="Siding · Windows · Trim"
         locality="Vancouver, WA"
         image={{
-          src: `${JDI_CDN}/ctf/1ywW6ufcKBIaBTL3CnzrQg/03-exterior-front-side-750.webp`,
-          alt: "Modern Northwest home exterior under overcast light — Vancouver, WA",
+          src: `${TEDDY_IMG}/teddy-story-break.webp`,
+          alt: "Cinematic early-evening wide of a Pacific Northwest home with warm interior light against overcast sky",
           width: 2400,
-          height: 1300,
+          height: 1350,
           rights: "owned",
         }}
       />
