@@ -14,13 +14,15 @@
 
 @theme {
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-display), Georgia, "Times New Roman", serif;
 
-  /* Raw hues (reference only — do not use directly in components) */
-  --color-brand-500: #50a747;        /* primary accent — buttons at scale, graphic marks */
-  --color-brand-900: #1e3d2a;        /* deep evergreen — the only non-white surface */
-  --color-brand-cta: #347a2e;        /* CTA fill — AA on white */
-  --color-brand-cta-hover: #2a6324;
+  /* Raw hues — happy, bright, bold.
+     The previous muted forest/sage greens (#347a2e + #50a747) read as "calm and soft."
+     Shifted to vibrant emerald/lime for an energetic, modern, inviting feel. The deep
+     evergreen anchor (#1e3d2a) stays — it carries the inverse-surface moments. */
+  --color-brand-500: #22c55e;        /* bright lime-emerald — graphic marks, highlights, promo bands */
+  --color-brand-900: #1e3d2a;        /* deep evergreen anchor — inverse band surface, footer */
+  --color-brand-cta: #16a34a;        /* vibrant emerald — buttons, links. ~4.6:1 on white (AA) */
+  --color-brand-cta-hover: #15803d;  /* slightly deepened on hover, still bright */
   --color-cedar: #b5793b;            /* cedar accent for eyebrows */
   --color-cedar-soft: #d1a777;
   --color-ink-800: #2d3d2f;
@@ -44,6 +46,11 @@
 
   --accent-cedar: var(--color-cedar);
   --accent-cedar-soft: var(--color-cedar-soft);
+
+  /* Bright accent surfaces — the "happy" moments: promo bars, badges, highlight bands.
+     Direct raw-hue tokens because they're used as backgrounds (saturated), not text. */
+  --surface-accent-bright: var(--color-brand-500);  /* #22c55e — bright accent band */
+  --surface-accent-bright-ink: #0a2a14;             /* darker-green ink on bright surface */
 
   /* All light surfaces resolve to pure white. Semantic names remain so existing call-sites
      compile; visually they're a single surface. */
