@@ -83,7 +83,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <main id="main" className="flex-1 pb-14 lg:pb-0">
           {children}
         </main>
-        <SideQuoteTab />
+        <SideQuoteTab phone={phone} />
         <MobileActionBar phone={phone} />
         <ExteriorFooter
           brandName={brandName}
