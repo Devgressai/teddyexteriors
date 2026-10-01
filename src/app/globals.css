@@ -18,6 +18,9 @@
 
 @theme {
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  /* Editorial display stack reuses Barlow — kept as its own token so a dedicated
+     display face can be swapped in without rewriting every heading class. */
+  --font-display: var(--font-sans);
 
   /* ─── PRIMITIVE HUES (approved palette) ─────────────────────────────────── */
   --color-evergreen: #123D2A;        /* deep evergreen — authority surfaces, headings */

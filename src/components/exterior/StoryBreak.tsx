@@ -33,7 +33,7 @@ export function StoryBreak({ image, eyebrow, headline, meta, locality }: StoryBr
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.05) 40%, rgba(29,61,42,0.7) 100%)",
+              "linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.05) 40%, rgba(18,61,42,0.72) 100%)",
           }}
         />
         <div className="absolute inset-0 flex items-end">

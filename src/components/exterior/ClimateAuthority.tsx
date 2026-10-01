@@ -27,7 +27,7 @@ export function ClimateAuthority({ eyebrow, heading, body, rules }: ClimateAutho
             </div>
           </div>
           <aside className="lg:col-span-5 lg:col-start-8">
-            <div className="rounded-sm border-l-2 border-[color:var(--brand-cta)] bg-[color:var(--surface-paper)] p-8 lg:p-10 shadow-[0_2px_8px_rgba(29,61,42,0.06)]">
+            <div className="rounded-sm border-l-2 border-[color:var(--brand-cta)] bg-[color:var(--surface-paper)] p-8 lg:p-10 shadow-[0_2px_8px_rgba(18,61,42,0.06)]">
               <p className="eyebrow">Our rules for building here</p>
               <ol className="mt-6 space-y-6">
                 {rules.map((rule, i) => (

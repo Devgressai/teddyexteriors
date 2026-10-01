@@ -53,7 +53,7 @@ export function SideQuoteTab({ phone }: Props) {
       className={`hidden lg:flex fixed right-0 top-1/2 -translate-y-1/2 z-30 flex-col items-stretch transition-transform duration-500 ease-out ${
         hidden ? "translate-x-full" : "translate-x-0"
       }`}
-      style={{ filter: "drop-shadow(-8px 10px 24px rgba(29,61,42,0.28))" }}
+      style={{ filter: "drop-shadow(-8px 10px 24px rgba(18,61,42,0.28))" }}
     >
       {/* PRIMARY TAB — Request an Estimate */}
       <Link

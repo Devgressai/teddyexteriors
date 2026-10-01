@@ -160,7 +160,7 @@ export default async function CityHub({
           </div>
           {c.localConstraints && c.localConstraints.length > 0 && (
             <aside className="lg:col-span-6">
-              <div className="rounded-sm border-l-2 border-[color:var(--brand-cta)] bg-[color:var(--surface-paper)] p-7 shadow-[0_2px_8px_rgba(29,61,42,0.06)]">
+              <div className="rounded-sm border-l-2 border-[color:var(--brand-cta)] bg-[color:var(--surface-paper)] p-7 shadow-[0_2px_8px_rgba(18,61,42,0.06)]">
                 <p className="eyebrow">Local considerations</p>
                 <ul className="mt-5 space-y-4 text-[0.9rem] text-[color:var(--ink-secondary)]">
                   {c.localConstraints.map((item, i) => (
