@@ -1,0 +1,6 @@
+{
+  "$schema": "./source-register.schema.json",
+  "generated": "2026-09-30",
+  "note": "Claim registry per master brief §09. Every factual claim visible on the site must map to an entry here before publication.",
+  "claims": []
+}

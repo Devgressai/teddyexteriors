@@ -1,26 +1,56 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * JDI palette — extracted from owner-supplied PDF ("Top Home Remodeling Contractor in Portland, OR _ JDI Construction.pdf"),
+ * first 3 pages, 2026-09-30. These are PDF RGB values, not inspected CSS vars.
+ * See docs/BRAND_REFERENCE.md for provenance, contrast calculations, and usage rules.
+ */
+
+@theme {
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+
+  /* Brand — extracted */
+  --color-brand-500: #50a747;      /* primary accent (large / graphic only; fails AA on small white text) */
+  --color-brand-900: #1e3d2a;      /* deep brand green (strong backgrounds, headings) */
+  --color-brand-cta: #347a2e;      /* DERIVED, not extracted — accessible white-on-green for small text, ~5.3:1 */
+  --color-ink-800: #2d3d2f;        /* main text (green-charcoal) */
+  --color-ink-600: #485550;        /* secondary text */
+  --color-ink-900: #232323;        /* charcoal */
+  --color-surface-warm: #fcfaf8;   /* warm off-white */
+  --color-surface-cool: #f8f9fa;   /* cool neutral */
+  --color-surface-paper: #ffffff;  /* base */
+  --color-border-subtle: #d4d4d4;  /* subtle border */
+
+  /* Semantic aliases — never render raw brand hexes in components; always use these. */
+  --surface-warm: var(--color-surface-warm);
+  --surface-cool: var(--color-surface-cool);
+  --surface-paper: var(--color-surface-paper);
+  --surface-inverse: var(--color-brand-900);
+  --text-primary: var(--color-ink-800);
+  --text-secondary: var(--color-ink-600);
+  --text-inverse: var(--color-surface-paper);
+  --accent: var(--color-brand-500);
+  --cta-fill: var(--color-brand-cta);
+  --cta-text: var(--color-surface-paper);
+  --border-subtle: var(--color-border-subtle);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html, body {
+  background: var(--surface-warm);
+  color: var(--text-primary);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:focus-visible {
+  outline: 2px solid var(--color-brand-cta);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }

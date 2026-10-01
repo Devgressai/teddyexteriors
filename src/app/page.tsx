@@ -1,69 +1,118 @@
-import Image from "next/image";
+import {
+  ExteriorHero,
+  CredentialRail,
+  ServiceExplorer,
+  EnvelopeDetail,
+  MaterialCompare,
+  RegionalCoverage,
+  ProcessStory,
+  TeamProof,
+  ResourceFeature,
+  EstimateSection,
+  type CredentialRailItem,
+  type ServiceExplorerEntry,
+  type MaterialCompareEntry,
+  type RegionalCoverageGroup,
+  type ProcessStoryStep,
+  type ResourceFeatureGuide,
+} from "@/components/exterior";
+import { get } from "@/lib/business";
 
-export default function Home() {
+export default function HomePage() {
+  const phone = get<string>("contact.phone") ?? undefined;
+  const waLni = get<string>("credentials.waLniNumber") ?? undefined;
+  const orCcb = get<string>("credentials.orCcbNumber") ?? undefined;
+
+  const credentialItems: CredentialRailItem[] = [];
+  if (waLni) credentialItems.push({ label: "Washington L&I", value: waLni, href: "/credentials", sourceNote: "Verify at L&I" });
+  if (orCcb) credentialItems.push({ label: "Oregon CCB", value: orCcb, href: "/credentials", sourceNote: "Verify at CCB" });
+
+  const serviceEntries: ServiceExplorerEntry[] = [];
+  const materials: MaterialCompareEntry[] = [];
+  const coverage: RegionalCoverageGroup[] = [];
+
+  const processSteps: ProcessStoryStep[] = [
+    { number: "01", title: "Tell us about your home", description: "Share your goals, location, and the work you're considering." },
+    { number: "02", title: "Assess the exterior", description: "Review existing conditions and discuss appropriate options." },
+    { number: "03", title: "Review the written scope", description: "Understand proposed materials, work, exclusions, and next steps." },
+    { number: "04", title: "Build and walk through", description: "Follow the agreed construction process and review the completed work." },
+  ];
+
+  const resourceFeatured: ResourceFeatureGuide = {
+    slug: "repair-or-replace-siding",
+    title: "Repair or Replace Your Siding?",
+    summary: "Which clues point to a localized repair, and which point to full replacement in Pacific Northwest conditions.",
+    href: "/resources/pacific-northwest-siding/repair-or-replace",
+  };
+  const resourceSupporting: ResourceFeatureGuide[] = [
+    { slug: "comparing-siding-materials-nw", title: "Comparing Siding Materials for Northwest Homes", summary: "Fiber cement, LP SmartSide, wood, and other systems — how to choose for the climate and the house.", href: "/resources/pacific-northwest-siding/comparing-materials" },
+    { slug: "ask-before-hiring", title: "What to Ask Before Hiring an Exterior Contractor", summary: "Credential verification, written scope, and warranty vs product coverage.", href: "/resources/hiring-and-credentials/what-to-ask" },
+    { slug: "siding-and-windows-together", title: "Planning Siding and Window Replacement Together", summary: "When sequencing both at once saves on scaffolding, flashing, and finish work.", href: "/resources/pacific-northwest-siding/siding-and-windows-together" },
+  ];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <>
+      <ExteriorHero
+        eyebrow="Exterior remodeling · Vancouver & Portland"
+        h1Line1="Beautiful Exteriors."
+        h1Line2="Built for Northwest Weather."
+        supporting="Siding, windows, and exterior improvements for homes across Vancouver, Portland, and the surrounding region. Tell us what you want to improve — we'll help you understand the options and next steps."
+        primaryCta={{ label: "Get My Exterior Estimate", href: "/request-estimate" }}
+        secondaryCta={{ label: "Explore Our Projects", href: "/projects" }}
+        image={{
+          src: "/images/hero-placeholder.jpg",
+          alt: "Pacific Northwest home with new fiber cement siding",
+          width: 1600,
+          height: 1100,
+          rights: "inspiration-only",
+          rightsNote: "Replace with real project photograph before launch",
+        }}
+      />
+      {credentialItems.length > 0 && <CredentialRail items={credentialItems} />}
+      {serviceEntries.length > 0 && (
+        <ServiceExplorer heading="What would you like to improve?" entries={serviceEntries} />
+      )}
+      <EnvelopeDetail
+        heading="A great exterior starts behind the finish."
+        intro="A refreshed exterior lasts when the layers behind it are correct. Here's what we check and address on a typical project."
+        points={[
+          { label: "Existing-wall assessment", description: "Document conditions behind old siding before scope is finalized." },
+          { label: "Substrate repairs", description: "Replace rotted sheathing and corrected framing where required." },
+          { label: "Weather-resistive barrier & flashing", description: "Integrate WRB and head/jamb/sill flashing to shed water correctly." },
+          { label: "Product-specific installation", description: "Follow manufacturer requirements for fasteners, spacing, and seams." },
+          { label: "Final walk and cleanup", description: "Confirm scope, correct punch items, and leave the site clean." },
+        ]}
+        links={[
+          { label: "How we install siding", href: "/process" },
+          { label: "Flashing & moisture management", href: "/resources/rain-and-moisture-management" },
+          { label: "Our project process", href: "/process" },
+        ]}
+      />
+      {materials.length > 0 && (
+        <MaterialCompare heading="Choose the right look — and the right system — for your home." entries={materials} compareHref="/compare/siding-materials" />
+      )}
+      {coverage.length > 0 && (
+        <RegionalCoverage
+          heading="Your exterior team across Vancouver, Portland & nearby communities."
+          supporting="Not sure whether your property is in our service area? Send us your city or ZIP."
+          groups={coverage}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      )}
+      <ProcessStory heading="Know what happens before work begins." steps={processSteps} />
+      <TeamProof
+        heading="Real people. Clear communication. Work you can evaluate."
+        intro="A named project lead on every job, and a written scope that explains exactly what we're doing and why."
+        people={[]}
+        testimonials={[]}
+        teamHref="/team"
+        reviewsHref="/reviews"
+      />
+      <ResourceFeature heading="Make your next exterior decision with confidence." featured={resourceFeatured} supporting={resourceSupporting} />
+      <EstimateSection
+        heading="Let's plan an exterior you'll feel good coming home to."
+        supporting="Tell us what you're considering and where your home is located. Our team will follow up to discuss your project and the next step."
+        phone={phone}
+      />
+    </>
   );
 }

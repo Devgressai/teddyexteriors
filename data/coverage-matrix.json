@@ -1,0 +1,6 @@
+{
+  "$schema": "./coverage-matrix.schema.json",
+  "generated": "2026-09-30",
+  "note": "Service × geography × supporting-content matrix. A city×service page may publish only when its cell has: ownerConfirmedService=true AND ownerConfirmedCity=true AND relatedProjects.length>=0 (projects optional, acknowledged in page) AND supportingGuides.length>=1 AND claimsResolved=true.",
+  "cells": []
+}

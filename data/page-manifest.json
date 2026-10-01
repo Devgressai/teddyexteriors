@@ -1,0 +1,31 @@
+{
+  "$schema": "./page-manifest.schema.json",
+  "generated": "2026-09-30",
+  "note": "Complete planned + implemented page inventory. Dynamic routes resolve only slugs listed here. Unknown slugs 404.",
+  "pages": [
+    {
+      "route": "/",
+      "family": "home",
+      "primaryIntent": "Brand + region + services + proof + estimate path",
+      "secondaryQuestions": [],
+      "entityRefs": [],
+      "parentHub": null,
+      "relatedPages": [],
+      "conversionGoal": "request-estimate",
+      "evidenceIds": [],
+      "publishStatus": "planned",
+      "canonical": "/",
+      "metadata": { "titleKey": "home.title", "descriptionKey": "home.description" },
+      "reviewer": null,
+      "lastReviewed": null
+    }
+  ],
+  "services": [],
+  "materials": [],
+  "cities": [],
+  "projects": [],
+  "resourcePillars": [],
+  "resourceGuides": [],
+  "costGuides": [],
+  "comparisons": []
+}
