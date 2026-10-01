@@ -1,5 +1,6 @@
 import {
   EditorialHero,
+  ClimateMicrobar,
   TrustBand,
   trustIcons,
   ServiceComposition,
@@ -283,6 +284,7 @@ export default function HomePage() {
         }}
       />
 
+      <ClimateMicrobar />
       <TrustBand lead="A trusted exterior contractor in the PNW" items={trustItems} />
 
       <ServiceComposition

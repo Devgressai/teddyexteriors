@@ -1,17 +1,39 @@
+"use client";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export function MobileActionBar({ phone }: { phone?: string }) {
+  const [hidden, setHidden] = useState(false);
+
+  // Hide while the estimate form is in view, so we don't double-stack CTAs.
+  useEffect(() => {
+    if (typeof window === "undefined" || typeof IntersectionObserver === "undefined") return;
+    const target =
+      document.querySelector("[data-estimate-section]") ??
+      document.querySelector('[aria-label="Request an evaluation"]');
+    if (!target) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) setHidden(entry.isIntersecting);
+      },
+      { threshold: 0.08 },
+    );
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div
-      className="fixed bottom-0 inset-x-0 z-40 lg:hidden border-t border-[color:var(--border-subtle)] bg-[color:var(--surface-paper)]/95 backdrop-blur-sm"
+      className={`fixed bottom-0 inset-x-0 z-40 lg:hidden border-t border-[color:var(--border-subtle)] bg-[color:var(--surface-paper)]/95 backdrop-blur-sm transition-transform duration-300 ${hidden ? "translate-y-full pointer-events-none" : "translate-y-0"}`}
       role="contentinfo"
       aria-label="Quick contact"
+      aria-hidden={hidden ? "true" : "false"}
     >
       <div className="grid grid-cols-2 divide-x divide-[color:var(--border-subtle)]">
         {phone ? (
           <a
             href={`tel:${phone.replace(/[^0-9+]/g, "")}`}
-            className="flex items-center justify-center gap-2 py-3 text-[0.9rem] font-semibold text-[color:var(--ink-emphasis)]"
+            className="flex items-center justify-center gap-2 py-3.5 text-[0.9rem] font-semibold text-[color:var(--ink-emphasis)]"
           >
             <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4">
               <path
@@ -24,17 +46,17 @@ export function MobileActionBar({ phone }: { phone?: string }) {
         ) : (
           <Link
             href="/contact"
-            className="flex items-center justify-center gap-2 py-3 text-[0.9rem] font-semibold text-[color:var(--ink-emphasis)]"
+            className="flex items-center justify-center gap-2 py-3.5 text-[0.9rem] font-semibold text-[color:var(--ink-emphasis)]"
           >
             Contact
           </Link>
         )}
         <Link
           href="/request-estimate"
-          className="flex items-center justify-center gap-2 py-3 text-[0.9rem] font-semibold text-[color:var(--brand-cta-ink)] bg-[color:var(--brand-cta)]"
+          className="group flex items-center justify-center gap-2 py-3.5 text-[0.9rem] font-semibold text-[color:var(--brand-cta-ink)] bg-[color:var(--brand-cta)]"
         >
           Request Estimate
-          <svg viewBox="0 0 20 20" className="h-4 w-4" aria-hidden="true">
+          <svg viewBox="0 0 20 20" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true">
             <path d="M4 10h11M11 5l5 5-5 5" stroke="currentColor" strokeWidth="1.6" fill="none" />
           </svg>
         </Link>

@@ -77,15 +77,26 @@ export function EditorialHero({
           alt={heroImage.alt}
           fill
           priority
+          fetchPriority="high"
           sizes="100vw"
           className="object-cover object-right-bottom"
         />
+        {/* Desktop scrim — gradient fades from left */}
         <div
           aria-hidden="true"
-          className="absolute inset-0"
+          className="absolute inset-0 hidden lg:block"
           style={{
             background:
               "linear-gradient(100deg, rgba(29,61,42,0.92) 0%, rgba(29,61,42,0.78) 32%, rgba(29,61,42,0.45) 55%, rgba(29,61,42,0.08) 78%, rgba(29,61,42,0) 100%)",
+          }}
+        />
+        {/* Mobile scrim — stronger bottom-up fade since text stacks under image */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 lg:hidden"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(29,61,42,0.5) 0%, rgba(29,61,42,0.4) 30%, rgba(29,61,42,0.85) 70%, rgba(29,61,42,0.95) 100%)",
           }}
         />
       </div>
