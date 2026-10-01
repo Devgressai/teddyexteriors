@@ -2,10 +2,14 @@
 @plugin "@tailwindcss/typography";
 
 /*
- * Teddy Exteriors — Design System v2 (2026-10-01)
- * Full semantic token layer. Components must use the semantic alias, never a raw hex.
- * Palette provenance: JDI PDF extraction (see docs/BRAND_REFERENCE.md).
- * Role mapping: see docs/teddy-homepage-transformation/DESIGN_SYSTEM.md.
+ * Teddy Exteriors — Design System v3 (2026-10-01, no-tint)
+ *
+ * Direction: no warm-bone tint anywhere. Pure white is the primary surface across the entire
+ * site; the only breaks in white are the deep-evergreen inverse band (used sparingly for the
+ * envelope detail, the final CTA, and the footer) and the eyebrow + accent typography.
+ * Mirrors the actual jdiconstruction.co flow and leans into the "modern white space" direction.
+ *
+ * Alternation now relies on spacing, type scale, and image scale — not background tint.
  */
 
 @theme {
@@ -13,36 +17,38 @@
   --font-display: var(--font-display), Georgia, "Times New Roman", serif;
 
   /* Raw hues (reference only — do not use directly in components) */
-  --color-brand-500: #50a747;
-  --color-brand-900: #1e3d2a;
-  --color-brand-cta: #347a2e;
+  --color-brand-500: #50a747;        /* primary accent — buttons at scale, graphic marks */
+  --color-brand-900: #1e3d2a;        /* deep evergreen — the only non-white surface */
+  --color-brand-cta: #347a2e;        /* CTA fill — AA on white */
   --color-brand-cta-hover: #2a6324;
-  --color-cedar: #b5793b;
+  --color-cedar: #b5793b;            /* cedar accent for eyebrows */
   --color-cedar-soft: #d1a777;
   --color-ink-800: #2d3d2f;
   --color-ink-600: #485550;
   --color-ink-400: #7a857f;
   --color-ink-900: #232323;
-  --color-surface-warm: #fcfaf8;
-  --color-surface-cool: #f8f9fa;
   --color-surface-paper: #ffffff;
-  --color-surface-mist: #ebeeea;
-  --color-border-subtle: #d4d4d4;
-  --color-border-medium: #a8ada6;
+  --color-surface-mist: #f6f7f6;     /* nearly imperceptible neutral — used only where a
+                                        visual separator between two adjacent light sections
+                                        is architecturally required (e.g. a map container). */
+  --color-border-subtle: #e5e5e5;
+  --color-border-medium: #c7c9c6;
 
   /* Semantic aliases — use these in components */
-  --brand-primary: var(--color-brand-900);        /* deep evergreen — strong bands, section heads */
-  --brand-primary-ink: var(--color-surface-warm); /* text on brand-primary */
-  --brand-secondary: var(--color-brand-500);      /* accent green — large text, graphic marks */
-  --brand-cta: var(--color-brand-cta);            /* button fill, AA on white */
+  --brand-primary: var(--color-brand-900);
+  --brand-primary-ink: var(--color-surface-paper);
+  --brand-secondary: var(--color-brand-500);
+  --brand-cta: var(--color-brand-cta);
   --brand-cta-ink: var(--color-surface-paper);
   --brand-cta-hover: var(--color-brand-cta-hover);
 
   --accent-cedar: var(--color-cedar);
   --accent-cedar-soft: var(--color-cedar-soft);
 
-  --surface-warm: var(--color-surface-warm);
-  --surface-stone: var(--color-surface-cool);
+  /* All light surfaces resolve to pure white. Semantic names remain so existing call-sites
+     compile; visually they're a single surface. */
+  --surface-warm: var(--color-surface-paper);
+  --surface-stone: var(--color-surface-paper);
   --surface-paper: var(--color-surface-paper);
   --surface-mist: var(--color-surface-mist);
   --surface-inverse: var(--color-brand-900);
@@ -50,7 +56,7 @@
   --ink-primary: var(--color-ink-800);
   --ink-secondary: var(--color-ink-600);
   --ink-tertiary: var(--color-ink-400);
-  --ink-inverse: var(--color-surface-warm);
+  --ink-inverse: var(--color-surface-paper);
   --ink-emphasis: var(--color-brand-900);
 
   --border-subtle: var(--color-border-subtle);
@@ -58,7 +64,7 @@
 
   --focus-ring: var(--color-brand-cta);
 
-  /* Fluid type scale (anchors: 390 → 1440) */
+  /* Fluid type scale (anchors: 390 → 1440) — same scale as v2 */
   --font-display-size: clamp(2.75rem, 1rem + 7vw, 5.25rem);
   --font-h1-size: clamp(2.25rem, 1.25rem + 3.5vw, 3.5rem);
   --font-h2-size: clamp(1.75rem, 1.1rem + 2.25vw, 2.75rem);
@@ -66,11 +72,12 @@
   --font-body-lg-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
   --font-stat-size: clamp(1.75rem, 1.25rem + 1.75vw, 2.25rem);
 
-  /* Section padding */
-  --section-pad-sm: clamp(3rem, 2rem + 2.5vw, 4rem);
-  --section-pad-md: clamp(4rem, 3rem + 3vw, 5.5rem);
-  --section-pad-lg: clamp(5rem, 4rem + 3vw, 7rem);
-  --section-pad-xl: clamp(6rem, 5rem + 3vw, 9rem);
+  /* Section padding — pushed up ~20-30% per 2026-10-01 "white space and visual impact"
+     direction. Lets each section breathe without a background tint to carry the eye. */
+  --section-pad-sm: clamp(3.5rem, 2.5rem + 2.5vw, 5rem);
+  --section-pad-md: clamp(5rem, 4rem + 3vw, 7rem);
+  --section-pad-lg: clamp(6.5rem, 5rem + 4vw, 9.5rem);
+  --section-pad-xl: clamp(8rem, 6rem + 5vw, 12rem);
 
   /* Containers */
   --container-tight: 960px;
@@ -88,9 +95,7 @@
   --ease-exit: cubic-bezier(0.4, 0, 1, 1);
 }
 
-/* Signature effect 01 — Editorial image reveal
-   A clip-path animation that reveals images as rectangular architectural planes.
-   Applied via [data-reveal="image"]; triggered by IntersectionObserver (reveal.ts). */
+/* Signature effect 01 — Editorial image reveal (clip-path) */
 [data-reveal="image"] {
   clip-path: inset(0 100% 0 0);
   opacity: 0;
@@ -103,9 +108,7 @@
   opacity: 1;
 }
 
-/* Signature effect 02 — Architectural line reveal
-   A horizontal rule that draws from left to right when in view. Use for section dividers
-   and editorial underlines. Applied via [data-reveal="line"]. */
+/* Signature effect 02 — Architectural line reveal */
 [data-reveal="line"] {
   transform-origin: left center;
   transform: scaleX(0);
@@ -115,8 +118,7 @@
   transform: scaleX(1);
 }
 
-/* Signature effect 03 — Editorial text rise
-   Headlines and lead copy translate 12px with mask-driven opacity when they enter view. */
+/* Signature effect 03 — Editorial text rise */
 [data-reveal="text"] {
   transform: translateY(12px);
   opacity: 0;
@@ -129,16 +131,13 @@
   opacity: 1;
 }
 
-/* Signature effect 04 — Envelope-layer separation (progressive).
-   WallSectionDiagram layers translate on the x-axis as the section comes into focus.
-   The further the section is scrolled through, the more each layer separates (handled by
-   JS via CSS custom property --envelope-progress 0..1). */
+/* Signature effect 04 — Envelope-layer separation */
 .envelope-layer {
   transition: transform var(--motion-slow) var(--ease-standard);
   will-change: transform;
 }
 
-/* CTA arrow — group-hover arrow translate is tokenized; now 3-5px per the mandate */
+/* CTA arrow — group-hover arrow translate */
 .cta-arrow {
   transition: transform var(--motion-mid) var(--ease-standard);
 }
@@ -165,7 +164,7 @@
 }
 
 html, body {
-  background: var(--surface-warm);
+  background: var(--surface-paper);
   color: var(--ink-primary);
 }
 
