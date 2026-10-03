@@ -140,7 +140,7 @@ export function EstimateSection({
                             name="contactMethod"
                             value={contactMethod}
                             onChange={(e) => setContactMethod(e.target.value as "email" | "phone")}
-                            className="w-full rounded-sm bg-white/[0.08] border border-white/20 px-3 py-2.5 text-[0.95rem] text-white placeholder-white/50 focus:bg-white/[0.14] focus:border-[color:var(--brand-secondary)] focus:outline-none"
+                            className="w-full rounded-sm bg-white/[0.08] border border-white/20 px-3 py-2.5 text-[0.95rem] text-white placeholder-white/55 focus:bg-white/[0.14] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--action-inverse)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--surface-inverse)] transition-colors"
                           >
                             <option value="email">Email</option>
                             <option value="phone">Phone</option>
@@ -236,12 +236,13 @@ function Field({
   const id = `field-${name}`;
   const describedBy = [hint && `${id}-hint`, error && `${id}-err`].filter(Boolean).join(" ") || undefined;
   const base =
-    "w-full rounded-sm bg-white/[0.08] border border-white/20 px-3 py-2.5 text-[0.95rem] text-white placeholder-white/50 focus:bg-white/[0.14] focus:border-[color:var(--brand-secondary)] focus:outline-none";
+    "w-full rounded-sm bg-white/[0.08] border px-3 py-2.5 text-[0.95rem] text-white placeholder-white/55 focus:bg-white/[0.14] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--action-inverse)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--surface-inverse)] transition-colors";
+  const borderClass = error ? "border-red-300" : "border-white/20";
   return (
     <div>
       <label htmlFor={id} className="block text-[0.8rem] font-semibold text-white/85">
         {label}
-        {required && <span aria-hidden="true" className="ml-0.5 text-[color:var(--brand-secondary)]">*</span>}
+        {required && <span aria-hidden="true" className="ml-0.5 text-[color:var(--action-inverse)]">*</span>}
       </label>
       {hint && (
         <p id={`${id}-hint`} className="mt-1 text-[0.72rem] text-white/55">
@@ -250,9 +251,9 @@ function Field({
       )}
       <div className="mt-1.5">
         {as === "textarea" ? (
-          <textarea id={id} name={name} rows={3} required={required} defaultValue={defaultValue} aria-describedby={describedBy} className={base} />
+          <textarea id={id} name={name} rows={3} required={required} defaultValue={defaultValue} aria-describedby={describedBy} aria-invalid={error ? true : undefined} className={`${base} ${borderClass}`} />
         ) : as === "select" ? (
-          <select id={id} name={name} required={required} defaultValue={defaultValue} aria-describedby={describedBy} className={base}>
+          <select id={id} name={name} required={required} defaultValue={defaultValue} aria-describedby={describedBy} aria-invalid={error ? true : undefined} className={`${base} ${borderClass}`}>
             {!defaultValue && <option value="">Select…</option>}
             {options?.map((o) => (
               <option key={o.value} value={o.value}>
@@ -275,7 +276,11 @@ function Field({
         )}
       </div>
       {error && (
-        <p id={`${id}-err`} className="mt-1.5 text-[0.75rem] text-red-200">
+        <p id={`${id}-err`} role="alert" className="mt-1.5 flex items-start gap-1.5 text-[0.78rem] text-red-200">
+          <svg viewBox="0 0 16 16" aria-hidden="true" className="h-3.5 w-3.5 shrink-0 mt-0.5">
+            <circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" strokeWidth="1.4" />
+            <path d="M8 4.5v4M8 11v.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+          </svg>
           {error}
         </p>
       )}

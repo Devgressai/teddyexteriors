@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { Container } from "@/components/primitives";
 import { PrimaryCTA } from "@/components/primitives/CTA";
 import { MegaMenu, type MegaNavItem } from "./MegaMenu";
+import { MobileNavDrawer } from "./MobileNavDrawer";
 
 export type ExteriorHeaderProps = {
   logo?: ReactNode;
@@ -105,7 +106,7 @@ export function ExteriorHeader({
             <LogoMark brandName={brandName} />
           </Link>
           <MegaMenu items={nav} isActive={isActive} />
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-3 lg:gap-5">
             {phone && (
               <a
                 href={`tel:${phone.replace(/[^0-9+]/g, "")}`}
@@ -115,9 +116,16 @@ export function ExteriorHeader({
                 {phone}
               </a>
             )}
-            <PrimaryCTA href="/request-estimate" size="sm">
+            <PrimaryCTA href="/request-estimate" size="sm" className="hidden sm:inline-flex">
               Request an Estimate
             </PrimaryCTA>
+            <MobileNavDrawer
+              items={nav}
+              brandName={brandName}
+              phone={phone}
+              waCredentialNumber={waCredentialNumber}
+              orCredentialNumber={orCredentialNumber}
+            />
           </div>
         </div>
       </Container>

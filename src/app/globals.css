@@ -232,6 +232,13 @@ body {
   outline-offset: 2px;
   border-radius: 2px;
 }
+/* On evergreen surfaces (which inject --editorial-color: var(--text-inverse))
+   the default action-green focus ring reads too dark; re-point the ring to
+   fresh lime for AAA pop. The scoped --focus-ring custom property cascades
+   to every focusable descendant inside the inverse band. */
+[style*="--editorial-color: var(--text-inverse)"] {
+  --focus-ring: var(--action-inverse);
+}
 
 ::selection {
   background: var(--accent-highlight);
